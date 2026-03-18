@@ -251,55 +251,91 @@ export default function App() {
     setTimeLeft(QUESTION_TIME);
   };
 
-  const saveMatchToFirebase = async () => {
-    const trimmedName = playerName.trim();
-    if (!trimmedName) {
-      setSaveMessage("Escribe un nombre para guardar la partida.");
-      return;
-    }
+const saveMatchToFirebase = async () => {
+  const trimmedName = playerName.trim();
 
-    setSavingScore(true);
-    setSaveMessage("");
+  if (!trimmedName) {
+    setSaveMessage("Escribe un nombre para guardar la partida.");
+    return;
+  }
 
-    try {
-      const payload = {
-        name: trimmedName,
-        score: progress.totalScore,
-        difficulty,
-        totalQuestions: TOTAL_QUESTIONS,
-        roundScore: roundQuestions.reduce((acc, q) => {
-          const hit = progress.history.find(
+  setSavingScore(true);
+  setSaveMessage("");
+
+  try {
+    const normalizedHistory = (progress.history || []).slice(0, 100).map((item) => ({
+      id: Number(item.id),
+      roundQuestionId: Number(item.roundQuestionId ?? item.id),
+      roundAt: String(item.roundAt ?? item.at ?? new Date().toISOString()),
+      category: String(item.category),
+      difficulty:
+        typeof item.difficulty === "number"
+          ? item.difficulty
+          : item.difficulty === "facil"
+            ? 1
+            : item.difficulty === "medio"
+              ? 2
+              : item.difficulty === "dificil"
+                ? 3
+                : Number(difficulty),
+      correct: Boolean(item.correct),
+      at: String(item.at ?? new Date().toISOString()),
+    }));
+
+    const payload = {
+      name: trimmedName,
+      score: Number(progress.totalScore || 0),
+      difficulty: Number(difficulty),
+      totalQuestions: 12,
+      roundScore: Number(
+        roundQuestions.reduce((acc, q) => {
+          const hit = normalizedHistory.find(
             (h) => h.roundQuestionId === q.id && h.roundAt === q._roundAt
           );
           return acc + (hit?.correct ? 1 : 0);
-        }, 0),
-        correctByCategory: progress.correctByCategory,
-        wedges: progress.wedges,
-        history: progress.history.slice(0, 20),
-        createdAt: new Date().toISOString(),
-      };
+        }, 0)
+      ),
+      correctByCategory: {
+        personajes: Number(progress.correctByCategory?.personajes || 0),
+        lugares: Number(progress.correctByCategory?.lugares || 0),
+        frases: Number(progress.correctByCategory?.frases || 0),
+        liturgia: Number(progress.correctByCategory?.liturgia || 0),
+        objetos: Number(progress.correctByCategory?.objetos || 0),
+        piedad_tradiciones: Number(progress.correctByCategory?.piedad_tradiciones || 0),
+      },
+      wedges: {
+        personajes: Boolean(progress.wedges?.personajes),
+        lugares: Boolean(progress.wedges?.lugares),
+        frases: Boolean(progress.wedges?.frases),
+        liturgia: Boolean(progress.wedges?.liturgia),
+        objetos: Boolean(progress.wedges?.objetos),
+        piedad_tradiciones: Boolean(progress.wedges?.piedad_tradiciones),
+      },
+      history: normalizedHistory,
+      createdAt: new Date().toISOString(),
+    };
 
-      await addDoc(scoresCollection, payload);
+    await addDoc(scoresCollection, payload);
 
-      const snapshot = await getDocs(scoresCollection);
-      const rows = snapshot.docs
-        .map((doc) => ({ id: doc.id, ...doc.data() }))
-        .sort(
-          (a, b) =>
-            new Date(b.createdAt || b.date || 0) -
-            new Date(a.createdAt || a.date || 0)
-        )
-        .slice(0, 10);
+    const snapshot = await getDocs(scoresCollection);
+    const rows = snapshot.docs
+      .map((doc) => ({ id: doc.id, ...doc.data() }))
+      .sort(
+        (a, b) =>
+          new Date(b.createdAt || b.date || 0) -
+          new Date(a.createdAt || a.date || 0)
+      )
+      .slice(0, 10);
 
-      setSavedScores(rows);
-      setSaveMessage("Partida guardada correctamente.");
-    } catch (error) {
-      console.error("Error guardando partida:", error);
-      setSaveMessage("No se pudo guardar la partida en Firebase.");
-    } finally {
-      setSavingScore(false);
-    }
-  };
+    setSavedScores(rows);
+    setSaveMessage("Partida guardada correctamente.");
+  } catch (error) {
+    console.error("Error guardando partida:", error);
+    setSaveMessage(`No se pudo guardar la partida en Firebase. ${error?.message || ""}`);
+  } finally {
+    setSavingScore(false);
+  }
+};
 
   useEffect(() => {
     if (screen !== "quiz" || locked || !currentQuestion) return;
