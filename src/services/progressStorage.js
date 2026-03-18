@@ -1,4 +1,4 @@
-const STORAGE_KEY = "ss2026_progress";
+const STORAGE_KEY = "semana_santa_2026_progress";
 
 export const emptyProgress = {
   totalScore: 0,
@@ -25,7 +25,21 @@ export function loadProgress() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return structuredClone(emptyProgress);
-    return { ...structuredClone(emptyProgress), ...JSON.parse(raw) };
+
+    const parsed = JSON.parse(raw);
+    return {
+      ...structuredClone(emptyProgress),
+      ...parsed,
+      correctByCategory: {
+        ...structuredClone(emptyProgress).correctByCategory,
+        ...(parsed.correctByCategory || {}),
+      },
+      wedges: {
+        ...structuredClone(emptyProgress).wedges,
+        ...(parsed.wedges || {}),
+      },
+      history: Array.isArray(parsed.history) ? parsed.history : [],
+    };
   } catch {
     return structuredClone(emptyProgress);
   }
@@ -36,6 +50,6 @@ export function saveProgress(progress) {
 }
 
 export function resetProgress() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(emptyProgress));
+  localStorage.removeItem(STORAGE_KEY);
   return structuredClone(emptyProgress);
 }
