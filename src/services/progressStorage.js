@@ -48,7 +48,23 @@ export function loadProgress() {
 export function saveProgress(progress) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
 }
+const USED_QUESTIONS_KEY = "ss2026_used_questions";
 
+export function loadUsedQuestions() {
+  try {
+    return JSON.parse(localStorage.getItem(USED_QUESTIONS_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+export function saveUsedQuestions(ids) {
+  localStorage.setItem(USED_QUESTIONS_KEY, JSON.stringify(ids));
+}
+
+export function resetUsedQuestions() {
+  localStorage.removeItem(USED_QUESTIONS_KEY);
+}
 export function resetProgress() {
   localStorage.removeItem(STORAGE_KEY);
   return structuredClone(emptyProgress);
