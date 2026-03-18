@@ -49,15 +49,34 @@ function getEarnedWedges(correctByCategory) {
   );
 }
 
-function buildRoundQuestions(allQuestions, difficulty) {
-  const picked = CATEGORY_ORDER.flatMap((category) => {
-    const pool = allQuestions.filter(
+import { loadUsedQuestions, saveUsedQuestions } from "../services/progressStorage";
+
+export function buildRoundQuestions(allQuestions, difficulty) {
+  const used = loadUsedQuestions();
+
+  const perCategory = CATEGORY_ORDER.flatMap((category) => {
+    let pool = allQuestions.filter(
       (q) => q.category === category && q.difficulty === difficulty
     );
-    return shuffle(pool).slice(0, QUESTIONS_PER_CATEGORY);
+
+    // quitar usadas
+    let unused = pool.filter((q) => !used.includes(q.id));
+
+    // si no hay suficientes, reiniciar esa categoría
+    if (unused.length < 2) {
+      unused = pool;
+    }
+
+    return shuffle(unused).slice(0, 2);
   });
 
-  return shuffle(picked).map(shuffleQuestionOptions);
+  const selected = shuffle(perCategory);
+
+  // guardar como usadas
+  const newUsed = [...used, ...selected.map((q) => q.id)];
+  saveUsedQuestions(newUsed);
+
+  return selected.map(shuffleQuestionOptions);
 }
 
 function useGameSounds(enabled) {
@@ -568,14 +587,6 @@ const saveMatchToFirebase = async () => {
         <div className="card">
           <img src="/images/portada.png" alt="Portada" className="heroImage" />
 
-          <div className="chips">
-            {CATEGORY_ORDER.map((key) => (
-              <span className="chip" key={key}>
-                {CATEGORY_CONFIG[key].icon} {CATEGORY_CONFIG[key].label}
-              </span>
-            ))}
-          </div>
-
           <h2>Elige dificultad</h2>
 
           <div className="levels">
@@ -598,7 +609,7 @@ const saveMatchToFirebase = async () => {
             <div className="chips">
               {CATEGORY_ORDER.map((key) => (
                 <span className="chip" key={key}>
-                  <span className="wedge">{wedges[key] ? "🧩" : "◻️"}</span> {CATEGORY_CONFIG[key].icon}
+                  <span className="wedge">{wedges[key] ? "🧩" : "◻️"}</span> {CATEGORY_CONFIG[key].icon} {CATEGORY_CONFIG[key].label}
                 </span>
               ))}
             </div>
