@@ -4,83 +4,83 @@
       "id": 1,
       "difficulty": 1,
       "category": "personajes",
-      "image": 1,
-      "question": "¿Qué discípulo estaba junto a María en la cruz? (1)",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
       "options": [
-        "Juan",
-        "Pedro",
-        "Mateo",
-        "Tomás"
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
       ],
       "correctIndex": 0
     },
     {
       "id": 2,
       "difficulty": 1,
-      "category": "personajes",
+      "category": "lugares",
       "image": 2,
-      "question": "¿Quién ayudó a llevar la cruz? (2)",
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
       "options": [
-        "Simón de Cirene",
+        "Judas",
         "Pedro",
         "Juan",
-        "Lucas"
+        "Tomás"
       ],
       "correctIndex": 0
     },
     {
       "id": 3,
       "difficulty": 1,
-      "category": "personajes",
-      "image": 3,
-      "question": "¿Quién traicionó a Jesús por treinta monedas? (3)",
+      "category": "frases",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
       "options": [
-        "Judas",
-        "Pedro",
-        "Juan",
-        "Mateo"
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 4,
       "difficulty": 1,
-      "category": "personajes",
-      "image": 4,
-      "question": "¿Qué discípulo estaba junto a María en la cruz? (4)",
+      "category": "liturgia",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
       "options": [
-        "Juan",
-        "Pedro",
-        "Mateo",
-        "Tomás"
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
       ],
       "correctIndex": 0
     },
     {
       "id": 5,
       "difficulty": 1,
-      "category": "personajes",
-      "image": 5,
-      "question": "¿Quién fue la primera en ver al Resucitado? (5)",
+      "category": "objetos",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
       "options": [
-        "María Magdalena",
-        "Marta",
-        "Salomé",
-        "Verónica"
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 6,
       "difficulty": 1,
-      "category": "personajes",
-      "image": 6,
-      "question": "¿Quién negó a Jesús tres veces antes del gallo? (6)",
+      "category": "piedad",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
       "options": [
-        "Pedro",
-        "Andrés",
-        "Tomás",
-        "Felipe"
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
       ],
       "correctIndex": 0
     },
@@ -88,349 +88,349 @@
       "id": 7,
       "difficulty": 1,
       "category": "personajes",
-      "image": 7,
-      "question": "¿Quién condenó a Jesús a muerte? (7)",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
       "options": [
-        "Poncio Pilato",
-        "Herodes",
-        "César",
-        "Barrabás"
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 8,
       "difficulty": 1,
-      "category": "personajes",
-      "image": 8,
-      "question": "¿Qué discípulo estaba junto a María en la cruz? (8)",
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
       "options": [
         "Juan",
         "Pedro",
-        "Mateo",
-        "Tomás"
+        "Tomás",
+        "Mateo"
       ],
       "correctIndex": 0
     },
     {
       "id": 9,
       "difficulty": 1,
-      "category": "personajes",
-      "image": 9,
-      "question": "¿Quién fue la primera en ver al Resucitado? (9)",
+      "category": "frases",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
       "options": [
-        "María Magdalena",
-        "Marta",
-        "Salomé",
-        "Verónica"
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
       ],
       "correctIndex": 0
     },
     {
       "id": 10,
       "difficulty": 1,
-      "category": "personajes",
-      "image": 10,
-      "question": "¿Quién condenó a Jesús a muerte? (10)",
+      "category": "liturgia",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
       "options": [
-        "Poncio Pilato",
-        "Herodes",
-        "César",
-        "Barrabás"
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
       ],
       "correctIndex": 0
     },
     {
       "id": 11,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": 1,
-      "question": "¿Quién traicionó a Jesús por treinta monedas? (11)",
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
       "options": [
-        "Judas",
-        "Pedro",
-        "Juan",
-        "Mateo"
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 12,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": 2,
-      "question": "¿Quién pidió el cuerpo de Jesús? (12)",
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
       "options": [
-        "José de Arimatea",
-        "Pilato",
-        "Pedro",
-        "Herodes"
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
       ],
       "correctIndex": 0
     },
     {
       "id": 13,
-      "difficulty": 2,
+      "difficulty": 1,
       "category": "personajes",
-      "image": 3,
-      "question": "¿Quién ayudó a llevar la cruz? (13)",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
       "options": [
-        "Simón de Cirene",
-        "Pedro",
-        "Juan",
-        "Lucas"
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
       ],
       "correctIndex": 0
     },
     {
       "id": 14,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": 4,
-      "question": "¿Quién fue la primera en ver al Resucitado? (14)",
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
       "options": [
-        "María Magdalena",
-        "Marta",
-        "Salomé",
-        "Verónica"
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
       ],
       "correctIndex": 0
     },
     {
       "id": 15,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": 5,
-      "question": "¿Qué discípulo estaba junto a María en la cruz? (15)",
+      "difficulty": 1,
+      "category": "frases",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
       "options": [
-        "Juan",
+        "Simón de Cirene",
         "Pedro",
-        "Mateo",
-        "Tomás"
+        "Juan",
+        "Lucas"
       ],
       "correctIndex": 0
     },
     {
       "id": 16,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": 6,
-      "question": "¿Quién fue la primera en ver al Resucitado? (16)",
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
       "options": [
-        "María Magdalena",
-        "Marta",
-        "Salomé",
-        "Verónica"
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
       ],
       "correctIndex": 0
     },
     {
       "id": 17,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": 7,
-      "question": "¿Quién pidió el cuerpo de Jesús? (17)",
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
       "options": [
-        "José de Arimatea",
-        "Pilato",
-        "Pedro",
-        "Herodes"
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
       ],
       "correctIndex": 0
     },
     {
       "id": 18,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": 8,
-      "question": "¿Quién acompañó el entierro de Jesús? (18)",
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
       "options": [
-        "Nicodemo",
-        "Judas",
-        "Barrabás",
-        "Felipe"
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
       ],
       "correctIndex": 0
     },
     {
       "id": 19,
-      "difficulty": 2,
+      "difficulty": 1,
       "category": "personajes",
-      "image": 9,
-      "question": "¿Quién condenó a Jesús a muerte? (19)",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
       "options": [
-        "Poncio Pilato",
-        "Herodes",
-        "César",
-        "Barrabás"
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
       ],
       "correctIndex": 0
     },
     {
       "id": 20,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": 10,
-      "question": "¿Quién acompañó el entierro de Jesús? (20)",
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
       "options": [
-        "Nicodemo",
-        "Judas",
-        "Barrabás",
-        "Felipe"
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
       ],
       "correctIndex": 0
     },
     {
       "id": 21,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": 1,
-      "question": "¿Quién fue la primera en ver al Resucitado? (21)",
+      "difficulty": 1,
+      "category": "frases",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
       "options": [
-        "María Magdalena",
-        "Marta",
-        "Salomé",
-        "Verónica"
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
       ],
       "correctIndex": 0
     },
     {
       "id": 22,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": 2,
-      "question": "¿Quién negó a Jesús tres veces antes del gallo? (22)",
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
       "options": [
-        "Pedro",
-        "Andrés",
-        "Tomás",
-        "Felipe"
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 23,
-      "difficulty": 3,
-      "category": "personajes",
+      "difficulty": 1,
+      "category": "objetos",
       "image": 3,
-      "question": "¿Qué discípulo estaba junto a María en la cruz? (23)",
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
       "options": [
-        "Juan",
-        "Pedro",
-        "Mateo",
-        "Tomás"
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 24,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": 4,
-      "question": "¿Quién pidió el cuerpo de Jesús? (24)",
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
       "options": [
-        "José de Arimatea",
         "Pilato",
-        "Pedro",
-        "Herodes"
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 25,
-      "difficulty": 3,
+      "difficulty": 1,
       "category": "personajes",
-      "image": 5,
-      "question": "¿Quién ayudó a llevar la cruz? (25)",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
       "options": [
-        "Simón de Cirene",
-        "Pedro",
-        "Juan",
-        "Lucas"
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 26,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": 6,
-      "question": "¿Qué discípulo estaba junto a María en la cruz? (26)",
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
       "options": [
-        "Juan",
-        "Pedro",
-        "Mateo",
-        "Tomás"
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
       ],
       "correctIndex": 0
     },
     {
       "id": 27,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": 7,
-      "question": "¿Quién traicionó a Jesús por treinta monedas? (27)",
+      "difficulty": 1,
+      "category": "frases",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
       "options": [
         "Judas",
         "Pedro",
         "Juan",
-        "Mateo"
+        "Tomás"
       ],
       "correctIndex": 0
     },
     {
       "id": 28,
-      "difficulty": 3,
-      "category": "personajes",
+      "difficulty": 1,
+      "category": "liturgia",
       "image": 8,
-      "question": "¿Quién ayudó a llevar la cruz? (28)",
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
       "options": [
-        "Simón de Cirene",
-        "Pedro",
-        "Juan",
-        "Lucas"
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 29,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": 9,
-      "question": "¿Quién pidió el cuerpo de Jesús? (29)",
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
       "options": [
-        "José de Arimatea",
-        "Pilato",
-        "Pedro",
-        "Herodes"
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
       ],
       "correctIndex": 0
     },
     {
       "id": 30,
-      "difficulty": 3,
-      "category": "personajes",
+      "difficulty": 1,
+      "category": "piedad",
       "image": 10,
-      "question": "¿Quién pidió el cuerpo de Jesús? (30)",
+      "question": "¿Quién condenó a Jesús a muerte?",
       "options": [
-        "José de Arimatea",
-        "Pilato",
-        "Pedro",
-        "Herodes"
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 31,
       "difficulty": 1,
-      "category": "lugares",
-      "image": 1,
-      "question": "¿Dónde se apareció el ángel? (1)",
+      "category": "personajes",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
       "options": [
-        "Sepulcro",
-        "Templo",
-        "Palacio",
-        "Monte"
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
       ],
       "correctIndex": 0
     },
@@ -438,83 +438,83 @@
       "id": 32,
       "difficulty": 1,
       "category": "lugares",
-      "image": 2,
-      "question": "¿Dónde tuvo lugar la Última Cena? (2)",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
       "options": [
-        "Jerusalén",
-        "Belén",
-        "Roma",
-        "Galilea"
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 33,
       "difficulty": 1,
-      "category": "lugares",
+      "category": "frases",
       "image": 3,
-      "question": "¿Dónde se apareció el ángel? (3)",
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
       "options": [
-        "Sepulcro",
-        "Templo",
-        "Palacio",
-        "Monte"
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
       ],
       "correctIndex": 0
     },
     {
       "id": 34,
       "difficulty": 1,
-      "category": "lugares",
-      "image": 4,
-      "question": "¿Dónde tuvo lugar la Última Cena? (4)",
+      "category": "liturgia",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
       "options": [
-        "Jerusalén",
-        "Belén",
-        "Roma",
-        "Galilea"
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
       ],
       "correctIndex": 0
     },
     {
       "id": 35,
       "difficulty": 1,
-      "category": "lugares",
-      "image": 5,
-      "question": "¿Dónde se apareció el ángel? (5)",
+      "category": "objetos",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
       "options": [
-        "Sepulcro",
-        "Templo",
-        "Palacio",
-        "Monte"
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
       ],
       "correctIndex": 0
     },
     {
       "id": 36,
       "difficulty": 1,
-      "category": "lugares",
-      "image": 6,
-      "question": "¿Dónde fue enterrado Jesús? (6)",
+      "category": "piedad",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
       "options": [
-        "Sepulcro",
-        "Templo",
-        "Casa",
-        "Palacio"
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 37,
       "difficulty": 1,
-      "category": "lugares",
-      "image": 7,
-      "question": "¿Qué monte acoge Getsemaní? (7)",
+      "category": "personajes",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
       "options": [
-        "Monte de los Olivos",
-        "Sinaí",
-        "Tabor",
-        "Carmelo"
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
       ],
       "correctIndex": 0
     },
@@ -522,517 +522,517 @@
       "id": 38,
       "difficulty": 1,
       "category": "lugares",
-      "image": 8,
-      "question": "¿Dónde rezó Jesús antes de ser arrestado? (8)",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
       "options": [
-        "Getsemaní",
-        "Nazaret",
-        "Belén",
-        "Roma"
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
       ],
       "correctIndex": 0
     },
     {
       "id": 39,
       "difficulty": 1,
-      "category": "lugares",
-      "image": 9,
-      "question": "¿Dónde fue crucificado Jesús? (9)",
+      "category": "frases",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
       "options": [
-        "Calvario",
-        "Tabor",
-        "Sinaí",
-        "Jericó"
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
       ],
       "correctIndex": 0
     },
     {
       "id": 40,
       "difficulty": 1,
-      "category": "lugares",
-      "image": 10,
-      "question": "¿Dónde fue crucificado Jesús? (10)",
+      "category": "liturgia",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
       "options": [
-        "Calvario",
-        "Tabor",
-        "Sinaí",
-        "Jericó"
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
       ],
       "correctIndex": 0
     },
     {
       "id": 41,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": 1,
-      "question": "¿Dónde fue enterrado Jesús? (11)",
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
       "options": [
-        "Sepulcro",
-        "Templo",
-        "Casa",
-        "Palacio"
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
       ],
       "correctIndex": 0
     },
     {
       "id": 42,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": 2,
-      "question": "¿Qué monte acoge Getsemaní? (12)",
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
       "options": [
-        "Monte de los Olivos",
-        "Sinaí",
-        "Tabor",
-        "Carmelo"
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
       ],
       "correctIndex": 0
     },
     {
       "id": 43,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": 3,
-      "question": "¿Dónde rezó Jesús antes de ser arrestado? (13)",
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
       "options": [
-        "Getsemaní",
-        "Nazaret",
-        "Belén",
-        "Roma"
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
       ],
       "correctIndex": 0
     },
     {
       "id": 44,
-      "difficulty": 2,
+      "difficulty": 1,
       "category": "lugares",
-      "image": 4,
-      "question": "¿Dónde tuvo lugar la Última Cena? (14)",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
       "options": [
-        "Jerusalén",
-        "Belén",
-        "Roma",
-        "Galilea"
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
       ],
       "correctIndex": 0
     },
     {
       "id": 45,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": 5,
-      "question": "¿Dónde rezó Jesús antes de ser arrestado? (15)",
+      "difficulty": 1,
+      "category": "frases",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
       "options": [
-        "Getsemaní",
-        "Nazaret",
-        "Belén",
-        "Roma"
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
       ],
       "correctIndex": 0
     },
     {
       "id": 46,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": 6,
-      "question": "¿Dónde fue enterrado Jesús? (16)",
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
       "options": [
-        "Sepulcro",
-        "Templo",
-        "Casa",
-        "Palacio"
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
       ],
       "correctIndex": 0
     },
     {
       "id": 47,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": 7,
-      "question": "¿Dónde tuvo lugar la Última Cena? (17)",
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
       "options": [
-        "Jerusalén",
-        "Belén",
-        "Roma",
-        "Galilea"
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 48,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": 8,
-      "question": "¿Dónde rezó Jesús antes de ser arrestado? (18)",
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
       "options": [
-        "Getsemaní",
-        "Nazaret",
-        "Belén",
-        "Roma"
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 49,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": 9,
-      "question": "¿Dónde tuvo lugar la Última Cena? (19)",
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
       "options": [
-        "Jerusalén",
-        "Belén",
-        "Roma",
-        "Galilea"
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 50,
-      "difficulty": 2,
+      "difficulty": 1,
       "category": "lugares",
-      "image": 10,
-      "question": "¿Dónde fue enterrado Jesús? (20)",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
       "options": [
-        "Sepulcro",
-        "Templo",
-        "Casa",
-        "Palacio"
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 51,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": 1,
-      "question": "¿Dónde caminó Jesús con la cruz? (21)",
+      "difficulty": 1,
+      "category": "frases",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
       "options": [
-        "Vía Dolorosa",
-        "Vía Romana",
-        "Sendero Real",
-        "Ruta Sagrada"
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
       ],
       "correctIndex": 0
     },
     {
       "id": 52,
-      "difficulty": 3,
-      "category": "lugares",
+      "difficulty": 1,
+      "category": "liturgia",
       "image": 2,
-      "question": "¿Dónde fue crucificado Jesús? (22)",
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
       "options": [
-        "Calvario",
-        "Tabor",
-        "Sinaí",
-        "Jericó"
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
       ],
       "correctIndex": 0
     },
     {
       "id": 53,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": 3,
-      "question": "¿Dónde tuvo lugar la Última Cena? (23)",
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
       "options": [
-        "Jerusalén",
+        "Getsemaní",
+        "Nazaret",
         "Belén",
-        "Roma",
-        "Galilea"
+        "Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 54,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": 4,
-      "question": "¿Dónde rezó Jesús antes de ser arrestado? (24)",
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
       "options": [
-        "Getsemaní",
-        "Nazaret",
-        "Belén",
-        "Roma"
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
       ],
       "correctIndex": 0
     },
     {
       "id": 55,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": 5,
-      "question": "¿Dónde rezó Jesús antes de ser arrestado? (25)",
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
       "options": [
-        "Getsemaní",
-        "Nazaret",
-        "Belén",
-        "Roma"
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 56,
-      "difficulty": 3,
+      "difficulty": 1,
       "category": "lugares",
-      "image": 6,
-      "question": "¿Dónde tuvo lugar la Última Cena? (26)",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
       "options": [
-        "Jerusalén",
-        "Belén",
-        "Roma",
-        "Galilea"
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 57,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": 7,
-      "question": "¿Dónde fue enterrado Jesús? (27)",
+      "difficulty": 1,
+      "category": "frases",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
       "options": [
-        "Sepulcro",
-        "Templo",
-        "Casa",
-        "Palacio"
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 58,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": 8,
-      "question": "¿Dónde fue enterrado Jesús? (28)",
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
       "options": [
-        "Sepulcro",
-        "Templo",
-        "Casa",
-        "Palacio"
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
       ],
       "correctIndex": 0
     },
     {
       "id": 59,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": 9,
-      "question": "¿Dónde se apareció el ángel? (29)",
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
       "options": [
-        "Sepulcro",
-        "Templo",
-        "Palacio",
-        "Monte"
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
       ],
       "correctIndex": 0
     },
     {
       "id": 60,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": 10,
-      "question": "¿Dónde rezó Jesús antes de ser arrestado? (30)",
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
       "options": [
-        "Getsemaní",
-        "Nazaret",
-        "Belén",
-        "Roma"
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
       ],
       "correctIndex": 0
     },
     {
       "id": 61,
-      "difficulty": 1,
-      "category": "frases",
-      "image": 1,
-      "question": "¿Qué dijo el ángel? (1)",
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
       "options": [
-        "Ha resucitado",
-        "Ha muerto",
-        "Se fue",
-        "Volverá"
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 62,
-      "difficulty": 1,
-      "category": "frases",
-      "image": 2,
-      "question": "¿Qué dijo Jesús al partir el pan? (2)",
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
       "options": [
-        "Esto es mi cuerpo",
-        "Tomad agua",
-        "Seguidme",
-        "Escuchad"
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
       ],
       "correctIndex": 0
     },
     {
       "id": 63,
-      "difficulty": 1,
+      "difficulty": 2,
       "category": "frases",
-      "image": 3,
-      "question": "¿Qué pidió en Getsemaní? (3)",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
       "options": [
-        "Tu voluntad",
-        "Poder",
-        "Gloria",
-        "Riqueza"
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
       ],
       "correctIndex": 0
     },
     {
       "id": 64,
-      "difficulty": 1,
-      "category": "frases",
-      "image": 4,
-      "question": "¿Qué dijo en la cruz? (4)",
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
       "options": [
         "Tengo sed",
-        "Soy rey",
+        "Viva Roma",
         "Escuchadme",
-        "No sufráis"
+        "Soy rey"
       ],
       "correctIndex": 0
     },
     {
       "id": 65,
-      "difficulty": 1,
-      "category": "frases",
-      "image": 5,
-      "question": "¿Qué dijo al buen ladrón? (5)",
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
       "options": [
-        "Hoy estarás conmigo",
-        "Te salvaré mañana",
-        "No te conozco",
-        "Vete"
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
       ],
       "correctIndex": 0
     },
     {
       "id": 66,
-      "difficulty": 1,
-      "category": "frases",
-      "image": 6,
-      "question": "¿Qué dijo el ángel? (6)",
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
       "options": [
-        "Ha resucitado",
-        "Ha muerto",
-        "Se fue",
-        "Volverá"
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
       ],
       "correctIndex": 0
     },
     {
       "id": 67,
-      "difficulty": 1,
-      "category": "frases",
-      "image": 7,
-      "question": "¿Qué dijo Pilato? (7)",
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
       "options": [
-        "¿Qué es la verdad?",
-        "¿Quién eres?",
-        "¿Dónde vives?",
-        "¿Qué buscas?"
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
       ],
       "correctIndex": 0
     },
     {
       "id": 68,
-      "difficulty": 1,
-      "category": "frases",
-      "image": 8,
-      "question": "¿Qué dijo en la cruz? (8)",
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
       "options": [
-        "Tengo sed",
-        "Soy rey",
-        "Escuchadme",
-        "No sufráis"
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
       ],
       "correctIndex": 0
     },
     {
       "id": 69,
-      "difficulty": 1,
+      "difficulty": 2,
       "category": "frases",
-      "image": 9,
-      "question": "¿Qué dijo Jesús al partir el pan? (9)",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
       "options": [
-        "Esto es mi cuerpo",
-        "Tomad agua",
-        "Seguidme",
-        "Escuchad"
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
       ],
       "correctIndex": 0
     },
     {
       "id": 70,
-      "difficulty": 1,
-      "category": "frases",
-      "image": 10,
-      "question": "¿Qué dijo el ángel? (10)",
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
       "options": [
-        "Ha resucitado",
-        "Ha muerto",
-        "Se fue",
-        "Volverá"
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
       ],
       "correctIndex": 0
     },
     {
       "id": 71,
       "difficulty": 2,
-      "category": "frases",
-      "image": 1,
-      "question": "¿Qué dijo el ángel? (11)",
+      "category": "objetos",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
       "options": [
-        "Ha resucitado",
-        "Ha muerto",
-        "Se fue",
-        "Volverá"
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
       ],
       "correctIndex": 0
     },
     {
       "id": 72,
       "difficulty": 2,
-      "category": "frases",
-      "image": 2,
-      "question": "¿Qué dijo el ángel? (12)",
+      "category": "piedad",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
       "options": [
-        "Ha resucitado",
-        "Ha muerto",
-        "Se fue",
-        "Volverá"
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 73,
       "difficulty": 2,
-      "category": "frases",
+      "category": "personajes",
       "image": 3,
-      "question": "¿Qué pidió en Getsemaní? (13)",
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
       "options": [
-        "Tu voluntad",
-        "Poder",
-        "Gloria",
-        "Riqueza"
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 74,
       "difficulty": 2,
-      "category": "frases",
-      "image": 4,
-      "question": "¿Qué dijo al buen ladrón? (14)",
+      "category": "lugares",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
       "options": [
-        "Hoy estarás conmigo",
-        "Te salvaré mañana",
-        "No te conozco",
-        "Vete"
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
@@ -1040,433 +1040,433 @@
       "id": 75,
       "difficulty": 2,
       "category": "frases",
-      "image": 5,
-      "question": "¿Qué dijo en la cruz? (15)",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
       "options": [
-        "Tengo sed",
-        "Soy rey",
-        "Escuchadme",
-        "No sufráis"
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 76,
       "difficulty": 2,
-      "category": "frases",
-      "image": 6,
-      "question": "¿Qué pidió en Getsemaní? (16)",
+      "category": "liturgia",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
       "options": [
-        "Tu voluntad",
-        "Poder",
-        "Gloria",
-        "Riqueza"
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
       ],
       "correctIndex": 0
     },
     {
       "id": 77,
       "difficulty": 2,
-      "category": "frases",
-      "image": 7,
-      "question": "¿Qué dijo Pilato? (17)",
+      "category": "objetos",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
       "options": [
-        "¿Qué es la verdad?",
-        "¿Quién eres?",
-        "¿Dónde vives?",
-        "¿Qué buscas?"
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
       ],
       "correctIndex": 0
     },
     {
       "id": 78,
       "difficulty": 2,
-      "category": "frases",
+      "category": "piedad",
       "image": 8,
-      "question": "¿Qué pidió en Getsemaní? (18)",
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
       "options": [
-        "Tu voluntad",
-        "Poder",
-        "Gloria",
-        "Riqueza"
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 79,
       "difficulty": 2,
-      "category": "frases",
-      "image": 9,
-      "question": "¿Qué dijo el ángel? (19)",
+      "category": "personajes",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
       "options": [
-        "Ha resucitado",
-        "Ha muerto",
-        "Se fue",
-        "Volverá"
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
       ],
       "correctIndex": 0
     },
     {
       "id": 80,
       "difficulty": 2,
-      "category": "frases",
+      "category": "lugares",
       "image": 10,
-      "question": "¿Qué dijo el ángel? (20)",
+      "question": "¿Quién condenó a Jesús a muerte?",
       "options": [
-        "Ha resucitado",
-        "Ha muerto",
-        "Se fue",
-        "Volverá"
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 81,
-      "difficulty": 3,
+      "difficulty": 2,
       "category": "frases",
-      "image": 1,
-      "question": "¿Qué dijo Jesús al partir el pan? (21)",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
       "options": [
-        "Esto es mi cuerpo",
-        "Tomad agua",
-        "Seguidme",
-        "Escuchad"
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 82,
-      "difficulty": 3,
-      "category": "frases",
-      "image": 2,
-      "question": "¿Qué dijo el ángel? (22)",
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
       "options": [
-        "Ha resucitado",
-        "Ha muerto",
-        "Se fue",
-        "Volverá"
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 83,
-      "difficulty": 3,
-      "category": "frases",
+      "difficulty": 2,
+      "category": "objetos",
       "image": 3,
-      "question": "¿Qué dijo Pilato? (23)",
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
       "options": [
-        "¿Qué es la verdad?",
-        "¿Quién eres?",
-        "¿Dónde vives?",
-        "¿Qué buscas?"
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
       ],
       "correctIndex": 0
     },
     {
       "id": 84,
-      "difficulty": 3,
-      "category": "frases",
-      "image": 4,
-      "question": "¿Qué pidió en Getsemaní? (24)",
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
       "options": [
-        "Tu voluntad",
-        "Poder",
-        "Gloria",
-        "Riqueza"
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
       ],
       "correctIndex": 0
     },
     {
       "id": 85,
-      "difficulty": 3,
-      "category": "frases",
-      "image": 5,
-      "question": "¿Qué dijo al buen ladrón? (25)",
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
       "options": [
-        "Hoy estarás conmigo",
-        "Te salvaré mañana",
-        "No te conozco",
-        "Vete"
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
       ],
       "correctIndex": 0
     },
     {
       "id": 86,
-      "difficulty": 3,
-      "category": "frases",
-      "image": 6,
-      "question": "¿Qué dijo Jesús al partir el pan? (26)",
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
       "options": [
-        "Esto es mi cuerpo",
-        "Tomad agua",
-        "Seguidme",
-        "Escuchad"
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 87,
-      "difficulty": 3,
+      "difficulty": 2,
       "category": "frases",
-      "image": 7,
-      "question": "¿Qué dijo al buen ladrón? (27)",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
       "options": [
-        "Hoy estarás conmigo",
-        "Te salvaré mañana",
-        "No te conozco",
-        "Vete"
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
       ],
       "correctIndex": 0
     },
     {
       "id": 88,
-      "difficulty": 3,
-      "category": "frases",
-      "image": 8,
-      "question": "¿Qué dijo el ángel? (28)",
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
       "options": [
-        "Ha resucitado",
-        "Ha muerto",
-        "Se fue",
-        "Volverá"
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
       ],
       "correctIndex": 0
     },
     {
       "id": 89,
-      "difficulty": 3,
-      "category": "frases",
-      "image": 9,
-      "question": "¿Qué dijo Jesús al partir el pan? (29)",
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
       "options": [
-        "Esto es mi cuerpo",
-        "Tomad agua",
-        "Seguidme",
-        "Escuchad"
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
       ],
       "correctIndex": 0
     },
     {
       "id": 90,
-      "difficulty": 3,
-      "category": "frases",
-      "image": 10,
-      "question": "¿Qué dijo el ángel? (30)",
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
       "options": [
-        "Ha resucitado",
-        "Ha muerto",
-        "Se fue",
-        "Volverá"
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
       ],
       "correctIndex": 0
     },
     {
       "id": 91,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": 1,
-      "question": "¿Qué día es Viernes Santo? (1)",
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
       "options": [
-        "Crucifixión",
-        "Nacimiento",
-        "Ascensión",
-        "Pentecostés"
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
       ],
       "correctIndex": 0
     },
     {
       "id": 92,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": 2,
-      "question": "¿Qué día es Pascua? (2)",
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
       "options": [
-        "Resurrección",
-        "Muerte",
-        "Cena",
-        "Entrada"
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
       ],
       "correctIndex": 0
     },
     {
       "id": 93,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": 3,
-      "question": "¿Qué día es Jueves Santo? (3)",
+      "difficulty": 2,
+      "category": "frases",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
       "options": [
-        "Última Cena",
-        "Resurrección",
-        "Ascensión",
-        "Navidad"
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
       ],
       "correctIndex": 0
     },
     {
       "id": 94,
-      "difficulty": 1,
+      "difficulty": 2,
       "category": "liturgia",
-      "image": 4,
-      "question": "¿Qué sacramento nace en la Cena? (4)",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
       "options": [
-        "Eucaristía",
-        "Bautismo",
-        "Orden",
-        "Confirmación"
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
       ],
       "correctIndex": 0
     },
     {
       "id": 95,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": 5,
-      "question": "¿Qué sacramento nace en la Cena? (5)",
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
       "options": [
-        "Eucaristía",
-        "Bautismo",
-        "Orden",
-        "Confirmación"
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
       ],
       "correctIndex": 0
     },
     {
       "id": 96,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": 6,
-      "question": "¿Qué se venera el Viernes Santo? (6)",
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
       "options": [
-        "La cruz",
-        "El pan",
-        "El vino",
-        "El incienso"
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
       ],
       "correctIndex": 0
     },
     {
       "id": 97,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": 7,
-      "question": "¿Qué día es Viernes Santo? (7)",
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
       "options": [
-        "Crucifixión",
-        "Nacimiento",
-        "Ascensión",
-        "Pentecostés"
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 98,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": 8,
-      "question": "¿Qué día es Pascua? (8)",
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
       "options": [
-        "Resurrección",
-        "Muerte",
-        "Cena",
-        "Entrada"
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 99,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": 9,
-      "question": "¿Qué celebración ocurre la noche de Pascua? (9)",
+      "difficulty": 2,
+      "category": "frases",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
       "options": [
-        "Vigilia Pascual",
-        "Rosario",
-        "Novena",
-        "Procesión"
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 100,
-      "difficulty": 1,
+      "difficulty": 2,
       "category": "liturgia",
-      "image": 10,
-      "question": "¿Qué celebración ocurre la noche de Pascua? (10)",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
       "options": [
-        "Vigilia Pascual",
-        "Rosario",
-        "Novena",
-        "Procesión"
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 101,
       "difficulty": 2,
-      "category": "liturgia",
-      "image": 1,
-      "question": "¿Qué día es Pascua? (11)",
+      "category": "objetos",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
       "options": [
-        "Resurrección",
-        "Muerte",
-        "Cena",
-        "Entrada"
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
       ],
       "correctIndex": 0
     },
     {
       "id": 102,
       "difficulty": 2,
-      "category": "liturgia",
+      "category": "piedad",
       "image": 2,
-      "question": "¿Qué se venera el Viernes Santo? (12)",
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
       "options": [
-        "La cruz",
-        "El pan",
-        "El vino",
-        "El incienso"
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
       ],
       "correctIndex": 0
     },
     {
       "id": 103,
       "difficulty": 2,
-      "category": "liturgia",
-      "image": 3,
-      "question": "¿Qué día es Jueves Santo? (13)",
+      "category": "personajes",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
       "options": [
-        "Última Cena",
-        "Resurrección",
-        "Ascensión",
-        "Navidad"
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 104,
       "difficulty": 2,
-      "category": "liturgia",
-      "image": 4,
-      "question": "¿Qué sacramento nace en la Cena? (14)",
+      "category": "lugares",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
       "options": [
-        "Eucaristía",
-        "Bautismo",
-        "Orden",
-        "Confirmación"
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
       ],
       "correctIndex": 0
     },
     {
       "id": 105,
       "difficulty": 2,
-      "category": "liturgia",
-      "image": 5,
-      "question": "¿Qué sacramento nace en la Cena? (15)",
+      "category": "frases",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
       "options": [
-        "Eucaristía",
-        "Bautismo",
-        "Orden",
-        "Confirmación"
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
@@ -1474,517 +1474,517 @@
       "id": 106,
       "difficulty": 2,
       "category": "liturgia",
-      "image": 6,
-      "question": "¿Qué día es Viernes Santo? (16)",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
       "options": [
-        "Crucifixión",
-        "Nacimiento",
-        "Ascensión",
-        "Pentecostés"
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 107,
       "difficulty": 2,
-      "category": "liturgia",
-      "image": 7,
-      "question": "¿Qué día es Jueves Santo? (17)",
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
       "options": [
-        "Última Cena",
-        "Resurrección",
-        "Ascensión",
-        "Navidad"
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 108,
       "difficulty": 2,
-      "category": "liturgia",
-      "image": 8,
-      "question": "¿Qué se venera el Viernes Santo? (18)",
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
       "options": [
-        "La cruz",
-        "El pan",
-        "El vino",
-        "El incienso"
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
       ],
       "correctIndex": 0
     },
     {
       "id": 109,
       "difficulty": 2,
-      "category": "liturgia",
-      "image": 9,
-      "question": "¿Qué se venera el Viernes Santo? (19)",
+      "category": "personajes",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
       "options": [
-        "La cruz",
-        "El pan",
-        "El vino",
-        "El incienso"
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
       ],
       "correctIndex": 0
     },
     {
       "id": 110,
       "difficulty": 2,
-      "category": "liturgia",
-      "image": 10,
-      "question": "¿Qué sacramento nace en la Cena? (20)",
+      "category": "lugares",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
       "options": [
-        "Eucaristía",
-        "Bautismo",
-        "Orden",
-        "Confirmación"
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
       ],
       "correctIndex": 0
     },
     {
       "id": 111,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": 1,
-      "question": "¿Qué celebración ocurre la noche de Pascua? (21)",
+      "difficulty": 2,
+      "category": "frases",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
       "options": [
-        "Vigilia Pascual",
-        "Rosario",
-        "Novena",
-        "Procesión"
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 112,
-      "difficulty": 3,
+      "difficulty": 2,
       "category": "liturgia",
-      "image": 2,
-      "question": "¿Qué día es Pascua? (22)",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
       "options": [
-        "Resurrección",
-        "Muerte",
-        "Cena",
-        "Entrada"
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
       ],
       "correctIndex": 0
     },
     {
       "id": 113,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": 3,
-      "question": "¿Qué día es Jueves Santo? (23)",
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
       "options": [
-        "Última Cena",
-        "Resurrección",
-        "Ascensión",
-        "Navidad"
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
       ],
       "correctIndex": 0
     },
     {
       "id": 114,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": 4,
-      "question": "¿Qué día es Jueves Santo? (24)",
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
       "options": [
-        "Última Cena",
-        "Resurrección",
-        "Ascensión",
-        "Navidad"
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
       ],
       "correctIndex": 0
     },
     {
       "id": 115,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": 5,
-      "question": "¿Qué día es Jueves Santo? (25)",
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
       "options": [
-        "Última Cena",
-        "Resurrección",
-        "Ascensión",
-        "Navidad"
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
       ],
       "correctIndex": 0
     },
     {
       "id": 116,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": 6,
-      "question": "¿Qué día es Jueves Santo? (26)",
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
       "options": [
-        "Última Cena",
-        "Resurrección",
-        "Ascensión",
-        "Navidad"
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
       ],
       "correctIndex": 0
     },
     {
       "id": 117,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": 7,
-      "question": "¿Qué día es Viernes Santo? (27)",
+      "difficulty": 2,
+      "category": "frases",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
       "options": [
-        "Crucifixión",
-        "Nacimiento",
-        "Ascensión",
-        "Pentecostés"
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
       ],
       "correctIndex": 0
     },
     {
       "id": 118,
-      "difficulty": 3,
+      "difficulty": 2,
       "category": "liturgia",
-      "image": 8,
-      "question": "¿Qué día es Jueves Santo? (28)",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
       "options": [
-        "Última Cena",
-        "Resurrección",
-        "Ascensión",
-        "Navidad"
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
       ],
       "correctIndex": 0
     },
     {
       "id": 119,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": 9,
-      "question": "¿Qué día es Pascua? (29)",
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
       "options": [
-        "Resurrección",
-        "Muerte",
-        "Cena",
-        "Entrada"
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
       ],
       "correctIndex": 0
     },
     {
       "id": 120,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": 10,
-      "question": "¿Qué sacramento nace en la Cena? (30)",
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
       "options": [
-        "Eucaristía",
-        "Bautismo",
-        "Orden",
-        "Confirmación"
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
       ],
       "correctIndex": 0
     },
     {
       "id": 121,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": 1,
-      "question": "¿Qué se usa en la Cena? (1)",
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
       "options": [
-        "Pan",
-        "Espada",
-        "Libro",
-        "Antorcha"
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
       ],
       "correctIndex": 0
     },
     {
       "id": 122,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": 2,
-      "question": "¿Qué cerraba el sepulcro? (2)",
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
       "options": [
-        "Piedra",
-        "Puerta",
-        "Hierro",
-        "Tela"
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 123,
-      "difficulty": 1,
-      "category": "objetos",
+      "difficulty": 3,
+      "category": "frases",
       "image": 3,
-      "question": "¿Qué llevaba en la cabeza Jesús? (3)",
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
       "options": [
-        "Corona de espinas",
-        "Corona de oro",
-        "Casco",
-        "Sombrero"
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 124,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": 4,
-      "question": "¿Qué se usa en la Cena? (4)",
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
       "options": [
-        "Pan",
-        "Espada",
-        "Libro",
-        "Antorcha"
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 125,
-      "difficulty": 1,
+      "difficulty": 3,
       "category": "objetos",
-      "image": 5,
-      "question": "¿Qué cerraba el sepulcro? (5)",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
       "options": [
-        "Piedra",
-        "Puerta",
-        "Hierro",
-        "Tela"
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 126,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": 6,
-      "question": "¿Qué objeto representa la luz en Pascua? (6)",
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
       "options": [
-        "Cirio",
-        "Antorcha",
-        "Fuego común",
-        "Linterna"
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
       ],
       "correctIndex": 0
     },
     {
       "id": 127,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": 7,
-      "question": "¿Qué letras aparecen en la cruz? (7)",
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
       "options": [
-        "INRI",
-        "ICHS",
-        "XPTO",
-        "AMEN"
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
       ],
       "correctIndex": 0
     },
     {
       "id": 128,
-      "difficulty": 1,
-      "category": "objetos",
+      "difficulty": 3,
+      "category": "lugares",
       "image": 8,
-      "question": "¿Qué llevaba en la cabeza Jesús? (8)",
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
       "options": [
-        "Corona de espinas",
-        "Corona de oro",
-        "Casco",
-        "Sombrero"
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 129,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": 9,
-      "question": "¿Qué objeto representa la luz en Pascua? (9)",
+      "difficulty": 3,
+      "category": "frases",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
       "options": [
-        "Cirio",
-        "Antorcha",
-        "Fuego común",
-        "Linterna"
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
       ],
       "correctIndex": 0
     },
     {
       "id": 130,
-      "difficulty": 1,
-      "category": "objetos",
+      "difficulty": 3,
+      "category": "liturgia",
       "image": 10,
-      "question": "¿Qué llevaba en la cabeza Jesús? (10)",
+      "question": "¿Quién condenó a Jesús a muerte?",
       "options": [
-        "Corona de espinas",
-        "Corona de oro",
-        "Casco",
-        "Sombrero"
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 131,
-      "difficulty": 2,
+      "difficulty": 3,
       "category": "objetos",
-      "image": 1,
-      "question": "¿Qué letras aparecen en la cruz? (11)",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
       "options": [
-        "INRI",
-        "ICHS",
-        "XPTO",
-        "AMEN"
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 132,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": 2,
-      "question": "¿Qué símbolo central de la Pasión aparece? (12)",
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
       "options": [
-        "Cruz",
-        "Espada",
-        "Corona",
-        "Libro"
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 133,
-      "difficulty": 2,
-      "category": "objetos",
+      "difficulty": 3,
+      "category": "personajes",
       "image": 3,
-      "question": "¿Qué llevaba en la cabeza Jesús? (13)",
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
       "options": [
-        "Corona de espinas",
-        "Corona de oro",
-        "Casco",
-        "Sombrero"
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
       ],
       "correctIndex": 0
     },
     {
       "id": 134,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": 4,
-      "question": "¿Qué objeto representa la luz en Pascua? (14)",
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
       "options": [
-        "Cirio",
-        "Antorcha",
-        "Fuego común",
-        "Linterna"
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
       ],
       "correctIndex": 0
     },
     {
       "id": 135,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": 5,
-      "question": "¿Qué objeto representa la luz en Pascua? (15)",
+      "difficulty": 3,
+      "category": "frases",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
       "options": [
-        "Cirio",
-        "Antorcha",
-        "Fuego común",
-        "Linterna"
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
       ],
       "correctIndex": 0
     },
     {
       "id": 136,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": 6,
-      "question": "¿Qué llevaba en la cabeza Jesús? (16)",
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
       "options": [
-        "Corona de espinas",
-        "Corona de oro",
-        "Casco",
-        "Sombrero"
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 137,
-      "difficulty": 2,
+      "difficulty": 3,
       "category": "objetos",
-      "image": 7,
-      "question": "¿Qué objeto representa la luz en Pascua? (17)",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
       "options": [
-        "Cirio",
-        "Antorcha",
-        "Fuego común",
-        "Linterna"
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
       ],
       "correctIndex": 0
     },
     {
       "id": 138,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": 8,
-      "question": "¿Qué objeto representa la luz en Pascua? (18)",
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
       "options": [
-        "Cirio",
-        "Antorcha",
-        "Fuego común",
-        "Linterna"
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
       ],
       "correctIndex": 0
     },
     {
       "id": 139,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": 9,
-      "question": "¿Qué llevaba en la cabeza Jesús? (19)",
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
       "options": [
-        "Corona de espinas",
-        "Corona de oro",
-        "Casco",
-        "Sombrero"
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
       ],
       "correctIndex": 0
     },
     {
       "id": 140,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": 10,
-      "question": "¿Qué símbolo central de la Pasión aparece? (20)",
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
       "options": [
-        "Cruz",
-        "Espada",
-        "Corona",
-        "Libro"
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
       ],
       "correctIndex": 0
     },
     {
       "id": 141,
       "difficulty": 3,
-      "category": "objetos",
-      "image": 1,
-      "question": "¿Qué cerraba el sepulcro? (21)",
+      "category": "frases",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
       "options": [
-        "Piedra",
-        "Puerta",
-        "Hierro",
-        "Tela"
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
       ],
       "correctIndex": 0
     },
     {
       "id": 142,
       "difficulty": 3,
-      "category": "objetos",
-      "image": 2,
-      "question": "¿Qué símbolo central de la Pasión aparece? (22)",
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
       "options": [
-        "Cruz",
-        "Espada",
-        "Corona",
-        "Libro"
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
       ],
       "correctIndex": 0
     },
@@ -1992,83 +1992,83 @@
       "id": 143,
       "difficulty": 3,
       "category": "objetos",
-      "image": 3,
-      "question": "¿Qué símbolo central de la Pasión aparece? (23)",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
       "options": [
-        "Cruz",
-        "Espada",
-        "Corona",
-        "Libro"
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
       ],
       "correctIndex": 0
     },
     {
       "id": 144,
       "difficulty": 3,
-      "category": "objetos",
-      "image": 4,
-      "question": "¿Qué cerraba el sepulcro? (24)",
+      "category": "piedad",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
       "options": [
-        "Piedra",
-        "Puerta",
-        "Hierro",
-        "Tela"
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
       ],
       "correctIndex": 0
     },
     {
       "id": 145,
       "difficulty": 3,
-      "category": "objetos",
-      "image": 5,
-      "question": "¿Qué objeto representa la luz en Pascua? (25)",
+      "category": "personajes",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
       "options": [
-        "Cirio",
-        "Antorcha",
-        "Fuego común",
-        "Linterna"
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
       ],
       "correctIndex": 0
     },
     {
       "id": 146,
       "difficulty": 3,
-      "category": "objetos",
-      "image": 6,
-      "question": "¿Qué llevaba en la cabeza Jesús? (26)",
+      "category": "lugares",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
       "options": [
-        "Corona de espinas",
-        "Corona de oro",
-        "Casco",
-        "Sombrero"
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
       ],
       "correctIndex": 0
     },
     {
       "id": 147,
       "difficulty": 3,
-      "category": "objetos",
-      "image": 7,
-      "question": "¿Qué se usa en la Cena? (27)",
+      "category": "frases",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
       "options": [
-        "Pan",
-        "Espada",
-        "Libro",
-        "Antorcha"
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 148,
       "difficulty": 3,
-      "category": "objetos",
-      "image": 8,
-      "question": "¿Qué símbolo central de la Pasión aparece? (28)",
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
       "options": [
-        "Cruz",
-        "Espada",
-        "Corona",
-        "Libro"
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
       ],
       "correctIndex": 0
     },
@@ -2076,447 +2076,447 @@
       "id": 149,
       "difficulty": 3,
       "category": "objetos",
-      "image": 9,
-      "question": "¿Qué se usa en la Cena? (29)",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
       "options": [
-        "Pan",
-        "Espada",
-        "Libro",
-        "Antorcha"
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 150,
       "difficulty": 3,
-      "category": "objetos",
-      "image": 10,
-      "question": "¿Qué símbolo central de la Pasión aparece? (30)",
+      "category": "piedad",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
       "options": [
-        "Cruz",
-        "Espada",
-        "Corona",
-        "Libro"
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 151,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": 1,
-      "question": "¿Qué expresa la cruz? (1)",
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
       "options": [
-        "Sacrificio",
-        "Riqueza",
-        "Poder",
-        "Victoria militar"
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
       ],
       "correctIndex": 0
     },
     {
       "id": 152,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "category": "lugares",
       "image": 2,
-      "question": "¿Qué devoción recorre la Pasión? (2)",
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
       "options": [
-        "Vía Crucis",
-        "Rosario",
-        "Ángelus",
-        "Credo"
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
       ],
       "correctIndex": 0
     },
     {
       "id": 153,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": 3,
-      "question": "¿Qué devoción recorre la Pasión? (3)",
+      "difficulty": 3,
+      "category": "frases",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
       "options": [
-        "Vía Crucis",
-        "Rosario",
-        "Ángelus",
-        "Credo"
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 154,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": 4,
-      "question": "¿Qué hacen los costaleros? (4)",
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
       "options": [
-        "Llevan pasos",
-        "Cantan",
-        "Rezan",
-        "Dirigen"
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
       ],
       "correctIndex": 0
     },
     {
       "id": 155,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": 5,
-      "question": "¿Qué son las cofradías? (5)",
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
       "options": [
-        "Hermandades",
-        "Grupos políticos",
-        "Equipos",
-        "Bandas"
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 156,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": 6,
-      "question": "¿Qué hacen los costaleros? (6)",
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
       "options": [
-        "Llevan pasos",
-        "Cantan",
-        "Rezan",
-        "Dirigen"
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 157,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": 7,
-      "question": "¿Qué hacen los costaleros? (7)",
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
       "options": [
-        "Llevan pasos",
-        "Cantan",
-        "Rezan",
-        "Dirigen"
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 158,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": 8,
-      "question": "¿Qué son las cofradías? (8)",
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
       "options": [
-        "Hermandades",
-        "Grupos políticos",
-        "Equipos",
-        "Bandas"
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
       ],
       "correctIndex": 0
     },
     {
       "id": 159,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": 9,
-      "question": "¿Qué devoción recorre la Pasión? (9)",
+      "difficulty": 3,
+      "category": "frases",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
       "options": [
-        "Vía Crucis",
-        "Rosario",
-        "Ángelus",
-        "Credo"
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
       ],
       "correctIndex": 0
     },
     {
       "id": 160,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": 10,
-      "question": "¿Qué cantos típicos hay? (10)",
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
       "options": [
-        "Saetas",
-        "Villancicos",
-        "Himnos romanos",
-        "Cantos gregorianos"
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
       ],
       "correctIndex": 0
     },
     {
       "id": 161,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": 1,
-      "question": "¿Qué cantos típicos hay? (11)",
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
       "options": [
-        "Saetas",
-        "Villancicos",
-        "Himnos romanos",
-        "Cantos gregorianos"
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 162,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": 2,
-      "question": "¿Qué hacen los costaleros? (12)",
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
       "options": [
-        "Llevan pasos",
-        "Cantan",
-        "Rezan",
-        "Dirigen"
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
       ],
       "correctIndex": 0
     },
     {
       "id": 163,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": 3,
-      "question": "¿Qué devoción recorre la Pasión? (13)",
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
       "options": [
-        "Vía Crucis",
-        "Rosario",
-        "Ángelus",
-        "Credo"
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
       ],
       "correctIndex": 0
     },
     {
       "id": 164,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": 4,
-      "question": "¿Qué hacen los costaleros? (14)",
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
       "options": [
-        "Llevan pasos",
-        "Cantan",
-        "Rezan",
-        "Dirigen"
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
       ],
       "correctIndex": 0
     },
     {
       "id": 165,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": 5,
-      "question": "¿Qué expresa la cruz? (15)",
+      "difficulty": 3,
+      "category": "frases",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
       "options": [
-        "Sacrificio",
-        "Riqueza",
-        "Poder",
-        "Victoria militar"
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
       ],
       "correctIndex": 0
     },
     {
       "id": 166,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": 6,
-      "question": "¿Qué expresa la cruz? (16)",
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
       "options": [
-        "Sacrificio",
-        "Riqueza",
-        "Poder",
-        "Victoria militar"
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
       ],
       "correctIndex": 0
     },
     {
       "id": 167,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": 7,
-      "question": "¿Qué hacen los costaleros? (17)",
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
       "options": [
-        "Llevan pasos",
-        "Cantan",
-        "Rezan",
-        "Dirigen"
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
       ],
       "correctIndex": 0
     },
     {
       "id": 168,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": 8,
-      "question": "¿Qué hacen los costaleros? (18)",
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
       "options": [
-        "Llevan pasos",
-        "Cantan",
-        "Rezan",
-        "Dirigen"
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
       ],
       "correctIndex": 0
     },
     {
       "id": 169,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": 9,
-      "question": "¿Qué expresa la cruz? (19)",
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
       "options": [
-        "Sacrificio",
-        "Riqueza",
-        "Poder",
-        "Victoria militar"
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
       ],
       "correctIndex": 0
     },
     {
       "id": 170,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": 10,
-      "question": "¿Qué cantos típicos hay? (20)",
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
       "options": [
-        "Saetas",
-        "Villancicos",
-        "Himnos romanos",
-        "Cantos gregorianos"
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
       ],
       "correctIndex": 0
     },
     {
       "id": 171,
       "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": 1,
-      "question": "¿Qué devoción recorre la Pasión? (21)",
+      "category": "frases",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
       "options": [
-        "Vía Crucis",
-        "Rosario",
-        "Ángelus",
-        "Credo"
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
       ],
       "correctIndex": 0
     },
     {
       "id": 172,
       "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": 2,
-      "question": "¿Qué hacen los costaleros? (22)",
+      "category": "liturgia",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
       "options": [
-        "Llevan pasos",
-        "Cantan",
-        "Rezan",
-        "Dirigen"
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 173,
       "difficulty": 3,
-      "category": "piedad_tradiciones",
+      "category": "objetos",
       "image": 3,
-      "question": "¿Qué son las cofradías? (23)",
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
       "options": [
-        "Hermandades",
-        "Grupos políticos",
-        "Equipos",
-        "Bandas"
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 174,
       "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": 4,
-      "question": "¿Qué son las cofradías? (24)",
+      "category": "piedad",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
       "options": [
-        "Hermandades",
-        "Grupos políticos",
-        "Equipos",
-        "Bandas"
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     },
     {
       "id": 175,
       "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": 5,
-      "question": "¿Qué son las cofradías? (25)",
+      "category": "personajes",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
       "options": [
-        "Hermandades",
-        "Grupos políticos",
-        "Equipos",
-        "Bandas"
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
       ],
       "correctIndex": 0
     },
     {
       "id": 176,
       "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": 6,
-      "question": "¿Qué son las cofradías? (26)",
+      "category": "lugares",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
       "options": [
-        "Hermandades",
-        "Grupos políticos",
-        "Equipos",
-        "Bandas"
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
       ],
       "correctIndex": 0
     },
     {
       "id": 177,
       "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": 7,
-      "question": "¿Qué expresa la Pascua? (27)",
+      "category": "frases",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
       "options": [
-        "Vida nueva",
-        "Muerte",
-        "Silencio",
-        "Oscuridad"
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
       ],
       "correctIndex": 0
     },
     {
       "id": 178,
       "difficulty": 3,
-      "category": "piedad_tradiciones",
+      "category": "liturgia",
       "image": 8,
-      "question": "¿Qué son las cofradías? (28)",
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
       "options": [
-        "Hermandades",
-        "Grupos políticos",
-        "Equipos",
-        "Bandas"
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
       ],
       "correctIndex": 0
     },
     {
       "id": 179,
       "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": 9,
-      "question": "¿Qué expresa la cruz? (29)",
+      "category": "objetos",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
       "options": [
-        "Sacrificio",
-        "Riqueza",
-        "Poder",
-        "Victoria militar"
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
       ],
       "correctIndex": 0
     },
     {
       "id": 180,
       "difficulty": 3,
-      "category": "piedad_tradiciones",
+      "category": "piedad",
       "image": 10,
-      "question": "¿Qué expresa la cruz? (30)",
+      "question": "¿Quién condenó a Jesús a muerte?",
       "options": [
-        "Sacrificio",
-        "Riqueza",
-        "Poder",
-        "Victoria militar"
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
       ],
       "correctIndex": 0
     }
