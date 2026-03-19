@@ -1,841 +1,2524 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { addDoc, collection, getDocs } from "firebase/firestore";
-import { db } from "./firebase";
-import questionsData from "./data/questions.json";
-import { CATEGORY_CONFIG, CATEGORY_ORDER } from "./config/categories";
-import {
-  emptyProgress,
-  loadProgress,
-  resetProgress,
-  saveProgress,
-  loadUsedQuestions,
-  saveUsedQuestions,
-  resetUsedQuestions,
-} from "./services/progressStorage";
-
-const QUESTION_TIME = 7;
-const MAX_QUESTIONS_PER_ROUND = 12;
-
-const scoresCollection = collection(db, "scores");
-
-function shuffle(array) {
-  const copy = [...array];
-  for (let i = copy.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
-function cleanQuestionText(text) {
-  return String(text || "").replace(/\s*\(\d+\)\s*$/, "").trim();
-}
-
-function shuffleQuestionOptions(question) {
-  const options = question.options.map((text, index) => ({
-    text,
-    isCorrect: index === question.correctIndex,
-  }));
-
-  const shuffled = shuffle(options);
-
-  return {
-    ...question,
-    options: shuffled.map((item) => item.text),
-    correctIndex: shuffled.findIndex((item) => item.isCorrect),
-  };
-}
-
-function getEarnedWedges(correctByCategory) {
-  return Object.fromEntries(
-    Object.entries(correctByCategory).map(([category, hits]) => [
-      category,
-      hits >= 5,
-    ])
-  );
-}
-
-function buildRoundQuestions(allQuestions, difficulty, selectedCategories = []) {
-  const used = loadUsedQuestions();
-
-  const categories =
-    selectedCategories.length > 0 ? selectedCategories : CATEGORY_ORDER;
-
-  const questionsPerCategory =
-    selectedCategories.length === 0
-      ? 2
-      : selectedCategories.length === 1
-        ? 6
-        : Math.max(1, Math.floor(MAX_QUESTIONS_PER_ROUND / selectedCategories.length));
-
-  let selected = categories.flatMap((category) => {
-    const pool = allQuestions.filter(
-      (q) => Number(q.difficulty) === Number(difficulty) && q.category === category
-    );
-
-    let unused = pool.filter((q) => !used.includes(q.id));
-
-    if (unused.length < questionsPerCategory) {
-      unused = pool;
-    }
-
-    return shuffle(unused).slice(0, questionsPerCategory);
-  });
-
-  if (selected.length > MAX_QUESTIONS_PER_ROUND) {
-    selected = shuffle(selected).slice(0, MAX_QUESTIONS_PER_ROUND);
-  }
-
-  const round = shuffle(selected).map(shuffleQuestionOptions);
-  const newUsed = [...used, ...round.map((q) => q.id)];
-  saveUsedQuestions(newUsed);
-
-  return round;
-}
-
-function useGameSounds(enabled) {
-  const ctxRef = useRef(null);
-
-  const getCtx = () => {
-    if (!enabled || typeof window === "undefined") return null;
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return null;
-    if (!ctxRef.current) ctxRef.current = new AudioCtx();
-    if (ctxRef.current.state === "suspended") ctxRef.current.resume();
-    return ctxRef.current;
-  };
-
-  const beep = (freq, dur = 0.1, type = "triangle") => {
-    const ctx = getCtx();
-    if (!ctx) return;
-
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    osc.frequency.value = freq;
-    osc.type = type;
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    gain.gain.setValueAtTime(0.08, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
-
-    osc.start();
-    osc.stop(ctx.currentTime + dur);
-  };
-
-  return {
-    correct: () => {
-      beep(640, 0.12);
-      setTimeout(() => beep(820, 0.1), 90);
+{
+  "questions": [
+    {
+      "id": 1,
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
+      ],
+      "correctIndex": 0
     },
-    error: () => beep(220, 0.16, "sawtooth"),
-    final: () => {
-      beep(520, 0.12);
-      setTimeout(() => beep(660, 0.12), 120);
-      setTimeout(() => beep(880, 0.18), 240);
+    {
+      "id": 2,
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
+      "options": [
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
+      ],
+      "correctIndex": 0
     },
-  };
-}
-
-export default function App() {
-  const [screen, setScreen] = useState("home");
-  const [selectedDifficulty, setSelectedDifficulty] = useState(1);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-
-  const [difficulty, setDifficulty] = useState(1);
-  const [roundQuestions, setRoundQuestions] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [selected, setSelected] = useState(null);
-  const [locked, setLocked] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(QUESTION_TIME);
-  const [soundEnabled, setSoundEnabled] = useState(true);
-
-  const [progress, setProgress] = useState(emptyProgress);
-  const [playerName, setPlayerName] = useState("");
-  const [savedScores, setSavedScores] = useState([]);
-  const [savingScore, setSavingScore] = useState(false);
-  const [saveMessage, setSaveMessage] = useState("");
-
-  const sounds = useGameSounds(soundEnabled);
-  const currentQuestion = roundQuestions[currentIndex];
-
-  useEffect(() => {
-    setProgress(loadProgress());
-  }, []);
-
-  useEffect(() => {
-    async function loadScores() {
-      try {
-        const snapshot = await getDocs(scoresCollection);
-        const rows = snapshot.docs
-          .map((doc) => ({ id: doc.id, ...doc.data() }))
-          .sort(
-            (a, b) =>
-              new Date(b.createdAt || b.date || 0) -
-              new Date(a.createdAt || a.date || 0)
-          )
-          .slice(0, 10);
-        setSavedScores(rows);
-      } catch (error) {
-        console.error("Error cargando puntuaciones:", error);
-      }
+    {
+      "id": 3,
+      "difficulty": 1,
+      "category": "frases",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
+      "options": [
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 4,
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 5,
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
+      "options": [
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 6,
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
+      "options": [
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 7,
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
+      "options": [
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 8,
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
+      "options": [
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 9,
+      "difficulty": 1,
+      "category": "frases",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
+      "options": [
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 10,
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
+      "options": [
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 11,
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
+      "options": [
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 12,
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
+      "options": [
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 13,
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
+      "options": [
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 14,
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
+      "options": [
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 15,
+      "difficulty": 1,
+      "category": "frases",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
+      "options": [
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 16,
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
+      "options": [
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 17,
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
+      "options": [
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 18,
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
+      "options": [
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 19,
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
+      "options": [
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 20,
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
+      "options": [
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 21,
+      "difficulty": 1,
+      "category": "frases",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
+      "options": [
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 22,
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
+      "options": [
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 23,
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
+      "options": [
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 24,
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
+      "options": [
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 25,
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
+      "options": [
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 26,
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 27,
+      "difficulty": 1,
+      "category": "frases",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
+      "options": [
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 28,
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
+      "options": [
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 29,
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 30,
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
+      "options": [
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 31,
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
+      "options": [
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 32,
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
+      "options": [
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 33,
+      "difficulty": 1,
+      "category": "frases",
+      "image": 3,
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
+      "options": [
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 34,
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
+      "options": [
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 35,
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
+      "options": [
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 36,
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
+      "options": [
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 37,
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
+      "options": [
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 38,
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
+      "options": [
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 39,
+      "difficulty": 1,
+      "category": "frases",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
+      "options": [
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 40,
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
+      "options": [
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 41,
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
+      "options": [
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 42,
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
+      "options": [
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 43,
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
+      "options": [
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 44,
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
+      "options": [
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 45,
+      "difficulty": 1,
+      "category": "frases",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
+      "options": [
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 46,
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
+      "options": [
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 47,
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
+      "options": [
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 48,
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
+      "options": [
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 49,
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
+      "options": [
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 50,
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
+      "options": [
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 51,
+      "difficulty": 1,
+      "category": "frases",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 52,
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
+      "options": [
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 53,
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
+      "options": [
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 54,
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 55,
+      "difficulty": 1,
+      "category": "personajes",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
+      "options": [
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 56,
+      "difficulty": 1,
+      "category": "lugares",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
+      "options": [
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 57,
+      "difficulty": 1,
+      "category": "frases",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
+      "options": [
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 58,
+      "difficulty": 1,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
+      "options": [
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 59,
+      "difficulty": 1,
+      "category": "objetos",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
+      "options": [
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 60,
+      "difficulty": 1,
+      "category": "piedad",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
+      "options": [
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 61,
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
+      "options": [
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 62,
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
+      "options": [
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 63,
+      "difficulty": 2,
+      "category": "frases",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
+      "options": [
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 64,
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
+      "options": [
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 65,
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
+      "options": [
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 66,
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
+      "options": [
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 67,
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
+      "options": [
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 68,
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
+      "options": [
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 69,
+      "difficulty": 2,
+      "category": "frases",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
+      "options": [
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 70,
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
+      "options": [
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 71,
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
+      "options": [
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 72,
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
+      "options": [
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 73,
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 3,
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
+      "options": [
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 74,
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
+      "options": [
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 75,
+      "difficulty": 2,
+      "category": "frases",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
+      "options": [
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 76,
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 77,
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
+      "options": [
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 78,
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
+      "options": [
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 79,
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 80,
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
+      "options": [
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 81,
+      "difficulty": 2,
+      "category": "frases",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
+      "options": [
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 82,
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
+      "options": [
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 83,
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
+      "options": [
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 84,
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
+      "options": [
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 85,
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
+      "options": [
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 86,
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
+      "options": [
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 87,
+      "difficulty": 2,
+      "category": "frases",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
+      "options": [
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 88,
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
+      "options": [
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 89,
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
+      "options": [
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 90,
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
+      "options": [
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 91,
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
+      "options": [
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 92,
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
+      "options": [
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 93,
+      "difficulty": 2,
+      "category": "frases",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
+      "options": [
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 94,
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
+      "options": [
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 95,
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
+      "options": [
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 96,
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
+      "options": [
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 97,
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
+      "options": [
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 98,
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
+      "options": [
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 99,
+      "difficulty": 2,
+      "category": "frases",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
+      "options": [
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 100,
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
+      "options": [
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 101,
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 102,
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
+      "options": [
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 103,
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
+      "options": [
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 104,
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 105,
+      "difficulty": 2,
+      "category": "frases",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
+      "options": [
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 106,
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
+      "options": [
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 107,
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
+      "options": [
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 108,
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
+      "options": [
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 109,
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
+      "options": [
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 110,
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
+      "options": [
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 111,
+      "difficulty": 2,
+      "category": "frases",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
+      "options": [
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 112,
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
+      "options": [
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 113,
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
+      "options": [
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 114,
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
+      "options": [
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 115,
+      "difficulty": 2,
+      "category": "personajes",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
+      "options": [
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 116,
+      "difficulty": 2,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
+      "options": [
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 117,
+      "difficulty": 2,
+      "category": "frases",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
+      "options": [
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 118,
+      "difficulty": 2,
+      "category": "liturgia",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
+      "options": [
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 119,
+      "difficulty": 2,
+      "category": "objetos",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
+      "options": [
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 120,
+      "difficulty": 2,
+      "category": "piedad",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
+      "options": [
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 121,
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
+      "options": [
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 122,
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
+      "options": [
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 123,
+      "difficulty": 3,
+      "category": "frases",
+      "image": 3,
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
+      "options": [
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 124,
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
+      "options": [
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 125,
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
+      "options": [
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 126,
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 127,
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
+      "options": [
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 128,
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
+      "options": [
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 129,
+      "difficulty": 3,
+      "category": "frases",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 130,
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
+      "options": [
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 131,
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
+      "options": [
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 132,
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
+      "options": [
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 133,
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 3,
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
+      "options": [
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 134,
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
+      "options": [
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 135,
+      "difficulty": 3,
+      "category": "frases",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
+      "options": [
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 136,
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
+      "options": [
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 137,
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
+      "options": [
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 138,
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
+      "options": [
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 139,
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
+      "options": [
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 140,
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
+      "options": [
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 141,
+      "difficulty": 3,
+      "category": "frases",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
+      "options": [
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 142,
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
+      "options": [
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 143,
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
+      "options": [
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 144,
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
+      "options": [
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 145,
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
+      "options": [
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 146,
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
+      "options": [
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 147,
+      "difficulty": 3,
+      "category": "frases",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
+      "options": [
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 148,
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
+      "options": [
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 149,
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
+      "options": [
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 150,
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
+      "options": [
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 151,
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 152,
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
+      "options": [
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 153,
+      "difficulty": 3,
+      "category": "frases",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
+      "options": [
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 154,
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 155,
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
+      "options": [
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 156,
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 4,
+      "question": "¿Qué camino recorrió Jesús con la cruz?",
+      "options": [
+        "Vía Dolorosa",
+        "Camino Real",
+        "Ruta Santa",
+        "Sendero del templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 157,
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 3,
+      "question": "¿Qué ocurrió en el Calvario?",
+      "options": [
+        "Crucifixión",
+        "Nacimiento",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 158,
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Quién estaba al pie de la cruz junto a María?",
+      "options": [
+        "Juan",
+        "Pedro",
+        "Tomás",
+        "Mateo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 159,
+      "difficulty": 3,
+      "category": "frases",
+      "image": 6,
+      "question": "¿Qué sucedió tras la muerte de Jesús?",
+      "options": [
+        "Descendimiento",
+        "Resurrección inmediata",
+        "Ascensión",
+        "Milagro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 160,
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 12,
+      "question": "¿Quién pidió el cuerpo de Jesús para enterrarlo?",
+      "options": [
+        "José de Arimatea",
+        "Pedro",
+        "Pilato",
+        "Herodes"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 161,
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 11,
+      "question": "¿Qué encontraron las mujeres el domingo?",
+      "options": [
+        "Sepulcro vacío",
+        "Cuerpo de Jesús",
+        "Soldados dormidos",
+        "Templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 162,
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 9,
+      "question": "¿Quién fue la primera en ver a Jesús resucitado?",
+      "options": [
+        "María Magdalena",
+        "Marta",
+        "Verónica",
+        "Salomé"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 163,
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 2,
+      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
+      "options": [
+        "Eucaristía",
+        "Bautismo",
+        "Confirmación",
+        "Orden"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 164,
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 3,
+      "question": "¿Qué dijo Jesús en la cruz?",
+      "options": [
+        "Tengo sed",
+        "Viva Roma",
+        "Escuchadme",
+        "Soy rey"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 165,
+      "difficulty": 3,
+      "category": "frases",
+      "image": 4,
+      "question": "¿Quién ayudó a Jesús a llevar la cruz?",
+      "options": [
+        "Simón de Cirene",
+        "Pedro",
+        "Juan",
+        "Lucas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 166,
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 3,
+      "question": "¿Qué símbolo central representa la Pasión?",
+      "options": [
+        "La cruz",
+        "La espada",
+        "El trono",
+        "El libro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 167,
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué día se celebra la crucifixión?",
+      "options": [
+        "Viernes Santo",
+        "Jueves Santo",
+        "Domingo",
+        "Sábado"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 168,
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 11,
+      "question": "¿Qué celebración conmemora la resurrección?",
+      "options": [
+        "Domingo de Pascua",
+        "Viernes Santo",
+        "Jueves Santo",
+        "Adviento"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 169,
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 7,
+      "question": "¿Qué hicieron los soldados a Jesús antes de crucificarlo?",
+      "options": [
+        "Azotarlo",
+        "Coronarlo rey",
+        "Alimentarlo",
+        "Liberarlo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 170,
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 8,
+      "question": "¿Qué oración rezó Jesús en el huerto?",
+      "options": [
+        "Padre, que se haga tu voluntad",
+        "Señor ayúdame",
+        "Gloria a Dios",
+        "Bendito seas"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 171,
+      "difficulty": 3,
+      "category": "frases",
+      "image": 12,
+      "question": "¿Qué objeto cerraba el sepulcro?",
+      "options": [
+        "Una piedra",
+        "Una puerta",
+        "Hierro",
+        "Tela"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 172,
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 4,
+      "question": "¿Qué representa el Vía Crucis?",
+      "options": [
+        "El camino de Jesús a la cruz",
+        "La resurrección",
+        "El nacimiento",
+        "La predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 173,
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 3,
+      "question": "¿Qué hicieron los discípulos tras la muerte de Jesús?",
+      "options": [
+        "Se escondieron",
+        "Predicaron",
+        "Celebraron",
+        "Huyeron a Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 174,
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 10,
+      "question": "¿Quién preguntó “¿Qué es la verdad?”?",
+      "options": [
+        "Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 175,
+      "difficulty": 3,
+      "category": "personajes",
+      "image": 11,
+      "question": "¿Qué sucedió al tercer día?",
+      "options": [
+        "Resurrección",
+        "Ascensión",
+        "Milagro",
+        "Predicación"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 176,
+      "difficulty": 3,
+      "category": "lugares",
+      "image": 2,
+      "question": "¿Qué dijo Jesús al consagrar el vino en la Última Cena?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Tomad y comed",
+        "Seguidme"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 177,
+      "difficulty": 3,
+      "category": "frases",
+      "image": 2,
+      "question": "¿Quién traicionó a Jesús por treinta monedas?",
+      "options": [
+        "Judas",
+        "Pedro",
+        "Juan",
+        "Tomás"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 178,
+      "difficulty": 3,
+      "category": "liturgia",
+      "image": 8,
+      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
+      "options": [
+        "Getsemaní",
+        "Nazaret",
+        "Belén",
+        "Roma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 179,
+      "difficulty": 3,
+      "category": "objetos",
+      "image": 7,
+      "question": "¿Qué le colocaron a Jesús en la cabeza tras la flagelación?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Casco",
+        "Manto"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 180,
+      "difficulty": 3,
+      "category": "piedad",
+      "image": 10,
+      "question": "¿Quién condenó a Jesús a muerte?",
+      "options": [
+        "Poncio Pilato",
+        "Herodes",
+        "Caifás",
+        "Pedro"
+      ],
+      "correctIndex": 0
     }
-
-    loadScores();
-  }, []);
-
-  const timerWidth = `${(timeLeft / QUESTION_TIME) * 100}%`;
-
-  let timerColor = "#22c55e";
-  if (timeLeft <= 4) timerColor = "#f59e0b";
-  if (timeLeft <= 2) timerColor = "#ef4444";
-
-  const wedges = useMemo(
-    () => getEarnedWedges(progress.correctByCategory),
-    [progress.correctByCategory]
-  );
-
-  const totalQuestionsThisRound = roundQuestions.length || MAX_QUESTIONS_PER_ROUND;
-
-  const currentRoundScore = useMemo(() => {
-    return roundQuestions.reduce((acc, q) => {
-      const hit = progress.history.find(
-        (h) => h.roundQuestionId === q.id && h.roundAt === q._roundAt
-      );
-      return acc + (hit?.correct ? 1 : 0);
-    }, 0);
-  }, [roundQuestions, progress.history]);
-
-  const startRound = (keepProgress) => {
-    const nextProgress = keepProgress ? loadProgress() : resetProgress();
-
-    if (!keepProgress) {
-      resetUsedQuestions();
-    }
-
-    setProgress(nextProgress);
-    setDifficulty(selectedDifficulty);
-
-    const roundAt = new Date().toISOString();
-    const prepared = buildRoundQuestions(
-      questionsData.questions,
-      selectedDifficulty,
-      selectedCategories
-    ).map((q) => ({ ...q, _roundAt: roundAt }));
-
-    setRoundQuestions(prepared);
-    setCurrentIndex(0);
-    setSelected(null);
-    setLocked(false);
-    setTimeLeft(QUESTION_TIME);
-    setSaveMessage("");
-    setScreen("quiz");
-  };
-
-  const finishGame = () => {
-    sounds.final();
-    setScreen("summary");
-  };
-
-  const applyAnswer = (isCorrect) => {
-    if (!currentQuestion) return;
-
-    const category = currentQuestion.category;
-
-    const nextProgress = {
-      ...progress,
-      totalScore: progress.totalScore + (isCorrect ? 1 : 0),
-      correctByCategory: {
-        ...progress.correctByCategory,
-        [category]: progress.correctByCategory[category] + (isCorrect ? 1 : 0),
-      },
-      history: [
-        {
-          id: Number(currentQuestion.id),
-          roundQuestionId: Number(currentQuestion.id),
-          roundAt: currentQuestion._roundAt,
-          category,
-          difficulty: Number(currentQuestion.difficulty),
-          correct: Boolean(isCorrect),
-          at: new Date().toISOString(),
-        },
-        ...progress.history,
-      ].slice(0, 100),
-    };
-
-    nextProgress.wedges = getEarnedWedges(nextProgress.correctByCategory);
-
-    setProgress(nextProgress);
-    saveProgress(nextProgress);
-  };
-
-  const answer = (index) => {
-    if (locked || !currentQuestion) return;
-
-    const isCorrect = index === currentQuestion.correctIndex;
-
-    setSelected(index);
-    setLocked(true);
-
-    if (isCorrect) {
-      sounds.correct();
-    } else {
-      sounds.error();
-    }
-
-    applyAnswer(isCorrect);
-  };
-
-  const nextQuestion = () => {
-    setSelected(null);
-    setLocked(false);
-
-    if (currentIndex + 1 >= roundQuestions.length) {
-      finishGame();
-      return;
-    }
-
-    setCurrentIndex((prev) => prev + 1);
-    setTimeLeft(QUESTION_TIME);
-  };
-
-  const saveMatchToFirebase = async () => {
-    const trimmedName = playerName.trim();
-
-    if (!trimmedName) {
-      setSaveMessage("Escribe un nombre para guardar la partida.");
-      return;
-    }
-
-    setSavingScore(true);
-    setSaveMessage("");
-
-    try {
-      const normalizedHistory = (progress.history || []).slice(0, 100).map((item) => ({
-        id: Number(item.id),
-        roundQuestionId: Number(item.roundQuestionId ?? item.id),
-        roundAt: String(item.roundAt ?? item.at ?? new Date().toISOString()),
-        category: String(item.category),
-        difficulty:
-          typeof item.difficulty === "number"
-            ? item.difficulty
-            : item.difficulty === "facil"
-              ? 1
-              : item.difficulty === "medio"
-                ? 2
-                : item.difficulty === "dificil"
-                  ? 3
-                  : Number(difficulty),
-        correct: Boolean(item.correct),
-        at: String(item.at ?? new Date().toISOString()),
-      }));
-
-      const payload = {
-        name: trimmedName,
-        score: Number(progress.totalScore || 0),
-        difficulty: Number(difficulty),
-        totalQuestions: Number(totalQuestionsThisRound),
-        roundScore: Number(currentRoundScore),
-        correctByCategory: {
-          personajes: Number(progress.correctByCategory?.personajes || 0),
-          lugares: Number(progress.correctByCategory?.lugares || 0),
-          frases: Number(progress.correctByCategory?.frases || 0),
-          liturgia: Number(progress.correctByCategory?.liturgia || 0),
-          objetos: Number(progress.correctByCategory?.objetos || 0),
-          piedad_tradiciones: Number(
-            progress.correctByCategory?.piedad_tradiciones || 0
-          ),
-        },
-        wedges: {
-          personajes: Boolean(progress.wedges?.personajes),
-          lugares: Boolean(progress.wedges?.lugares),
-          frases: Boolean(progress.wedges?.frases),
-          liturgia: Boolean(progress.wedges?.liturgia),
-          objetos: Boolean(progress.wedges?.objetos),
-          piedad_tradiciones: Boolean(progress.wedges?.piedad_tradiciones),
-        },
-        history: normalizedHistory,
-        createdAt: new Date().toISOString(),
-      };
-
-      await addDoc(scoresCollection, payload);
-
-      const snapshot = await getDocs(scoresCollection);
-      const rows = snapshot.docs
-        .map((doc) => ({ id: doc.id, ...doc.data() }))
-        .sort(
-          (a, b) =>
-            new Date(b.createdAt || b.date || 0) -
-            new Date(a.createdAt || a.date || 0)
-        )
-        .slice(0, 10);
-
-      setSavedScores(rows);
-      setSaveMessage("Partida guardada correctamente.");
-    } catch (error) {
-      console.error("Error guardando partida:", error);
-      setSaveMessage(
-        `No se pudo guardar la partida en Firebase. ${error?.message || ""}`
-      );
-    } finally {
-      setSavingScore(false);
-    }
-  };
-
-  useEffect(() => {
-    if (screen !== "quiz" || locked || !currentQuestion) return;
-
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          setLocked(true);
-          sounds.error();
-          applyAnswer(false);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [screen, locked, currentIndex, currentQuestion]);
-
-  return (
-    <div className="appShell">
-      <style>{`
-        * { box-sizing: border-box; }
-        body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; background: #fff7ed; }
-        button, input, select { font: inherit; }
-
-        .appShell {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 20px;
-        }
-
-        .card {
-          background: white;
-          border-radius: 24px;
-          padding: 20px;
-          box-shadow: 0 16px 40px rgba(0,0,0,.08);
-        }
-
-        .topbar {
-          display: flex;
-          justify-content: flex-end;
-          gap: 10px;
-          margin-bottom: 12px;
-          flex-wrap: wrap;
-        }
-
-        .btn {
-          border: none;
-          border-radius: 14px;
-          cursor: pointer;
-          font-weight: 700;
-          padding: 14px 18px;
-        }
-
-        .btnPrimary {
-          background: linear-gradient(135deg, #f59e0b, #ea580c);
-          color: white;
-        }
-
-        .btnGhost {
-          background: white;
-          border: 1px solid #e5e7eb;
-        }
-
-        .heroImage {
-          width: 100%;
-          max-height: 280px;
-          object-fit: cover;
-          border-radius: 18px;
-          display: block;
-        }
-
-        .controlsGrid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 14px;
-          margin-top: 20px;
-        }
-
-        .selectField {
-          width: 100%;
-          padding: 12px 14px;
-          border-radius: 12px;
-          border: 1px solid #d1d5db;
-          background: white;
-        }
-
-        .chips {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          margin-top: 10px;
-        }
-
-        .chip {
-          background: #f3f4f6;
-          border-radius: 999px;
-          padding: 6px 10px;
-          font-size: .92rem;
-        }
-
-        .wedge {
-          font-size: 1.2rem;
-        }
-
-        .questionTop {
-          display: grid;
-          grid-template-columns: minmax(0,1fr) auto;
-          gap: 12px;
-          align-items: center;
-          margin-bottom: 16px;
-        }
-
-        .questionRow {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          flex-wrap: wrap;
-        }
-
-        .timeBarTrack {
-          flex: 1;
-          min-width: 180px;
-          height: 10px;
-          background: #e5e7eb;
-          border-radius: 999px;
-          overflow: hidden;
-        }
-
-        .timeBarFill {
-          height: 100%;
-          transition: width .25s linear, background .25s ease;
-          border-radius: 999px;
-        }
-
-        .grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 18px;
-          align-items: start;
-        }
-
-        .questionImage {
-          width: 100%;
-          border-radius: 18px;
-          object-fit: cover;
-          display: block;
-        }
-
-        .options {
-          display: grid;
-          gap: 10px;
-        }
-
-        .option {
-          border: 2px solid #e5e7eb;
-          border-radius: 14px;
-          padding: 14px;
-          background: white;
-          cursor: pointer;
-          text-align: left;
-        }
-
-        .option:hover {
-          background: #fffbeb;
-          border-color: #f59e0b;
-        }
-
-        .option.correct {
-          background: #ecfdf5;
-          border-color: #22c55e;
-        }
-
-        .option.wrong {
-          background: #fef2f2;
-          border-color: #ef4444;
-        }
-
-        .summaryGrid {
-          display: grid;
-          gap: 10px;
-        }
-
-        .saveCard, .scoresCard {
-          margin-top: 18px;
-          text-align: left;
-          background: #f9fafb;
-          border: 1px solid #e5e7eb;
-          border-radius: 18px;
-          padding: 16px;
-        }
-
-        .saveRow {
-          display: flex;
-          gap: 10px;
-          flex-wrap: wrap;
-          margin-top: 12px;
-        }
-
-        .saveInput {
-          flex: 1;
-          min-width: 220px;
-          padding: 12px 14px;
-          border-radius: 12px;
-          border: 1px solid #d1d5db;
-          background: white;
-        }
-
-        .scoreItem {
-          display: flex;
-          justify-content: space-between;
-          gap: 10px;
-          padding: 8px 0;
-          border-bottom: 1px solid #e5e7eb;
-        }
-
-        .scoreItem:last-child {
-          border-bottom: none;
-        }
-
-        @media (max-width: 900px) {
-          .controlsGrid, .grid {
-            grid-template-columns: 1fr;
-          }
-
-          .questionTop {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
-
-      <div className="topbar">
-        <button className="btn btnGhost" onClick={() => setSoundEnabled((v) => !v)}>
-          {soundEnabled ? "🔊 Sonido" : "🔇 Silencio"}
-        </button>
-      </div>
-
-      {screen === "home" && (
-        <div className="card">
-          <img src="/images/portada.png" alt="Portada" className="heroImage" />
-
-          <div className="controlsGrid">
-            <div>
-              <label style={{ display: "block", fontWeight: 700, marginBottom: 6 }}>
-                Nivel
-              </label>
-              <select
-                value={selectedDifficulty}
-                onChange={(e) => setSelectedDifficulty(Number(e.target.value))}
-                className="selectField"
-              >
-                <option value={1}>Fácil</option>
-                <option value={2}>Medio</option>
-                <option value={3}>Difícil</option>
-              </select>
-            </div>
-
-            <div>
-              <label style={{ display: "block", fontWeight: 700, marginBottom: 6 }}>
-                Categorías
-              </label>
-              <select
-                multiple
-                value={selectedCategories}
-                onChange={(e) =>
-                  setSelectedCategories(
-                    Array.from(e.target.selectedOptions, (option) => option.value)
-                  )
-                }
-                className="selectField"
-                style={{ minHeight: 150 }}
-              >
-                {CATEGORY_ORDER.map((key) => (
-                  <option key={key} value={key}>
-                    {CATEGORY_CONFIG[key].label}
-                  </option>
-                ))}
-              </select>
-              <div style={{ color: "#6b7280", fontSize: ".9rem", marginTop: 6 }}>
-                Si no eliges ninguna, se jugará con todas.
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", gap: 12, marginTop: 18, flexWrap: "wrap" }}>
-            <button className="btn btnPrimary" onClick={() => startRound(true)}>
-              Continuar progreso
-            </button>
-            <button className="btn btnGhost" onClick={() => startRound(false)}>
-              Empezar de cero
-            </button>
-          </div>
-
-          <div style={{ marginTop: 24 }}>
-            <strong>Quesitos:</strong>
-            <div className="chips">
-              {CATEGORY_ORDER.map((key) => (
-                <span className="chip" key={key}>
-                  <span className="wedge">{wedges[key] ? "🧩" : "◻️"}</span>{" "}
-                  {CATEGORY_CONFIG[key].icon} {CATEGORY_CONFIG[key].label}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {screen === "quiz" && currentQuestion && (
-        <div className="card">
-          <div className="questionTop">
-            <div className="questionRow">
-              <strong>
-                Pregunta {currentIndex + 1} / {totalQuestionsThisRound}
-              </strong>
-
-              <div className="timeBarTrack">
-                <div
-                  className="timeBarFill"
-                  style={{ width: timerWidth, background: timerColor }}
-                />
-              </div>
-            </div>
-
-            {locked ? (
-              <button className="btn btnPrimary" onClick={nextQuestion}>
-                {currentIndex + 1 >= roundQuestions.length ? "Ver resumen" : "Siguiente"}
-              </button>
-            ) : (
-              <div />
-            )}
-          </div>
-
-          <div className="chips">
-            <span className="chip">
-              {CATEGORY_CONFIG[currentQuestion.category].icon}{" "}
-              {CATEGORY_CONFIG[currentQuestion.category].label}
-            </span>
-            <span className="chip">Nivel {currentQuestion.difficulty}</span>
-            <span className="chip">Puntuación total {progress.totalScore}</span>
-          </div>
-
-          <div className="grid" style={{ marginTop: 16 }}>
-            <img
-              src={`/images/${currentQuestion.image}.jpg`}
-              alt={cleanQuestionText(currentQuestion.question)}
-              className="questionImage"
-            />
-
-            <div>
-              <h2>{cleanQuestionText(currentQuestion.question)}</h2>
-
-              <div className="options">
-                {currentQuestion.options.map((opt, idx) => {
-                  let className = "option";
-                  if (locked && idx === currentQuestion.correctIndex) className += " correct";
-                  if (locked && selected === idx && idx !== currentQuestion.correctIndex) className += " wrong";
-
-                  return (
-                    <button
-                      key={idx}
-                      className={className}
-                      onClick={() => answer(idx)}
-                      disabled={locked}
-                    >
-                      {opt}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {screen === "summary" && (
-        <div className="card">
-          <h2>Resumen de progreso</h2>
-
-          <p><strong>Puntuación total:</strong> {progress.totalScore}</p>
-          <p><strong>Puntos en esta partida:</strong> {currentRoundScore}</p>
-
-          <h3>Aciertos por categoría</h3>
-          <div className="summaryGrid">
-            {CATEGORY_ORDER.map((key) => (
-              <div key={key}>
-                {CATEGORY_CONFIG[key].icon} {CATEGORY_CONFIG[key].label}:{" "}
-                {progress.correctByCategory[key]} aciertos
-                {progress.wedges?.[key] ? " · 🧩 Quesito conseguido" : ""}
-              </div>
-            ))}
-          </div>
-
-          <h3 style={{ marginTop: 18 }}>Historial básico</h3>
-          <div className="summaryGrid">
-            {progress.history.slice(0, 12).map((item) => (
-              <div key={`${item.id}-${item.at}`}>
-                {CATEGORY_CONFIG[item.category].icon} {CATEGORY_CONFIG[item.category].label} ·
-                {" "}nivel {item.difficulty} · {item.correct ? "✅" : "❌"}
-              </div>
-            ))}
-          </div>
-
-          <div className="saveCard">
-            <div style={{ fontWeight: 800 }}>Guardar partida en Firebase</div>
-            <div style={{ color: "#6b7280", marginTop: 6 }}>
-              Guarda puntuación total, aciertos por categoría, quesitos e historial básico.
-            </div>
-
-            <div className="saveRow">
-              <input
-                className="saveInput"
-                value={playerName}
-                onChange={(e) => setPlayerName(e.target.value)}
-                placeholder="Nombre del jugador"
-              />
-              <button
-                className="btn btnPrimary"
-                onClick={saveMatchToFirebase}
-                disabled={savingScore}
-              >
-                {savingScore ? "Guardando..." : "Guardar"}
-              </button>
-            </div>
-
-            {saveMessage && <div style={{ marginTop: 10 }}>{saveMessage}</div>}
-          </div>
-
-          <div className="scoresCard">
-            <div style={{ fontWeight: 800, marginBottom: 10 }}>Últimas partidas</div>
-            {savedScores.length === 0 ? (
-              <div style={{ color: "#6b7280" }}>Todavía no hay partidas guardadas.</div>
-            ) : (
-              savedScores.map((entry) => (
-                <div key={entry.id} className="scoreItem">
-                  <span>
-                    <strong>{entry.name}</strong> · dificultad {entry.difficulty}
-                  </span>
-                  <span>{entry.roundScore ?? entry.score} pts</span>
-                </div>
-              ))
-            )}
-          </div>
-
-          <div style={{ display: "flex", gap: 12, marginTop: 18, flexWrap: "wrap" }}>
-            <button className="btn btnPrimary" onClick={() => setScreen("home")}>
-              Volver al inicio
-            </button>
-            <button className="btn btnGhost" onClick={() => startRound(true)}>
-              Jugar otra partida
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+  ]
 }
