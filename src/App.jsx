@@ -14,8 +14,7 @@ import {
 } from "./services/progressStorage";
 
 const QUESTION_TIME = 7;
-const QUESTIONS_PER_CATEGORY = 2;
-const TOTAL_QUESTIONS_ALL = CATEGORY_ORDER.length * QUESTIONS_PER_CATEGORY;
+const MAX_QUESTIONS_PER_ROUND = 12;
 
 const scoresCollection = collection(db, "scores");
 
@@ -56,16 +55,20 @@ function getEarnedWedges(correctByCategory) {
   );
 }
 
-function buildRoundQuestions(allQuestions, difficulty, categoryFilter = "all") {
+function buildRoundQuestions(allQuestions, difficulty, selectedCategories = []) {
   const used = loadUsedQuestions();
 
   const categories =
-    categoryFilter === "all" ? CATEGORY_ORDER : [categoryFilter];
+    selectedCategories.length > 0 ? selectedCategories : CATEGORY_ORDER;
 
   const questionsPerCategory =
-    categoryFilter === "all" ? QUESTIONS_PER_CATEGORY : 12;
+    selectedCategories.length === 0
+      ? 2
+      : selectedCategories.length === 1
+        ? 6
+        : Math.max(1, Math.floor(MAX_QUESTIONS_PER_ROUND / selectedCategories.length));
 
-  const selected = categories.flatMap((category) => {
+  let selected = categories.flatMap((category) => {
     const pool = allQuestions.filter(
       (q) => Number(q.difficulty) === Number(difficulty) && q.category === category
     );
@@ -78,6 +81,10 @@ function buildRoundQuestions(allQuestions, difficulty, categoryFilter = "all") {
 
     return shuffle(unused).slice(0, questionsPerCategory);
   });
+
+  if (selected.length > MAX_QUESTIONS_PER_ROUND) {
+    selected = shuffle(selected).slice(0, MAX_QUESTIONS_PER_ROUND);
+  }
 
   const round = shuffle(selected).map(shuffleQuestionOptions);
   const newUsed = [...used, ...round.map((q) => q.id)];
@@ -134,7 +141,7 @@ function useGameSounds(enabled) {
 export default function App() {
   const [screen, setScreen] = useState("home");
   const [selectedDifficulty, setSelectedDifficulty] = useState(1);
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   const [difficulty, setDifficulty] = useState(1);
   const [roundQuestions, setRoundQuestions] = useState([]);
@@ -189,8 +196,7 @@ export default function App() {
     [progress.correctByCategory]
   );
 
-  const totalQuestionsThisRound =
-    selectedCategory === "all" ? TOTAL_QUESTIONS_ALL : 12;
+  const totalQuestionsThisRound = roundQuestions.length || MAX_QUESTIONS_PER_ROUND;
 
   const currentRoundScore = useMemo(() => {
     return roundQuestions.reduce((acc, q) => {
@@ -215,7 +221,7 @@ export default function App() {
     const prepared = buildRoundQuestions(
       questionsData.questions,
       selectedDifficulty,
-      selectedCategory
+      selectedCategories
     ).map((q) => ({ ...q, _roundAt: roundAt }));
 
     setRoundQuestions(prepared);
@@ -443,6 +449,8 @@ export default function App() {
 
         .heroImage {
           width: 100%;
+          max-height: 280px;
+          object-fit: cover;
           border-radius: 18px;
           display: block;
         }
@@ -634,20 +642,28 @@ export default function App() {
 
             <div>
               <label style={{ display: "block", fontWeight: 700, marginBottom: 6 }}>
-                Categoría
+                Categorías
               </label>
               <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
+                multiple
+                value={selectedCategories}
+                onChange={(e) =>
+                  setSelectedCategories(
+                    Array.from(e.target.selectedOptions, (option) => option.value)
+                  )
+                }
                 className="selectField"
+                style={{ minHeight: 150 }}
               >
-                <option value="all">Todas</option>
                 {CATEGORY_ORDER.map((key) => (
                   <option key={key} value={key}>
                     {CATEGORY_CONFIG[key].label}
                   </option>
                 ))}
               </select>
+              <div style={{ color: "#6b7280", fontSize: ".9rem", marginTop: 6 }}>
+                Si no eliges ninguna, se jugará con todas.
+              </div>
             </div>
           </div>
 
@@ -664,9 +680,9 @@ export default function App() {
             <strong>Quesitos:</strong>
             <div className="chips">
               {CATEGORY_ORDER.map((key) => (
-                <span className="chip" key={key} title={CATEGORY_CONFIG[key].label}>
+                <span className="chip" key={key}>
                   <span className="wedge">{wedges[key] ? "🧩" : "◻️"}</span>{" "}
-                  {CATEGORY_CONFIG[key].icon}
+                  {CATEGORY_CONFIG[key].icon} {CATEGORY_CONFIG[key].label}
                 </span>
               ))}
             </div>
