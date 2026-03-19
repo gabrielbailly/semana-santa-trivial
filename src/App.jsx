@@ -8,11 +8,14 @@ import {
   loadProgress,
   resetProgress,
   saveProgress,
+  loadUsedQuestions,
+  saveUsedQuestions,
+  resetUsedQuestions,
 } from "./services/progressStorage";
 
 const QUESTION_TIME = 7;
 const QUESTIONS_PER_CATEGORY = 2;
-const TOTAL_QUESTIONS = CATEGORY_ORDER.length * QUESTIONS_PER_CATEGORY;
+const TOTAL_QUESTIONS_ALL = CATEGORY_ORDER.length * QUESTIONS_PER_CATEGORY;
 
 const scoresCollection = collection(db, "scores");
 
@@ -23,6 +26,10 @@ function shuffle(array) {
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
   return copy;
+}
+
+function cleanQuestionText(text) {
+  return String(text || "").replace(/\s*\(\d+\)\s*$/, "").trim();
 }
 
 function shuffleQuestionOptions(question) {
@@ -49,34 +56,34 @@ function getEarnedWedges(correctByCategory) {
   );
 }
 
-import { loadUsedQuestions, saveUsedQuestions } from "../services/progressStorage";
-
-export function buildRoundQuestions(allQuestions, difficulty) {
+function buildRoundQuestions(allQuestions, difficulty, categoryFilter = "all") {
   const used = loadUsedQuestions();
 
-  const perCategory = CATEGORY_ORDER.flatMap((category) => {
-    let pool = allQuestions.filter(
-      (q) => q.category === category && q.difficulty === difficulty
+  const categories =
+    categoryFilter === "all" ? CATEGORY_ORDER : [categoryFilter];
+
+  const questionsPerCategory =
+    categoryFilter === "all" ? QUESTIONS_PER_CATEGORY : 12;
+
+  const selected = categories.flatMap((category) => {
+    const pool = allQuestions.filter(
+      (q) => Number(q.difficulty) === Number(difficulty) && q.category === category
     );
 
-    // quitar usadas
     let unused = pool.filter((q) => !used.includes(q.id));
 
-    // si no hay suficientes, reiniciar esa categoría
-    if (unused.length < 2) {
+    if (unused.length < questionsPerCategory) {
       unused = pool;
     }
 
-    return shuffle(unused).slice(0, 2);
+    return shuffle(unused).slice(0, questionsPerCategory);
   });
 
-  const selected = shuffle(perCategory);
-
-  // guardar como usadas
-  const newUsed = [...used, ...selected.map((q) => q.id)];
+  const round = shuffle(selected).map(shuffleQuestionOptions);
+  const newUsed = [...used, ...round.map((q) => q.id)];
   saveUsedQuestions(newUsed);
 
-  return selected.map(shuffleQuestionOptions);
+  return round;
 }
 
 function useGameSounds(enabled) {
@@ -94,14 +101,18 @@ function useGameSounds(enabled) {
   const beep = (freq, dur = 0.1, type = "triangle") => {
     const ctx = getCtx();
     if (!ctx) return;
+
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
+
     osc.frequency.value = freq;
     osc.type = type;
     osc.connect(gain);
     gain.connect(ctx.destination);
+
     gain.gain.setValueAtTime(0.08, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
+
     osc.start();
     osc.stop(ctx.currentTime + dur);
   };
@@ -122,6 +133,9 @@ function useGameSounds(enabled) {
 
 export default function App() {
   const [screen, setScreen] = useState("home");
+  const [selectedDifficulty, setSelectedDifficulty] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
   const [difficulty, setDifficulty] = useState(1);
   const [roundQuestions, setRoundQuestions] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -175,7 +189,10 @@ export default function App() {
     [progress.correctByCategory]
   );
 
-  const roundCorrect = useMemo(() => {
+  const totalQuestionsThisRound =
+    selectedCategory === "all" ? TOTAL_QUESTIONS_ALL : 12;
+
+  const currentRoundScore = useMemo(() => {
     return roundQuestions.reduce((acc, q) => {
       const hit = progress.history.find(
         (h) => h.roundQuestionId === q.id && h.roundAt === q._roundAt
@@ -184,15 +201,22 @@ export default function App() {
     }, 0);
   }, [roundQuestions, progress.history]);
 
-  const startRound = (difficultyValue, keepProgress) => {
+  const startRound = (keepProgress) => {
     const nextProgress = keepProgress ? loadProgress() : resetProgress();
+
+    if (!keepProgress) {
+      resetUsedQuestions();
+    }
+
     setProgress(nextProgress);
-    setDifficulty(difficultyValue);
+    setDifficulty(selectedDifficulty);
 
     const roundAt = new Date().toISOString();
-    const prepared = buildRoundQuestions(questionsData.questions, difficultyValue).map(
-      (q) => ({ ...q, _roundAt: roundAt })
-    );
+    const prepared = buildRoundQuestions(
+      questionsData.questions,
+      selectedDifficulty,
+      selectedCategory
+    ).map((q) => ({ ...q, _roundAt: roundAt }));
 
     setRoundQuestions(prepared);
     setCurrentIndex(0);
@@ -222,12 +246,12 @@ export default function App() {
       },
       history: [
         {
-          id: currentQuestion.id,
-          roundQuestionId: currentQuestion.id,
+          id: Number(currentQuestion.id),
+          roundQuestionId: Number(currentQuestion.id),
           roundAt: currentQuestion._roundAt,
           category,
-          difficulty: currentQuestion.difficulty,
-          correct: isCorrect,
+          difficulty: Number(currentQuestion.difficulty),
+          correct: Boolean(isCorrect),
           at: new Date().toISOString(),
         },
         ...progress.history,
@@ -270,91 +294,88 @@ export default function App() {
     setTimeLeft(QUESTION_TIME);
   };
 
-const saveMatchToFirebase = async () => {
-  const trimmedName = playerName.trim();
+  const saveMatchToFirebase = async () => {
+    const trimmedName = playerName.trim();
 
-  if (!trimmedName) {
-    setSaveMessage("Escribe un nombre para guardar la partida.");
-    return;
-  }
+    if (!trimmedName) {
+      setSaveMessage("Escribe un nombre para guardar la partida.");
+      return;
+    }
 
-  setSavingScore(true);
-  setSaveMessage("");
+    setSavingScore(true);
+    setSaveMessage("");
 
-  try {
-    const normalizedHistory = (progress.history || []).slice(0, 100).map((item) => ({
-      id: Number(item.id),
-      roundQuestionId: Number(item.roundQuestionId ?? item.id),
-      roundAt: String(item.roundAt ?? item.at ?? new Date().toISOString()),
-      category: String(item.category),
-      difficulty:
-        typeof item.difficulty === "number"
-          ? item.difficulty
-          : item.difficulty === "facil"
-            ? 1
-            : item.difficulty === "medio"
-              ? 2
-              : item.difficulty === "dificil"
-                ? 3
-                : Number(difficulty),
-      correct: Boolean(item.correct),
-      at: String(item.at ?? new Date().toISOString()),
-    }));
+    try {
+      const normalizedHistory = (progress.history || []).slice(0, 100).map((item) => ({
+        id: Number(item.id),
+        roundQuestionId: Number(item.roundQuestionId ?? item.id),
+        roundAt: String(item.roundAt ?? item.at ?? new Date().toISOString()),
+        category: String(item.category),
+        difficulty:
+          typeof item.difficulty === "number"
+            ? item.difficulty
+            : item.difficulty === "facil"
+              ? 1
+              : item.difficulty === "medio"
+                ? 2
+                : item.difficulty === "dificil"
+                  ? 3
+                  : Number(difficulty),
+        correct: Boolean(item.correct),
+        at: String(item.at ?? new Date().toISOString()),
+      }));
 
-    const payload = {
-      name: trimmedName,
-      score: Number(progress.totalScore || 0),
-      difficulty: Number(difficulty),
-      totalQuestions: 12,
-      roundScore: Number(
-        roundQuestions.reduce((acc, q) => {
-          const hit = normalizedHistory.find(
-            (h) => h.roundQuestionId === q.id && h.roundAt === q._roundAt
-          );
-          return acc + (hit?.correct ? 1 : 0);
-        }, 0)
-      ),
-      correctByCategory: {
-        personajes: Number(progress.correctByCategory?.personajes || 0),
-        lugares: Number(progress.correctByCategory?.lugares || 0),
-        frases: Number(progress.correctByCategory?.frases || 0),
-        liturgia: Number(progress.correctByCategory?.liturgia || 0),
-        objetos: Number(progress.correctByCategory?.objetos || 0),
-        piedad_tradiciones: Number(progress.correctByCategory?.piedad_tradiciones || 0),
-      },
-      wedges: {
-        personajes: Boolean(progress.wedges?.personajes),
-        lugares: Boolean(progress.wedges?.lugares),
-        frases: Boolean(progress.wedges?.frases),
-        liturgia: Boolean(progress.wedges?.liturgia),
-        objetos: Boolean(progress.wedges?.objetos),
-        piedad_tradiciones: Boolean(progress.wedges?.piedad_tradiciones),
-      },
-      history: normalizedHistory,
-      createdAt: new Date().toISOString(),
-    };
+      const payload = {
+        name: trimmedName,
+        score: Number(progress.totalScore || 0),
+        difficulty: Number(difficulty),
+        totalQuestions: Number(totalQuestionsThisRound),
+        roundScore: Number(currentRoundScore),
+        correctByCategory: {
+          personajes: Number(progress.correctByCategory?.personajes || 0),
+          lugares: Number(progress.correctByCategory?.lugares || 0),
+          frases: Number(progress.correctByCategory?.frases || 0),
+          liturgia: Number(progress.correctByCategory?.liturgia || 0),
+          objetos: Number(progress.correctByCategory?.objetos || 0),
+          piedad_tradiciones: Number(
+            progress.correctByCategory?.piedad_tradiciones || 0
+          ),
+        },
+        wedges: {
+          personajes: Boolean(progress.wedges?.personajes),
+          lugares: Boolean(progress.wedges?.lugares),
+          frases: Boolean(progress.wedges?.frases),
+          liturgia: Boolean(progress.wedges?.liturgia),
+          objetos: Boolean(progress.wedges?.objetos),
+          piedad_tradiciones: Boolean(progress.wedges?.piedad_tradiciones),
+        },
+        history: normalizedHistory,
+        createdAt: new Date().toISOString(),
+      };
 
-    await addDoc(scoresCollection, payload);
+      await addDoc(scoresCollection, payload);
 
-    const snapshot = await getDocs(scoresCollection);
-    const rows = snapshot.docs
-      .map((doc) => ({ id: doc.id, ...doc.data() }))
-      .sort(
-        (a, b) =>
-          new Date(b.createdAt || b.date || 0) -
-          new Date(a.createdAt || a.date || 0)
-      )
-      .slice(0, 10);
+      const snapshot = await getDocs(scoresCollection);
+      const rows = snapshot.docs
+        .map((doc) => ({ id: doc.id, ...doc.data() }))
+        .sort(
+          (a, b) =>
+            new Date(b.createdAt || b.date || 0) -
+            new Date(a.createdAt || a.date || 0)
+        )
+        .slice(0, 10);
 
-    setSavedScores(rows);
-    setSaveMessage("Partida guardada correctamente.");
-  } catch (error) {
-    console.error("Error guardando partida:", error);
-    setSaveMessage(`No se pudo guardar la partida en Firebase. ${error?.message || ""}`);
-  } finally {
-    setSavingScore(false);
-  }
-};
+      setSavedScores(rows);
+      setSaveMessage("Partida guardada correctamente.");
+    } catch (error) {
+      console.error("Error guardando partida:", error);
+      setSaveMessage(
+        `No se pudo guardar la partida en Firebase. ${error?.message || ""}`
+      );
+    } finally {
+      setSavingScore(false);
+    }
+  };
 
   useEffect(() => {
     if (screen !== "quiz" || locked || !currentQuestion) return;
@@ -379,7 +400,7 @@ const saveMatchToFirebase = async () => {
       <style>{`
         * { box-sizing: border-box; }
         body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif; background: #fff7ed; }
-        button, input { font: inherit; }
+        button, input, select { font: inherit; }
 
         .appShell {
           max-width: 1100px;
@@ -426,11 +447,19 @@ const saveMatchToFirebase = async () => {
           display: block;
         }
 
-        .levels {
+        .controlsGrid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 12px;
-          margin-top: 18px;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+          margin-top: 20px;
+        }
+
+        .selectField {
+          width: 100%;
+          padding: 12px 14px;
+          border-radius: 12px;
+          border: 1px solid #d1d5db;
+          background: white;
         }
 
         .chips {
@@ -567,7 +596,7 @@ const saveMatchToFirebase = async () => {
         }
 
         @media (max-width: 900px) {
-          .levels, .grid {
+          .controlsGrid, .grid {
             grid-template-columns: 1fr;
           }
 
@@ -587,29 +616,57 @@ const saveMatchToFirebase = async () => {
         <div className="card">
           <img src="/images/portada.png" alt="Portada" className="heroImage" />
 
-          <h2>Elige dificultad</h2>
+          <div className="controlsGrid">
+            <div>
+              <label style={{ display: "block", fontWeight: 700, marginBottom: 6 }}>
+                Nivel
+              </label>
+              <select
+                value={selectedDifficulty}
+                onChange={(e) => setSelectedDifficulty(Number(e.target.value))}
+                className="selectField"
+              >
+                <option value={1}>Fácil</option>
+                <option value={2}>Medio</option>
+                <option value={3}>Difícil</option>
+              </select>
+            </div>
 
-          <div className="levels">
-            <button className="btn btnPrimary" onClick={() => startRound(1, true)}>Fácil</button>
-            <button className="btn btnPrimary" onClick={() => startRound(2, true)}>Medio</button>
-            <button className="btn btnPrimary" onClick={() => startRound(3, true)}>Difícil</button>
+            <div>
+              <label style={{ display: "block", fontWeight: 700, marginBottom: 6 }}>
+                Categoría
+              </label>
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="selectField"
+              >
+                <option value="all">Todas</option>
+                {CATEGORY_ORDER.map((key) => (
+                  <option key={key} value={key}>
+                    {CATEGORY_CONFIG[key].label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
-          <div style={{ display: "flex", gap: 12, marginTop: 14, flexWrap: "wrap" }}>
-            <button className="btn btnGhost" onClick={() => startRound(1, true)}>
+          <div style={{ display: "flex", gap: 12, marginTop: 18, flexWrap: "wrap" }}>
+            <button className="btn btnPrimary" onClick={() => startRound(true)}>
               Continuar progreso
             </button>
-            <button className="btn btnGhost" onClick={() => startRound(1, false)}>
+            <button className="btn btnGhost" onClick={() => startRound(false)}>
               Empezar de cero
             </button>
           </div>
 
-          <div style={{ marginTop: 18 }}>
+          <div style={{ marginTop: 24 }}>
             <strong>Quesitos:</strong>
             <div className="chips">
               {CATEGORY_ORDER.map((key) => (
-                <span className="chip" key={key}>
-                  <span className="wedge">{wedges[key] ? "🧩" : "◻️"}</span> {CATEGORY_CONFIG[key].icon} {CATEGORY_CONFIG[key].label}
+                <span className="chip" key={key} title={CATEGORY_CONFIG[key].label}>
+                  <span className="wedge">{wedges[key] ? "🧩" : "◻️"}</span>{" "}
+                  {CATEGORY_CONFIG[key].icon}
                 </span>
               ))}
             </div>
@@ -621,7 +678,10 @@ const saveMatchToFirebase = async () => {
         <div className="card">
           <div className="questionTop">
             <div className="questionRow">
-              <strong>Pregunta {currentIndex + 1} / {TOTAL_QUESTIONS}</strong>
+              <strong>
+                Pregunta {currentIndex + 1} / {totalQuestionsThisRound}
+              </strong>
+
               <div className="timeBarTrack">
                 <div
                   className="timeBarFill"
@@ -651,12 +711,13 @@ const saveMatchToFirebase = async () => {
           <div className="grid" style={{ marginTop: 16 }}>
             <img
               src={`/images/${currentQuestion.image}.jpg`}
-              alt={currentQuestion.question}
+              alt={cleanQuestionText(currentQuestion.question)}
               className="questionImage"
             />
 
             <div>
-              <h2>{currentQuestion.question}</h2>
+              <h2>{cleanQuestionText(currentQuestion.question)}</h2>
+
               <div className="options">
                 {currentQuestion.options.map((opt, idx) => {
                   let className = "option";
@@ -685,6 +746,7 @@ const saveMatchToFirebase = async () => {
           <h2>Resumen de progreso</h2>
 
           <p><strong>Puntuación total:</strong> {progress.totalScore}</p>
+          <p><strong>Puntos en esta partida:</strong> {currentRoundScore}</p>
 
           <h3>Aciertos por categoría</h3>
           <div className="summaryGrid">
@@ -712,6 +774,7 @@ const saveMatchToFirebase = async () => {
             <div style={{ color: "#6b7280", marginTop: 6 }}>
               Guarda puntuación total, aciertos por categoría, quesitos e historial básico.
             </div>
+
             <div className="saveRow">
               <input
                 className="saveInput"
@@ -719,10 +782,15 @@ const saveMatchToFirebase = async () => {
                 onChange={(e) => setPlayerName(e.target.value)}
                 placeholder="Nombre del jugador"
               />
-              <button className="btn btnPrimary" onClick={saveMatchToFirebase} disabled={savingScore}>
+              <button
+                className="btn btnPrimary"
+                onClick={saveMatchToFirebase}
+                disabled={savingScore}
+              >
                 {savingScore ? "Guardando..." : "Guardar"}
               </button>
             </div>
+
             {saveMessage && <div style={{ marginTop: 10 }}>{saveMessage}</div>}
           </div>
 
@@ -746,7 +814,7 @@ const saveMatchToFirebase = async () => {
             <button className="btn btnPrimary" onClick={() => setScreen("home")}>
               Volver al inicio
             </button>
-            <button className="btn btnGhost" onClick={() => startRound(difficulty, true)}>
+            <button className="btn btnGhost" onClick={() => startRound(true)}>
               Jugar otra partida
             </button>
           </div>
