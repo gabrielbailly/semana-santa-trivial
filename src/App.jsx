@@ -13,7 +13,7 @@ import {
   resetUsedQuestions,
 } from "./services/progressStorage";
 
-const QUESTION_TIME = 7;
+const QUESTION_TIME = 10;
 const MAX_QUESTIONS_PER_ROUND = 12;
 
 const scoresCollection = collection(db, "scores");
