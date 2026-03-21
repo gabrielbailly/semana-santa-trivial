@@ -77,13 +77,11 @@ function useGameSounds(enabled) {
     error: () => beep(200),
     final: () => {
       beep(400);
-      setTimeout(() => beep(600), 120);
-      setTimeout(() => beep(900), 240);
+      setTimeout(() => beep(700), 150);
     },
   };
 }
 
-// ---------- APP ----------
 export default function App() {
   const [screen, setScreen] = useState("home");
   const [difficulty, setDifficulty] = useState(1);
@@ -102,7 +100,7 @@ export default function App() {
   const sounds = useGameSounds(true);
   const q = questions[current];
 
-  // ---------- cargar ranking ----------
+  // ---------- ranking ----------
   useEffect(() => {
     loadScores();
   }, []);
@@ -116,11 +114,6 @@ export default function App() {
     () => [...scores].sort((a, b) => b.score - a.score).slice(0, 10),
     [scores]
   );
-
-  // ---------- UI helpers ----------
-  const timerWidth = `${(timeLeft / QUESTION_TIME) * 100}%`;
-  let timerColor =
-    timeLeft > 4 ? "#22c55e" : timeLeft > 2 ? "#f59e0b" : "#ef4444";
 
   // ---------- game ----------
   function startGame(reset) {
@@ -211,224 +204,298 @@ export default function App() {
     return () => clearInterval(t);
   }, [screen, locked, current]);
 
+  const timerWidth = `${(timeLeft / QUESTION_TIME) * 100}%`;
+  let timerColor =
+    timeLeft > 4 ? "#22c55e" : timeLeft > 2 ? "#f59e0b" : "#ef4444";
+
   return (
     <div className="app">
-      <style>{`
-        * { box-sizing: border-box; }
+      <style> {
+  box-sizing: border-box;
+}
 
-        body {
-          margin: 0;
-          font-family: system-ui, sans-serif;
-          background: #fff7ed;
-        }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fff7ed;
+}
 
-        .app {
-          max-width: 1000px;
-          margin: auto;
-          padding: 20px;
-        }
+/* ---------- layout ---------- */
 
-        .card {
-          background: white;
-          padding: 20px;
-          border-radius: 20px;
-          box-shadow: 0 12px 30px rgba(0,0,0,.08);
-        }
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-        img {
-          border-radius: 16px;
-        }
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 22px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.08);
+}
 
-        /* ---------- selectors ---------- */
+img {
+  border-radius: 16px;
+  width: 100%;
+  display: block;
+}
 
-        .selectorsRow {
-          display: grid;
-          grid-template-columns: 1fr 2fr;
-          gap: 16px;
-          margin-top: 20px;
-        }
+/* ---------- texto ---------- */
 
-        select {
-          padding: 10px;
-          border-radius: 10px;
-          border: 1px solid #ddd;
-        }
+h2 {
+  margin: 12px 0;
+}
 
-        /* ---------- chips ---------- */
+p {
+  color: #6b7280;
+}
 
-        .chips {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-        }
+/* ---------- selectors ---------- */
 
-        .chip {
-          padding: 8px 12px;
-          border-radius: 999px;
-          border: 2px solid #e5e7eb;
-          cursor: pointer;
-          transition: all .2s;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-        }
+.selectorsRow {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  margin-top: 16px;
+}
 
-        .chip:hover {
-          background: #fffbeb;
-          border-color: #f59e0b;
-        }
+select {
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  background: white;
+  font-weight: 600;
+}
 
-        .chip.active {
-          background: linear-gradient(135deg, #f59e0b, #ea580c);
-          color: white;
-          border: none;
-        }
+/* ---------- chips ---------- */
 
-        /* ---------- buttons ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
 
-        button {
-          border: none;
-          border-radius: 12px;
-          padding: 12px 14px;
-          font-weight: 700;
-          cursor: pointer;
-          background: #f59e0b;
-          color: white;
-        }
+.chip {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 2px solid #e5e7eb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
 
-        button:hover {
-          opacity: 0.9;
-        }
+.chip:hover {
+  background: #fffbeb;
+  border-color: #f59e0b;
+}
 
-        /* ---------- timer ---------- */
+.chip.active {
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  color: white;
+  border: none;
+}
 
-        .timeBar {
-          height: 8px;
-          background: #e5e7eb;
-          border-radius: 10px;
-          overflow: hidden;
-          margin-top: 6px;
-        }
+/* ---------- botones ---------- */
 
-        .timeFill {
-          height: 100%;
-          transition: width .25s linear, background .25s;
-        }
+button {
+  border: none;
+  border-radius: 14px;
+  padding: 12px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  color: white;
+  transition: all 0.2s ease;
+}
 
-        /* ---------- ranking ---------- */
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.15);
+}
 
-        .rankingItem {
-          padding: 8px 0;
-          border-bottom: 1px solid #eee;
-        }
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
 
-        .rankingItem:last-child {
-          border-bottom: none;
-        }
+/* ---------- opciones ---------- */
 
-        /* ---------- responsive ---------- */
+.option {
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 14px;
+  margin: 8px 0;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
 
-        @media (max-width: 700px) {
-          .selectorsRow {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
+.option:hover {
+  background: #fffbeb;
+  border-color: #f59e0b;
+}
+
+.option.correct {
+  background: #ecfdf5;
+  border-color: #22c55e;
+}
+
+.option.wrong {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
+/* ---------- timer ---------- */
+
+.timeBar {
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 8px 0 14px;
+}
+
+.timeFill {
+  height: 100%;
+  transition: width .25s linear, background .25s ease;
+}
+
+/* ---------- ranking ---------- */
+
+.rankingItem {
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.rankingItem:last-child {
+  border-bottom: none;
+}
+
+/* ---------- inputs ---------- */
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* ---------- spacing ---------- */
+
+.card button {
+  margin-top: 12px;
+}
+
+.card img {
+  margin-bottom: 12px;
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 700px) {
+  .selectorsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .option {
+    font-size: 0.95rem;
+  }
+}</style>
 
       {/* HOME */}
       {screen === "home" && (
         <div className="card">
-          <img src="/images/portada.png" style={{ width: "100%", maxHeight: 260, objectFit: "contain" }} />
+          <img src="/images/portada.png" style={{ width:"100%", maxHeight:250, objectFit:"contain" }} />
+
+          <p style={{ marginTop:12 }}>
+            Elige nivel y categorías. Si no seleccionas ninguna categoría, jugarás con todas.
+          </p>
 
           <div className="selectorsRow">
-            <select onChange={(e) => setDifficulty(Number(e.target.value))}>
+            <select onChange={(e)=>setDifficulty(Number(e.target.value))}>
               <option value={1}>Fácil</option>
               <option value={2}>Medio</option>
               <option value={3}>Difícil</option>
             </select>
 
             <div className="chips">
-              {CATEGORY_ORDER.map((c) => {
+              {CATEGORY_ORDER.map(c=>{
                 const active = selectedCategories.includes(c);
                 return (
                   <div
                     key={c}
-                    className={`chip ${active ? "active" : ""}`}
-                    onClick={() =>
-                      setSelectedCategories((prev) =>
-                        active ? prev.filter((x) => x !== c) : [...prev, c]
-                      )
-                    }
+                    className={`chip ${active?"active":""}`}
+                    onClick={()=>setSelectedCategories(prev =>
+                      active ? prev.filter(x=>x!==c) : [...prev,c]
+                    )}
                   >
                     {CATEGORY_CONFIG[c].icon} {CATEGORY_CONFIG[c].label}
                   </div>
-                );
+                )
               })}
             </div>
           </div>
 
-          <button style={{ marginTop: 16 }} onClick={() => startGame(true)}>
-            Jugar
-          </button>
+          <button onClick={()=>startGame(true)}>Jugar</button>
 
-          <h3 style={{ marginTop: 20 }}>🏆 Top 10</h3>
-          {ranking.map((r, i) => (
-            <div key={r.id} className="rankingItem">
-              {i + 1}. {r.name} — {r.score} pts ({r.quesitos} 🧩)
-              <br />
-              <small>
-                {r.createdAt?.toDate?.().toLocaleDateString() || ""}
-              </small>
+          <h3>🏆 Top 10</h3>
+          {ranking.map((r,i)=>(
+            <div key={r.id}>
+              {i+1}. {r.name} - {r.score} ({r.quesitos}🧩)
+              <br/>
+              <small>{r.createdAt?.toDate?.().toLocaleDateString()||""}</small>
             </div>
           ))}
         </div>
       )}
 
       {/* QUIZ */}
-      {screen === "quiz" && q && (
+      {screen==="quiz" && q && (
         <div className="card">
-          <strong>
-            Pregunta {current + 1} / {questions.length}
-          </strong>
+          <strong>{current+1}/{questions.length}</strong>
 
           <div className="timeBar">
-            <div
-              className="timeFill"
-              style={{ width: timerWidth, background: timerColor }}
-            />
+            <div className="timeFill" style={{width:timerWidth, background:timerColor}}/>
           </div>
 
           <img src={`/images/${q.image}.jpg`} width="100%" />
 
           <h2>{q.question}</h2>
 
-          {q.options.map((o, i) => (
-            <button key={i} onClick={() => answer(i)} disabled={locked}>
-              {o}
-            </button>
-          ))}
+          {q.options.map((o,i)=>{
+            let cls="option";
+            if(locked && i===q.correctIndex) cls+=" correct";
+            if(locked && selected===i && i!==q.correctIndex) cls+=" wrong";
 
-          {locked && (
-            <button style={{ marginTop: 10 }} onClick={nextQuestion}>
-              Siguiente
-            </button>
-          )}
+            return (
+              <div key={i} className={cls} onClick={()=>answer(i)}>
+                {o}
+              </div>
+            )
+          })}
+
+          {locked && <button onClick={nextQuestion}>Siguiente</button>}
         </div>
       )}
 
       {/* SUMMARY */}
-      {screen === "summary" && (
+      {screen==="summary" && (
         <div className="card">
           <h2>{progress.totalScore} puntos</h2>
 
-          <input
-            placeholder="Nombre"
-            onChange={(e) => setPlayerName(e.target.value)}
-          />
-
+          <input placeholder="Nombre" onChange={(e)=>setPlayerName(e.target.value)} />
           <button onClick={saveScore}>Guardar partida</button>
 
-          <button onClick={() => setScreen("home")}>Inicio</button>
+          <button onClick={()=>setScreen("home")}>Inicio</button>
         </div>
       )}
     </div>
