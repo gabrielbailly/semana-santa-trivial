@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+  import React, { useEffect, useState } from "react";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "./firebase";
 
@@ -146,16 +146,21 @@ export default function AdminPage() {
         }
 
         th {
-          text-align: center;
           padding: 10px;
           background: #f3f4f6;
           font-weight: 700;
           font-size: 0.95rem;
         }
-        th:nth-child(2),
-        td:nth-child(2) {
-        text-align: left;
-        }
+        th, td {
+          text-align: center;
+          }
+
+          th:nth-child(2),
+          td:nth-child(2) {
+          text-align: left;
+          }
+
+       
         td {
           padding: 10px;
           border-bottom: 1px solid #e5e7eb;
