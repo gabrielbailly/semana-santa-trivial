@@ -146,13 +146,16 @@ export default function AdminPage() {
         }
 
         th {
-          text-align: left;
+          text-align: center;
           padding: 10px;
           background: #f3f4f6;
           font-weight: 700;
           font-size: 0.95rem;
         }
-
+        th:nth-child(2),
+        td:nth-child(2) {
+        text-align: left;
+        }
         td {
           padding: 10px;
           border-bottom: 1px solid #e5e7eb;
