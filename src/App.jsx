@@ -637,7 +637,12 @@ export default function App() {
                     <strong>{entry.name}</strong>
                   </span>
                   <span>
-                    {entry.score ?? 0} · {entry.quesitos ?? 0} 🧩
+                      {entry.score ?? 0} · {entry.quesitos ?? 0} 🧩 <br/>
+                     <small style={{ color: "#6b7280" }}>
+                     {entry.createdAt?.toDate
+                      ? entry.createdAt.toDate().toLocaleDateString()
+                      : ""}
+                     </small>
                   </span>
                 </div>
               ))
