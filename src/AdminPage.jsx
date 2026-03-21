@@ -23,7 +23,6 @@ export default function AdminPage() {
         ...d.data(),
       }));
 
-      // ordenar por fecha descendente
       rows.sort((a, b) => {
         const da = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(0);
         const dbb = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(0);
@@ -74,112 +73,202 @@ export default function AdminPage() {
       await loadScores();
     } catch (err) {
       console.error("Error eliminando:", err);
-      alert("No se pudieron eliminar algunos registros");
+      alert("Error al eliminar registros");
     } finally {
       setLoading(false);
     }
   }
 
   return (
-    <div style={{ padding: 20, maxWidth: 1000, margin: "0 auto" }}>
-      <h1>🛠️ Administración de partidas</h1>
+    <div className="adminShell">
+      <style>{`
+        * { box-sizing: border-box; }
 
-      <div style={{ marginBottom: 16 }}>
-        <button onClick={deleteSelected} style={btnDanger}>
-          🗑️ Borrar seleccionados ({selectedIds.size})
-        </button>
+        body {
+          margin: 0;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+          background: #fff7ed;
+        }
 
-        <button onClick={loadScores} style={btnSecondary}>
-          🔄 Recargar
-        </button>
-      </div>
+        .adminShell {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 24px;
+        }
 
-      {loading && <p>Cargando...</p>}
+        .card {
+          background: white;
+          border-radius: 24px;
+          padding: 20px;
+          box-shadow: 0 16px 40px rgba(0,0,0,.08);
+        }
 
-      <table style={tableStyle}>
-        <thead>
-          <tr>
-            <th>
-              <input
-                type="checkbox"
-                checked={selectedIds.size === scores.length && scores.length > 0}
-                onChange={toggleSelectAll}
-              />
-            </th>
-            <th>Nombre</th>
-            <th>Puntos</th>
-            <th>Quesitos</th>
-            <th>Nivel</th>
-            <th>Fecha</th>
-          </tr>
-        </thead>
+        h1 {
+          margin-top: 0;
+        }
 
-        <tbody>
-          {scores.map((row) => {
-            const date = row.createdAt?.toDate
-              ? row.createdAt.toDate().toLocaleString()
-              : "-";
+        .toolbar {
+          display: flex;
+          gap: 10px;
+          margin-bottom: 16px;
+          flex-wrap: wrap;
+        }
 
-            return (
-              <tr key={row.id}>
-                <td>
+        .btn {
+          border: none;
+          border-radius: 12px;
+          padding: 10px 14px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        .btnDanger {
+          background: #dc2626;
+          color: white;
+        }
+
+        .btnSecondary {
+          background: #e5e7eb;
+        }
+
+        .btn:hover {
+          opacity: 0.9;
+        }
+
+        .tableWrapper {
+          overflow-x: auto;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 10px;
+        }
+
+        th {
+          text-align: left;
+          padding: 10px;
+          background: #f3f4f6;
+          font-weight: 700;
+          font-size: 0.95rem;
+        }
+
+        td {
+          padding: 10px;
+          border-bottom: 1px solid #e5e7eb;
+        }
+
+        tr:hover {
+          background: #fff7ed;
+        }
+
+        input[type="checkbox"] {
+          transform: scale(1.2);
+          cursor: pointer;
+        }
+
+        .loading {
+          color: #6b7280;
+          margin-top: 10px;
+        }
+
+        .empty {
+          margin-top: 20px;
+          color: #6b7280;
+        }
+
+        .badge {
+          padding: 4px 8px;
+          border-radius: 999px;
+          font-size: 0.8rem;
+          background: #f3f4f6;
+        }
+
+        @media (max-width: 700px) {
+          th, td {
+            font-size: 0.85rem;
+            padding: 8px;
+          }
+        }
+      `}</style>
+
+      <div className="card">
+        <h1>🛠️ Administración de partidas</h1>
+
+        <div className="toolbar">
+          <button className="btn btnDanger" onClick={deleteSelected}>
+            🗑️ Borrar seleccionados ({selectedIds.size})
+          </button>
+
+          <button className="btn btnSecondary" onClick={loadScores}>
+            🔄 Recargar
+          </button>
+        </div>
+
+        {loading && <div className="loading">Cargando...</div>}
+
+        <div className="tableWrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>
                   <input
                     type="checkbox"
-                    checked={selectedIds.has(row.id)}
-                    onChange={() => toggleSelect(row.id)}
+                    checked={selectedIds.size === scores.length && scores.length > 0}
+                    onChange={toggleSelectAll}
                   />
-                </td>
-
-                <td>{row.name}</td>
-                <td>{row.score}</td>
-                <td>{row.quesitos}</td>
-                <td>{formatLevel(row.nivel)}</td>
-                <td>{date}</td>
+                </th>
+                <th>Nombre</th>
+                <th>Puntos</th>
+                <th>Quesitos</th>
+                <th>Nivel</th>
+                <th>Fecha</th>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
+            </thead>
 
-      {scores.length === 0 && !loading && (
-        <p style={{ marginTop: 20 }}>No hay registros.</p>
-      )}
+            <tbody>
+              {scores.map((row) => {
+                const date = row.createdAt?.toDate
+                  ? row.createdAt.toDate().toLocaleString()
+                  : "-";
+
+                return (
+                  <tr key={row.id}>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={selectedIds.has(row.id)}
+                        onChange={() => toggleSelect(row.id)}
+                      />
+                    </td>
+
+                    <td>{row.name}</td>
+                    <td>{row.score}</td>
+                    <td>{row.quesitos}</td>
+                    <td>
+                      <span className="badge">
+                        {formatLevel(row.nivel)}
+                      </span>
+                    </td>
+                    <td>{date}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+
+        {!loading && scores.length === 0 && (
+          <div className="empty">No hay registros.</div>
+        )}
+      </div>
     </div>
   );
 }
-
-// -------- helpers --------
 
 function formatLevel(level) {
   if (level === 1) return "Fácil";
   if (level === 2) return "Medio";
   if (level === 3) return "Difícil";
-  return level || "-";
+  return "-";
 }
-
-// -------- estilos --------
-
-const tableStyle = {
-  width: "100%",
-  borderCollapse: "collapse",
-};
-
-const btnDanger = {
-  background: "#dc2626",
-  color: "white",
-  border: "none",
-  padding: "10px 14px",
-  borderRadius: 8,
-  marginRight: 10,
-  cursor: "pointer",
-  fontWeight: 700,
-};
-
-const btnSecondary = {
-  background: "#e5e7eb",
-  border: "none",
-  padding: "10px 14px",
-  borderRadius: 8,
-  cursor: "pointer",
-  fontWeight: 700,
-};
