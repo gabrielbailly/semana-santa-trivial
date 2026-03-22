@@ -560,42 +560,44 @@ export default function App() {
         <div className="card">
           <img src="/images/portada.png" alt="Portada" className="heroImage" />
 
-          <div className="section">
-            <label className="label">Nivel</label>
-            <select
-              value={difficulty}
-              onChange={(e) => setDifficulty(Number(e.target.value))}
-              className="selectField"
-            >
-              <option value={1}>Fácil</option>
-              <option value={2}>Medio</option>
-              <option value={3}>Difícil</option>
-            </select>
-          </div>
+  <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+  <div className="section" style={{ flex: 1 }}>
+    <label className="label">Nivel</label>
+    <select
+      value={difficulty}
+      onChange={(e) => setDifficulty(Number(e.target.value))}
+      className="selectField"
+    >
+      <option value={1}>Fácil</option>
+      <option value={2}>Medio</option>
+      <option value={3}>Difícil</option>
+    </select>
+  </div>
 
-          <div className="section">
-            <label className="label">Categorías</label>
-            <select
-              multiple
-              value={selectedCategories}
-              onChange={(e) =>
-                setSelectedCategories(
-                  Array.from(e.target.selectedOptions, (option) => option.value)
-                )
-              }
-              className="selectField"
-              style={{ minHeight: 150 }}
-            >
-              {CATEGORY_ORDER.map((category) => (
-                <option key={category} value={category}>
-                  {CATEGORY_CONFIG[category].icon} {CATEGORY_CONFIG[category].label}
-                </option>
-              ))}
-            </select>
-            <div style={{ color: "#6b7280", fontSize: ".9rem", marginTop: 6 }}>
-              Si no eliges ninguna, se jugará con todas.
-            </div>
-          </div>
+  <div className="section" style={{ flex: 2 }}>
+    <label className="label">Categorías</label>
+    <select
+      multiple
+      value={selectedCategories}
+      onChange={(e) =>
+        setSelectedCategories(
+          Array.from(e.target.selectedOptions, (option) => option.value)
+        )
+      }
+      className="selectField"
+      style={{ minHeight: 150 }}
+    >
+      {CATEGORY_ORDER.map((category) => (
+        <option key={category} value={category}>
+          {CATEGORY_CONFIG[category].icon} {CATEGORY_CONFIG[category].label}
+        </option>
+      ))}
+    </select>
+    <div style={{ color: "#6b7280", fontSize: ".9rem", marginTop: 6 }}>
+      Si no eliges ninguna, se jugará con todas.
+    </div>
+  </div>
+</div>
 
           <div className="btnRow">
             {!hasProgress ? (
