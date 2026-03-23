@@ -639,8 +639,8 @@ export default function App() {
                     <strong>{entry.name}</strong>
                   </span>
                   <span>
-                     nivel {entry.nivel}
-                      {entry.score ?? 0} puntos · {entry.quesitos ?? 0} 🧩 <br/>
+                     nivel {entry.nivel} · 
+                      {entry.score ?? 0} puntos · {entry.quesitos ?? 0} 🧩  · 
                      <small style={{ color: "#6b7280" }}>
                      {entry.createdAt?.toDate
                       ? entry.createdAt.toDate().toLocaleDateString()
