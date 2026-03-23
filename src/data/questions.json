@@ -34,7 +34,7 @@
       "id": 1,
       "difficulty": 1,
       "category": "personajes",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué momento de la Semana Santa recuerda esta escena? ",
       "options": [
         "La Última Cena",
@@ -48,7 +48,7 @@
       "id": 2,
       "difficulty": 1,
       "category": "liturgia",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
       "options": [
         "La Eucaristía",
@@ -62,7 +62,7 @@
       "id": 3,
       "difficulty": 1,
       "category": "objetos",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué alimento parte Jesús en la Última Cena?",
       "options": [
         "El pan",
@@ -76,7 +76,7 @@
       "id": 4,
       "difficulty": 1,
       "category": "objetos",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué bebida comparte Jesús con sus discípulos en la cena?",
       "options": [
         "Vino",
@@ -90,7 +90,7 @@
       "id": 5,
       "difficulty": 1,
       "category": "frases",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué dijo Jesús sobre el pan?",
       "options": [
         "Esto es mi cuerpo",
@@ -104,7 +104,7 @@
       "id": 6,
       "difficulty": 2,
       "category": "frases",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué dijo Jesús sobre el vino?",
       "options": [
         "Esta es mi sangre",
@@ -118,7 +118,7 @@
       "id": 7,
       "difficulty": 1,
       "category": "personajes",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Cuántos apóstoles acompañan a Jesús en la Última Cena?",
       "options": [
         "Doce",
@@ -132,7 +132,7 @@
       "id": 8,
       "difficulty": 2,
       "category": "personajes",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué discípulo traicionó después a Jesús?",
       "options": [
         "Judas Iscariote",
@@ -146,7 +146,7 @@
       "id": 9,
       "difficulty": 2,
       "category": "personajes",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué apóstol negó a Jesús tres veces más tarde?",
       "options": [
         "Pedro",
@@ -160,7 +160,7 @@
       "id": 10,
       "difficulty": 1,
       "category": "liturgia",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué día de la Semana Santa recuerda la Iglesia la Última Cena?",
       "options": [
         "Jueves Santo",
@@ -174,7 +174,7 @@
       "id": 11,
       "difficulty": 2,
       "category": "liturgia",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué gesto de servicio se recuerda también el Jueves Santo?",
       "options": [
         "El lavatorio de los pies",
@@ -188,7 +188,7 @@
       "id": 12,
       "difficulty": 2,
       "category": "frases",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué mandato dejó Jesús al instituir la Eucaristía?",
       "options": [
         "Haced esto en memoria mía",
@@ -202,7 +202,7 @@
       "id": 13,
       "difficulty": 2,
       "category": "frases",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué anunció Jesús durante la cena sobre uno de los presentes?",
       "options": [
         "Uno de vosotros me va a entregar",
@@ -216,7 +216,7 @@
       "id": 14,
       "difficulty": 2,
       "category": "lugares",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿En qué ciudad tuvo lugar la Última Cena?",
       "options": [
         "Jerusalén",
@@ -230,7 +230,7 @@
       "id": 15,
       "difficulty": 3,
       "category": "lugares",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Cómo se llama tradicionalmente el lugar donde se celebró la Última Cena?",
       "options": [
         "El Cenáculo",
@@ -244,7 +244,7 @@
       "id": 16,
       "difficulty": 2,
       "category": "piedad_tradiciones",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué visita devocional hacen muchos cristianos la noche del Jueves Santo?",
       "options": [
         "La visita a los monumentos",
@@ -258,7 +258,7 @@
       "id": 17,
       "difficulty": 3,
       "category": "liturgia",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué color litúrgico se usa normalmente en la Misa de la Cena del Señor?",
       "options": [
         "Blanco",
@@ -272,7 +272,7 @@
       "id": 18,
       "difficulty": 3,
       "category": "frases",
-      "image": "1.jpg",
+      "image": "1",
       "question": "¿Qué nuevo mandamiento dio Jesús en la Última Cena?",
       "options": [
         "Amaos unos a otros",
@@ -286,7 +286,7 @@
       "id": 19,
       "difficulty": 1,
       "category": "lugares",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Dónde rezó Jesús antes de ser arrestado?",
       "options": [
         "En Getsemaní",
@@ -300,7 +300,7 @@
       "id": 20,
       "difficulty": 1,
       "category": "personajes",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué está haciendo Jesús en esta escena?",
       "options": [
         "Rezando",
@@ -314,7 +314,7 @@
       "id": 21,
       "difficulty": 1,
       "category": "personajes",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué hacen los discípulos mientras Jesús ora?",
       "options": [
         "Duermen",
@@ -328,7 +328,7 @@
       "id": 22,
       "difficulty": 1,
       "category": "frases",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué oración resume mejor este momento?",
       "options": [
         "Padre, que no se haga mi voluntad sino la tuya",
@@ -342,7 +342,7 @@
       "id": 23,
       "difficulty": 1,
       "category": "liturgia",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué día de la Semana Santa se recuerda la oración en el huerto?",
       "options": [
         "Jueves Santo",
@@ -356,7 +356,7 @@
       "id": 24,
       "difficulty": 2,
       "category": "lugares",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿En qué monte se encontraba el huerto de Getsemaní?",
       "options": [
         "Monte de los Olivos",
@@ -370,7 +370,7 @@
       "id": 25,
       "difficulty": 2,
       "category": "frases",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué pidió Jesús a sus discípulos en el huerto?",
       "options": [
         "Velad y orad",
@@ -384,7 +384,7 @@
       "id": 26,
       "difficulty": 2,
       "category": "personajes",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué tres discípulos estuvieron más cerca de Jesús en Getsemaní?",
       "options": [
         "Pedro, Santiago y Juan",
@@ -398,7 +398,7 @@
       "id": 27,
       "difficulty": 2,
       "category": "frases",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué imagen usa Jesús al hablar de su sufrimiento inminente?",
       "options": [
         "Este cáliz",
@@ -412,7 +412,7 @@
       "id": 28,
       "difficulty": 2,
       "category": "personajes",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Quién llegó luego para señalar a Jesús con un beso?",
       "options": [
         "Judas",
@@ -426,7 +426,7 @@
       "id": 29,
       "difficulty": 3,
       "category": "personajes",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué apóstol cortó la oreja de un siervo durante el arresto?",
       "options": [
         "Pedro",
@@ -440,7 +440,7 @@
       "id": 30,
       "difficulty": 3,
       "category": "personajes",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Cómo se llamaba el siervo al que cortaron la oreja?",
       "options": [
         "Malco",
@@ -454,7 +454,7 @@
       "id": 31,
       "difficulty": 1,
       "category": "piedad_tradiciones",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué práctica cristiana recuerda especialmente este momento de oración y entrega?",
       "options": [
         "La hora santa",
@@ -468,7 +468,7 @@
       "id": 32,
       "difficulty": 3,
       "category": "frases",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué le dijo Jesús a Pedro, Santiago y Juan cuando los encontró dormidos?",
       "options": [
         "¿No habéis podido velar una hora conmigo?",
@@ -482,7 +482,7 @@
       "id": 33,
       "difficulty": 2,
       "category": "objetos",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué paisaje aparece asociado a este momento de la Pasión?",
       "options": [
         "Olivos",
@@ -496,7 +496,7 @@
       "id": 34,
       "difficulty": 2,
       "category": "liturgia",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué actitud espiritual inspira este episodio?",
       "options": [
         "Confianza en la voluntad de Dios",
@@ -510,7 +510,7 @@
       "id": 35,
       "difficulty": 3,
       "category": "lugares",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué significa aproximadamente el nombre Getsemaní?",
       "options": [
         "Prensa de aceite",
@@ -524,7 +524,7 @@
       "id": 36,
       "difficulty": 2,
       "category": "piedad_tradiciones",
-      "image": "2.jpg",
+      "image": "2",
       "question": "¿Qué invitación de Jesús sigue siendo actual para los cristianos al recordar Getsemaní?",
       "options": [
         "Velad y orad",
@@ -538,7 +538,7 @@
       "id": 37,
       "difficulty": 1,
       "category": "personajes",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Quién interroga a Jesús en esta escena?",
       "options": [
         "Poncio Pilato",
@@ -552,7 +552,7 @@
       "id": 38,
       "difficulty": 1,
       "category": "personajes",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Qué cargo tenía Pilato?",
       "options": [
         "Gobernador romano",
@@ -566,7 +566,7 @@
       "id": 39,
       "difficulty": 2,
       "category": "lugares",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Cómo se llamaba el lugar donde Pilato juzgaba?",
       "options": [
         "El Pretorio",
@@ -580,7 +580,7 @@
       "id": 40,
       "difficulty": 2,
       "category": "frases",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Qué famosa pregunta hizo Pilato a Jesús?",
       "options": [
         "¿Qué es la verdad?",
@@ -594,7 +594,7 @@
       "id": 41,
       "difficulty": 2,
       "category": "personajes",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Qué preso fue liberado en lugar de Jesús?",
       "options": [
         "Barrabás",
@@ -608,7 +608,7 @@
       "id": 42,
       "difficulty": 2,
       "category": "personajes",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Quién presionó a Pilato para que condenara a Jesús?",
       "options": [
         "Las autoridades religiosas y la multitud",
@@ -622,7 +622,7 @@
       "id": 43,
       "difficulty": 3,
       "category": "frases",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Qué gesto hizo Pilato para mostrar que no quería cargar con la responsabilidad?",
       "options": [
         "Se lavó las manos",
@@ -636,7 +636,7 @@
       "id": 44,
       "difficulty": 2,
       "category": "frases",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Cómo respondió Jesús cuando Pilato le preguntó si era rey?",
       "options": [
         "Tú lo dices",
@@ -650,7 +650,7 @@
       "id": 45,
       "difficulty": 2,
       "category": "liturgia",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Qué día de la Semana Santa se vincula más directamente con el juicio civil y la condena?",
       "options": [
         "Viernes Santo",
@@ -664,7 +664,7 @@
       "id": 46,
       "difficulty": 3,
       "category": "personajes",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Quién había interrogado antes a Jesús en el ámbito religioso?",
       "options": [
         "Caifás",
@@ -678,7 +678,7 @@
       "id": 47,
       "difficulty": 3,
       "category": "frases",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Qué declaración hace Jesús ante Pilato sobre su reino?",
       "options": [
         "Mi reino no es de este mundo",
@@ -692,7 +692,7 @@
       "id": 48,
       "difficulty": 2,
       "category": "piedad_tradiciones",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Qué enseña este momento sobre Jesús?",
       "options": [
         "Acepta la injusticia sin dejar de ser fiel a la verdad",
@@ -706,7 +706,7 @@
       "id": 49,
       "difficulty": 2,
       "category": "objetos",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Qué símbolo de poder civil romano representa mejor esta escena?",
       "options": [
         "La sede o tribunal de Pilato",
@@ -720,7 +720,7 @@
       "id": 50,
       "difficulty": 1,
       "category": "personajes",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Cómo aparece Jesús ante Pilato?",
       "options": [
         "Atado y detenido",
@@ -734,7 +734,7 @@
       "id": 51,
       "difficulty": 2,
       "category": "frases",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Qué grito de la multitud terminó imponiéndose en el proceso?",
       "options": [
         "¡Crucifícalo!",
@@ -748,7 +748,7 @@
       "id": 52,
       "difficulty": 3,
       "category": "lugares",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿En qué ciudad tuvo lugar el juicio de Pilato a Jesús?",
       "options": [
         "Jerusalén",
@@ -762,7 +762,7 @@
       "id": 53,
       "difficulty": 3,
       "category": "personajes",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Qué otro gobernante aparece en los relatos de la Pasión aunque no sea el de esta imagen?",
       "options": [
         "Herodes Antipas",
@@ -776,7 +776,7 @@
       "id": 54,
       "difficulty": 3,
       "category": "piedad_tradiciones",
-      "image": "3.jpg",
+      "image": "3",
       "question": "¿Qué actitud cristiana ayuda a vivir este momento de la Pasión?",
       "options": [
         "Defender la verdad sin violencia",
@@ -790,7 +790,7 @@
       "id": 55,
       "difficulty": 1,
       "category": "personajes",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué lleva Jesús sobre sus hombros en esta escena?",
       "options": [
         "La cruz",
@@ -804,7 +804,7 @@
       "id": 56,
       "difficulty": 1,
       "category": "lugares",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Hacia dónde se dirige Jesús con la cruz?",
       "options": [
         "Hacia el Calvario",
@@ -818,7 +818,7 @@
       "id": 57,
       "difficulty": 1,
       "category": "piedad_tradiciones",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué devoción recuerda el camino de Jesús con la cruz?",
       "options": [
         "El Vía Crucis",
@@ -832,7 +832,7 @@
       "id": 58,
       "difficulty": 2,
       "category": "personajes",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Quién ayudó a Jesús a llevar la cruz según los evangelios?",
       "options": [
         "Simón de Cirene",
@@ -846,7 +846,7 @@
       "id": 59,
       "difficulty": 2,
       "category": "lugares",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Cómo se llama tradicionalmente el recorrido de Jesús hacia el Calvario en Jerusalén?",
       "options": [
         "Vía Dolorosa",
@@ -860,7 +860,7 @@
       "id": 60,
       "difficulty": 1,
       "category": "objetos",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué objeto es el principal símbolo de esta escena?",
       "options": [
         "La cruz",
@@ -874,7 +874,7 @@
       "id": 61,
       "difficulty": 2,
       "category": "frases",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué dijo Jesús a las mujeres de Jerusalén según el evangelio?",
       "options": [
         "No lloréis por mí; llorad por vosotras y por vuestros hijos",
@@ -888,7 +888,7 @@
       "id": 62,
       "difficulty": 1,
       "category": "personajes",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué grupo acompaña a Jesús en este camino?",
       "options": [
         "Soldados romanos",
@@ -902,7 +902,7 @@
       "id": 63,
       "difficulty": 1,
       "category": "liturgia",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué día se asocia especialmente al camino de la cruz?",
       "options": [
         "Viernes Santo",
@@ -916,7 +916,7 @@
       "id": 64,
       "difficulty": 2,
       "category": "piedad_tradiciones",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Cuántas estaciones tiene tradicionalmente el Vía Crucis?",
       "options": [
         "14",
@@ -930,7 +930,7 @@
       "id": 65,
       "difficulty": 3,
       "category": "personajes",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué mujer secó el rostro de Jesús según la tradición cristiana?",
       "options": [
         "Verónica",
@@ -944,7 +944,7 @@
       "id": 66,
       "difficulty": 3,
       "category": "frases",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué llamada espiritual hace esta escena a los cristianos?",
       "options": [
         "Tomar la cruz y seguir a Cristo",
@@ -958,7 +958,7 @@
       "id": 67,
       "difficulty": 3,
       "category": "lugares",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué otro nombre recibe el Calvario?",
       "options": [
         "Gólgota",
@@ -972,7 +972,7 @@
       "id": 68,
       "difficulty": 2,
       "category": "objetos",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué detalle de la cruz explica el gran esfuerzo físico de Jesús en este episodio?",
       "options": [
         "Su peso",
@@ -986,7 +986,7 @@
       "id": 69,
       "difficulty": 2,
       "category": "personajes",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué muestran los soldados en esta escena?",
       "options": [
         "Que Jesús va custodiado como condenado",
@@ -1000,7 +1000,7 @@
       "id": 70,
       "difficulty": 3,
       "category": "piedad_tradiciones",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué valor espiritual se contempla especialmente aquí?",
       "options": [
         "La entrega paciente en el sufrimiento",
@@ -1014,7 +1014,7 @@
       "id": 71,
       "difficulty": 2,
       "category": "liturgia",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿En qué celebración parroquial es frecuente rezar el Vía Crucis en Cuaresma y Semana Santa?",
       "options": [
         "En un acto penitencial y devocional",
@@ -1028,7 +1028,7 @@
       "id": 72,
       "difficulty": 1,
       "category": "frases",
-      "image": "4.jpg",
+      "image": "4",
       "question": "¿Qué verbo resume mejor esta escena?",
       "options": [
         "Cargar",
@@ -1042,7 +1042,7 @@
       "id": 73,
       "difficulty": 1,
       "category": "personajes",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Con quién se encuentra Jesús en el camino según la tradición que inspira esta imagen?",
       "options": [
         "Con su madre, María",
@@ -1056,7 +1056,7 @@
       "id": 74,
       "difficulty": 1,
       "category": "personajes",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué sentimiento muestra esta escena?",
       "options": [
         "Dolor y compasión",
@@ -1070,7 +1070,7 @@
       "id": 75,
       "difficulty": 1,
       "category": "piedad_tradiciones",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué estación del Vía Crucis recuerda el encuentro de Jesús con su madre?",
       "options": [
         "Una de las estaciones tradicionales del Vía Crucis",
@@ -1084,7 +1084,7 @@
       "id": 76,
       "difficulty": 2,
       "category": "personajes",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué otras personas suelen aparecer acompañando a María en este momento?",
       "options": [
         "Mujeres de Jerusalén y seguidores",
@@ -1098,7 +1098,7 @@
       "id": 77,
       "difficulty": 2,
       "category": "frases",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué actitud encarna María en esta escena?",
       "options": [
         "Fidelidad en el sufrimiento",
@@ -1112,7 +1112,7 @@
       "id": 78,
       "difficulty": 2,
       "category": "piedad_tradiciones",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué enseña este encuentro sobre la Virgen María?",
       "options": [
         "Que acompaña a su Hijo incluso en el dolor",
@@ -1126,7 +1126,7 @@
       "id": 79,
       "difficulty": 2,
       "category": "liturgia",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué advocación mariana se relaciona especialmente con el dolor de María en la Pasión?",
       "options": [
         "Nuestra Señora de los Dolores",
@@ -1140,7 +1140,7 @@
       "id": 80,
       "difficulty": 3,
       "category": "frases",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué virtud cristiana se contempla especialmente al mirar a María en la Pasión?",
       "options": [
         "Fortaleza unida al amor",
@@ -1154,7 +1154,7 @@
       "id": 81,
       "difficulty": 2,
       "category": "personajes",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué está haciendo Jesús al encontrarse con su madre?",
       "options": [
         "Sigue caminando con la cruz",
@@ -1168,7 +1168,7 @@
       "id": 82,
       "difficulty": 1,
       "category": "objetos",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué objeto sigue cargando Jesús en este momento?",
       "options": [
         "La cruz",
@@ -1182,7 +1182,7 @@
       "id": 83,
       "difficulty": 2,
       "category": "lugares",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Dónde se sitúa este encuentro dentro del relato de la Pasión?",
       "options": [
         "En el camino al Calvario",
@@ -1196,7 +1196,7 @@
       "id": 84,
       "difficulty": 3,
       "category": "piedad_tradiciones",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué fruto espiritual puede despertar esta escena?",
       "options": [
         "Compasión por el sufrimiento de Cristo y de su Madre",
@@ -1210,7 +1210,7 @@
       "id": 85,
       "difficulty": 2,
       "category": "frases",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué expresión resume mejor el vínculo entre Jesús y María aquí?",
       "options": [
         "Amor fiel en medio del sufrimiento",
@@ -1224,7 +1224,7 @@
       "id": 86,
       "difficulty": 3,
       "category": "personajes",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué mujeres son mencionadas en los evangelios acompañando el camino de la Pasión?",
       "options": [
         "Las mujeres de Jerusalén",
@@ -1238,7 +1238,7 @@
       "id": 87,
       "difficulty": 3,
       "category": "liturgia",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué memoria mariana recuerda especialmente los dolores de María a lo largo de la vida de Cristo?",
       "options": [
         "La memoria de la Virgen de los Dolores",
@@ -1252,7 +1252,7 @@
       "id": 88,
       "difficulty": 2,
       "category": "piedad_tradiciones",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué oración mariana se vincula con los sufrimientos de la Virgen junto a la Pasión?",
       "options": [
         "Los Siete Dolores de María",
@@ -1266,7 +1266,7 @@
       "id": 89,
       "difficulty": 1,
       "category": "personajes",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Quién aparece a la izquierda de la imagen, con gesto de dolor?",
       "options": [
         "María",
@@ -1280,7 +1280,7 @@
       "id": 90,
       "difficulty": 1,
       "category": "frases",
-      "image": "5.jpg",
+      "image": "5",
       "question": "¿Qué palabra resume mejor esta escena?",
       "options": [
         "Encuentro",
@@ -1294,7 +1294,7 @@
       "id": 91,
       "difficulty": 1,
       "category": "lugares",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Dónde murió Jesús?",
       "options": [
         "En la cruz",
@@ -1308,7 +1308,7 @@
       "id": 92,
       "difficulty": 2,
       "category": "lugares",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Cómo se llama el monte de la crucifixión?",
       "options": [
         "Calvario o Gólgota",
@@ -1322,7 +1322,7 @@
       "id": 93,
       "difficulty": 1,
       "category": "personajes",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Cuántas cruces aparecen en esta escena?",
       "options": [
         "Tres",
@@ -1336,7 +1336,7 @@
       "id": 94,
       "difficulty": 2,
       "category": "personajes",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Quiénes fueron crucificados junto a Jesús?",
       "options": [
         "Dos ladrones",
@@ -1350,7 +1350,7 @@
       "id": 95,
       "difficulty": 1,
       "category": "frases",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué breve expresión pronunció Jesús desde la cruz?",
       "options": [
         "Tengo sed",
@@ -1364,7 +1364,7 @@
       "id": 96,
       "difficulty": 2,
       "category": "frases",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué dijo Jesús al buen ladrón?",
       "options": [
         "Hoy estarás conmigo en el paraíso",
@@ -1378,7 +1378,7 @@
       "id": 97,
       "difficulty": 2,
       "category": "frases",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué oración dirigió Jesús al Padre por sus verdugos?",
       "options": [
         "Padre, perdónalos porque no saben lo que hacen",
@@ -1392,7 +1392,7 @@
       "id": 98,
       "difficulty": 3,
       "category": "frases",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué frase pronunció Jesús confiándose totalmente al Padre según san Lucas?",
       "options": [
         "Padre, en tus manos encomiendo mi espíritu",
@@ -1406,7 +1406,7 @@
       "id": 99,
       "difficulty": 3,
       "category": "frases",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué frase de Jesús en la cruz cita el salmo 22?",
       "options": [
         "Dios mío, Dios mío, ¿por qué me has abandonado?",
@@ -1420,7 +1420,7 @@
       "id": 100,
       "difficulty": 2,
       "category": "personajes",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué discípulo estaba junto a María al pie de la cruz?",
       "options": [
         "Juan",
@@ -1434,7 +1434,7 @@
       "id": 101,
       "difficulty": 3,
       "category": "personajes",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué proclamó el centurión al ver morir a Jesús?",
       "options": [
         "Verdaderamente este era Hijo de Dios",
@@ -1448,7 +1448,7 @@
       "id": 102,
       "difficulty": 1,
       "category": "objetos",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué símbolo se ve sobre la cabeza de Jesús en muchas representaciones de la crucifixión?",
       "options": [
         "El letrero INRI",
@@ -1462,7 +1462,7 @@
       "id": 103,
       "difficulty": 2,
       "category": "objetos",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué llevaba Jesús en la cabeza durante la crucifixión?",
       "options": [
         "Una corona de espinas",
@@ -1476,7 +1476,7 @@
       "id": 104,
       "difficulty": 1,
       "category": "liturgia",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué día recuerda la Iglesia la muerte de Jesús en la cruz?",
       "options": [
         "Viernes Santo",
@@ -1490,7 +1490,7 @@
       "id": 105,
       "difficulty": 2,
       "category": "liturgia",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué se venera de forma especial en la liturgia del Viernes Santo?",
       "options": [
         "La cruz",
@@ -1504,7 +1504,7 @@
       "id": 106,
       "difficulty": 2,
       "category": "piedad_tradiciones",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué enseña la cruz a los cristianos?",
       "options": [
         "El amor llevado hasta el extremo",
@@ -1518,7 +1518,7 @@
       "id": 107,
       "difficulty": 3,
       "category": "piedad_tradiciones",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué virtud se contempla especialmente al mirar a Jesús crucificado?",
       "options": [
         "La entrega total por amor",
@@ -1532,7 +1532,7 @@
       "id": 108,
       "difficulty": 2,
       "category": "frases",
-      "image": "6.jpg",
+      "image": "6",
       "question": "¿Qué dijo Jesús a María y al discípulo amado desde la cruz?",
       "options": [
         "Mujer, ahí tienes a tu hijo",
@@ -1546,7 +1546,7 @@
       "id": 109,
       "difficulty": 1,
       "category": "personajes",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué están haciendo con el cuerpo de Jesús en esta escena?",
       "options": [
         "Lo están bajando de la cruz",
@@ -1560,7 +1560,7 @@
       "id": 110,
       "difficulty": 1,
       "category": "lugares",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Cómo se llama este momento de la Pasión?",
       "options": [
         "El descendimiento",
@@ -1574,7 +1574,7 @@
       "id": 111,
       "difficulty": 2,
       "category": "personajes",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Quién pidió permiso para bajar y enterrar el cuerpo de Jesús?",
       "options": [
         "José de Arimatea",
@@ -1588,7 +1588,7 @@
       "id": 112,
       "difficulty": 2,
       "category": "personajes",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué persona cercana a Jesús suele aparecer en esta escena con gran dolor?",
       "options": [
         "María",
@@ -1602,7 +1602,7 @@
       "id": 113,
       "difficulty": 1,
       "category": "piedad_tradiciones",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Cómo se llama la escena en la que María sostiene a Jesús muerto en muchas obras de arte?",
       "options": [
         "La Piedad",
@@ -1616,7 +1616,7 @@
       "id": 114,
       "difficulty": 1,
       "category": "objetos",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿En qué suele envolverse el cuerpo de Jesús al bajarlo de la cruz?",
       "options": [
         "En una sábana",
@@ -1630,7 +1630,7 @@
       "id": 115,
       "difficulty": 2,
       "category": "lugares",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué escena viene normalmente después del descendimiento?",
       "options": [
         "La sepultura",
@@ -1644,7 +1644,7 @@
       "id": 116,
       "difficulty": 2,
       "category": "frases",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué sentimiento resume mejor este momento?",
       "options": [
         "Dolor y reverencia",
@@ -1658,7 +1658,7 @@
       "id": 117,
       "difficulty": 2,
       "category": "piedad_tradiciones",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué invita a contemplar este episodio?",
       "options": [
         "El amor fiel hasta el final",
@@ -1672,7 +1672,7 @@
       "id": 118,
       "difficulty": 3,
       "category": "personajes",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Quién ayudó también en los preparativos del entierro además de José de Arimatea?",
       "options": [
         "Nicodemo",
@@ -1686,7 +1686,7 @@
       "id": 119,
       "difficulty": 2,
       "category": "liturgia",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué tarde de la Semana Santa se relaciona especialmente con esta escena?",
       "options": [
         "La del Viernes Santo",
@@ -1700,7 +1700,7 @@
       "id": 120,
       "difficulty": 2,
       "category": "objetos",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué instrumento de la Pasión permanece visible en el fondo de esta escena?",
       "options": [
         "La cruz",
@@ -1714,7 +1714,7 @@
       "id": 121,
       "difficulty": 3,
       "category": "frases",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué actitud cristiana inspira contemplar el cuerpo de Cristo descendido de la cruz?",
       "options": [
         "Agradecimiento por su entrega",
@@ -1728,7 +1728,7 @@
       "id": 122,
       "difficulty": 1,
       "category": "personajes",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿A quién reconocemos con túnica azul en muchas representaciones del descendimiento?",
       "options": [
         "A María",
@@ -1742,7 +1742,7 @@
       "id": 123,
       "difficulty": 3,
       "category": "lugares",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué episodio del relato va unido inmediatamente al traslado del cuerpo desde el Calvario?",
       "options": [
         "El entierro en un sepulcro nuevo",
@@ -1756,7 +1756,7 @@
       "id": 124,
       "difficulty": 3,
       "category": "piedad_tradiciones",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué virtud de María resalta especialmente en este momento?",
       "options": [
         "Su fortaleza en el dolor",
@@ -1770,7 +1770,7 @@
       "id": 125,
       "difficulty": 3,
       "category": "liturgia",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué celebración del Triduo Pascual conduce espiritualmente desde la cruz hasta el silencio del sepulcro?",
       "options": [
         "El Viernes Santo",
@@ -1784,7 +1784,7 @@
       "id": 126,
       "difficulty": 1,
       "category": "frases",
-      "image": "7.jpg",
+      "image": "7",
       "question": "¿Qué palabra define mejor esta escena?",
       "options": [
         "Despedida",
@@ -1798,7 +1798,7 @@
       "id": 127,
       "difficulty": 1,
       "category": "lugares",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Dónde colocaron el cuerpo de Jesús después de bajarlo de la cruz?",
       "options": [
         "En un sepulcro",
@@ -1812,7 +1812,7 @@
       "id": 128,
       "difficulty": 1,
       "category": "objetos",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué cerraba la entrada del sepulcro?",
       "options": [
         "Una gran piedra",
@@ -1826,7 +1826,7 @@
       "id": 129,
       "difficulty": 2,
       "category": "personajes",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Quién proporcionó el sepulcro nuevo para Jesús?",
       "options": [
         "José de Arimatea",
@@ -1840,7 +1840,7 @@
       "id": 130,
       "difficulty": 2,
       "category": "personajes",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué discípulo ayudó con perfumes y aromas para la sepultura?",
       "options": [
         "Nicodemo",
@@ -1854,7 +1854,7 @@
       "id": 131,
       "difficulty": 2,
       "category": "objetos",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿En qué fue envuelto el cuerpo de Jesús?",
       "options": [
         "En una sábana limpia",
@@ -1868,7 +1868,7 @@
       "id": 132,
       "difficulty": 1,
       "category": "liturgia",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué día se relaciona con el silencio del sepulcro antes de la resurrección?",
       "options": [
         "Sábado Santo",
@@ -1882,7 +1882,7 @@
       "id": 133,
       "difficulty": 2,
       "category": "lugares",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Cómo era el sepulcro de Jesús según los evangelios?",
       "options": [
         "Excavado en la roca",
@@ -1896,7 +1896,7 @@
       "id": 134,
       "difficulty": 2,
       "category": "frases",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué actitud inspira esta escena?",
       "options": [
         "Silencio y espera",
@@ -1910,7 +1910,7 @@
       "id": 135,
       "difficulty": 2,
       "category": "piedad_tradiciones",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué enseña el Sábado Santo a los cristianos?",
       "options": [
         "A esperar en silencio confiado",
@@ -1924,7 +1924,7 @@
       "id": 136,
       "difficulty": 1,
       "category": "personajes",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Quién aparece arrodillada con dolor junto al cuerpo de Jesús en muchas representaciones?",
       "options": [
         "María",
@@ -1938,7 +1938,7 @@
       "id": 137,
       "difficulty": 3,
       "category": "personajes",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué grupo de mujeres siguió de cerca la sepultura de Jesús según los evangelios?",
       "options": [
         "Las mujeres discípulas",
@@ -1952,7 +1952,7 @@
       "id": 138,
       "difficulty": 3,
       "category": "objetos",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué función tenía la piedra del sepulcro?",
       "options": [
         "Cerrar la tumba",
@@ -1966,7 +1966,7 @@
       "id": 139,
       "difficulty": 2,
       "category": "liturgia",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué celebración rompe finalmente el silencio del Sábado Santo?",
       "options": [
         "La Vigilia Pascual",
@@ -1980,7 +1980,7 @@
       "id": 140,
       "difficulty": 3,
       "category": "piedad_tradiciones",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué virtud se vive especialmente al contemplar la sepultura de Jesús?",
       "options": [
         "La esperanza paciente",
@@ -1994,7 +1994,7 @@
       "id": 141,
       "difficulty": 3,
       "category": "lugares",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué detalle hace singular el sepulcro de Jesús en el relato evangélico?",
       "options": [
         "Era nuevo y nadie había sido puesto aún en él",
@@ -2008,7 +2008,7 @@
       "id": 142,
       "difficulty": 3,
       "category": "frases",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué palabra resume mejor la espiritualidad del Sábado Santo?",
       "options": [
         "Espera",
@@ -2022,7 +2022,7 @@
       "id": 143,
       "difficulty": 2,
       "category": "objetos",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué llevaban las personas que prepararon el entierro de Jesús?",
       "options": [
         "Perfumes y aromas",
@@ -2036,7 +2036,7 @@
       "id": 144,
       "difficulty": 3,
       "category": "liturgia",
-      "image": "8.jpg",
+      "image": "8",
       "question": "¿Qué significa para los cristianos que Cristo haya sido sepultado realmente?",
       "options": [
         "Que asumió de verdad la muerte humana",
@@ -2050,7 +2050,7 @@
       "id": 145,
       "difficulty": 1,
       "category": "lugares",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué encontraron las mujeres al llegar al sepulcro?",
       "options": [
         "La tumba vacía",
@@ -2064,7 +2064,7 @@
       "id": 146,
       "difficulty": 1,
       "category": "personajes",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Quién aparece anunciando la noticia en esta escena?",
       "options": [
         "Un ángel",
@@ -2078,7 +2078,7 @@
       "id": 147,
       "difficulty": 1,
       "category": "frases",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué anuncia el ángel a las mujeres?",
       "options": [
         "Ha resucitado",
@@ -2092,7 +2092,7 @@
       "id": 148,
       "difficulty": 1,
       "category": "objetos",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué detalle del sepulcro muestra que algo ha cambiado?",
       "options": [
         "La piedra está removida",
@@ -2106,7 +2106,7 @@
       "id": 149,
       "difficulty": 1,
       "category": "liturgia",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué gran fiesta cristiana se relaciona con este momento?",
       "options": [
         "La Pascua de Resurrección",
@@ -2120,7 +2120,7 @@
       "id": 150,
       "difficulty": 2,
       "category": "personajes",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Quiénes fueron las primeras testigos de esta noticia según los evangelios?",
       "options": [
         "Las mujeres discípulas",
@@ -2134,7 +2134,7 @@
       "id": 151,
       "difficulty": 2,
       "category": "frases",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué les dice el ángel además de anunciar la resurrección?",
       "options": [
         "No temáis",
@@ -2148,7 +2148,7 @@
       "id": 152,
       "difficulty": 2,
       "category": "personajes",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué mujer es nombrada expresamente en los relatos del sepulcro vacío?",
       "options": [
         "María Magdalena",
@@ -2162,7 +2162,7 @@
       "id": 153,
       "difficulty": 2,
       "category": "liturgia",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué gran canto vuelve a resonar con fuerza en Pascua?",
       "options": [
         "Aleluya",
@@ -2176,7 +2176,7 @@
       "id": 154,
       "difficulty": 2,
       "category": "objetos",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué gran signo luminoso se bendice al inicio de la Vigilia Pascual para representar a Cristo resucitado?",
       "options": [
         "El cirio pascual",
@@ -2190,7 +2190,7 @@
       "id": 155,
       "difficulty": 2,
       "category": "piedad_tradiciones",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué inspira contemplar el sepulcro vacío?",
       "options": [
         "Esperanza",
@@ -2204,7 +2204,7 @@
       "id": 156,
       "difficulty": 3,
       "category": "lugares",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué demuestra el sepulcro vacío dentro de la fe cristiana?",
       "options": [
         "Que la muerte no tuvo la última palabra sobre Cristo",
@@ -2218,7 +2218,7 @@
       "id": 157,
       "difficulty": 3,
       "category": "frases",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué encargo recibieron las mujeres tras el anuncio del ángel?",
       "options": [
         "Ir a comunicarlo a los discípulos",
@@ -2232,7 +2232,7 @@
       "id": 158,
       "difficulty": 3,
       "category": "personajes",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué discípulos corrieron después al sepulcro según el evangelio de Juan?",
       "options": [
         "Pedro y el discípulo amado",
@@ -2246,7 +2246,7 @@
       "id": 159,
       "difficulty": 3,
       "category": "liturgia",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué celebración nocturna proclama solemnemente la resurrección antes del amanecer del domingo?",
       "options": [
         "La Vigilia Pascual",
@@ -2260,7 +2260,7 @@
       "id": 160,
       "difficulty": 3,
       "category": "objetos",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué letras suelen aparecer grabadas en el cirio pascual como símbolo de Cristo, principio y fin?",
       "options": [
         "Alfa y Omega",
@@ -2274,7 +2274,7 @@
       "id": 161,
       "difficulty": 3,
       "category": "piedad_tradiciones",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué virtud cristiana crece al contemplar esta escena?",
       "options": [
         "La esperanza en la vida nueva",
@@ -2288,7 +2288,7 @@
       "id": 162,
       "difficulty": 2,
       "category": "frases",
-      "image": "9.jpg",
+      "image": "9",
       "question": "¿Qué palabra resume mejor el mensaje del sepulcro vacío?",
       "options": [
         "Vida",
@@ -2302,7 +2302,7 @@
       "id": 163,
       "difficulty": 1,
       "category": "personajes",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Quién se encuentra con Jesús resucitado en esta escena?",
       "options": [
         "María Magdalena",
@@ -2316,7 +2316,7 @@
       "id": 164,
       "difficulty": 1,
       "category": "personajes",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Cómo aparece Jesús en esta imagen?",
       "options": [
         "Resucitado",
@@ -2330,7 +2330,7 @@
       "id": 165,
       "difficulty": 2,
       "category": "frases",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué palabra pronunció María Magdalena al reconocer a Jesús?",
       "options": [
         "Rabbuní",
@@ -2344,7 +2344,7 @@
       "id": 166,
       "difficulty": 2,
       "category": "frases",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué significa Rabbuní?",
       "options": [
         "Maestro",
@@ -2358,7 +2358,7 @@
       "id": 167,
       "difficulty": 2,
       "category": "frases",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué le dijo Jesús a María Magdalena según el evangelio de Juan?",
       "options": [
         "No me retengas",
@@ -2372,7 +2372,7 @@
       "id": 168,
       "difficulty": 2,
       "category": "personajes",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué misión recibió María Magdalena tras este encuentro?",
       "options": [
         "Anunciar a los discípulos que Jesús había resucitado",
@@ -2386,7 +2386,7 @@
       "id": 169,
       "difficulty": 2,
       "category": "piedad_tradiciones",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Cómo llama a veces la tradición cristiana a María Magdalena por este anuncio?",
       "options": [
         "Apóstol de los apóstoles",
@@ -2400,7 +2400,7 @@
       "id": 170,
       "difficulty": 1,
       "category": "lugares",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Dónde se sitúa este encuentro con el Resucitado?",
       "options": [
         "Junto al sepulcro",
@@ -2414,7 +2414,7 @@
       "id": 171,
       "difficulty": 1,
       "category": "liturgia",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué tiempo litúrgico comienza con la resurrección de Jesús?",
       "options": [
         "El tiempo pascual",
@@ -2428,7 +2428,7 @@
       "id": 172,
       "difficulty": 3,
       "category": "frases",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué muestra este diálogo entre Jesús y María Magdalena?",
       "options": [
         "Que Cristo resucitado sigue llamando personalmente",
@@ -2442,7 +2442,7 @@
       "id": 173,
       "difficulty": 3,
       "category": "personajes",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué emoción expresa mejor el rostro de María Magdalena al reconocer a Jesús?",
       "options": [
         "Alegría",
@@ -2456,7 +2456,7 @@
       "id": 174,
       "difficulty": 1,
       "category": "piedad_tradiciones",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué sentimiento despierta principalmente esta escena en la fe cristiana?",
       "options": [
         "Esperanza y alegría",
@@ -2470,7 +2470,7 @@
       "id": 175,
       "difficulty": 3,
       "category": "frases",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Por qué es importante que Jesús llame a María por su nombre?",
       "options": [
         "Porque muestra una relación personal y viva",
@@ -2484,7 +2484,7 @@
       "id": 176,
       "difficulty": 2,
       "category": "liturgia",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué palabra pascual resume el ambiente de esta escena?",
       "options": [
         "Aleluya",
@@ -2498,7 +2498,7 @@
       "id": 177,
       "difficulty": 2,
       "category": "lugares",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué detalle del entorno recuerda que la muerte ha sido vencida?",
       "options": [
         "El sepulcro abierto al fondo",
@@ -2512,7 +2512,7 @@
       "id": 178,
       "difficulty": 2,
       "category": "personajes",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué había ido a hacer María Magdalena antes de encontrarse con el Resucitado?",
       "options": [
         "A visitar el sepulcro",
@@ -2526,7 +2526,7 @@
       "id": 179,
       "difficulty": 3,
       "category": "piedad_tradiciones",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué enseña esta escena sobre la relación del creyente con Cristo resucitado?",
       "options": [
         "Que es una relación viva y personal",
@@ -2540,7 +2540,7 @@
       "id": 180,
       "difficulty": 1,
       "category": "frases",
-      "image": "10.jpg",
+      "image": "10",
       "question": "¿Qué palabra define mejor este encuentro?",
       "options": [
         "Resurrección",
