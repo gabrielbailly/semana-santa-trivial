@@ -82,10 +82,8 @@ function buildRoundQuestions(allQuestions, difficulty, selectedCategories = []) 
     return shuffle(unused).slice(0, questionsPerCategory);
   });
 
-  // quitar duplicadas dentro de la misma partida
   selected = [...new Map(selected.map((q) => [q.id, q])).values()];
 
-  // rellenar si faltan preguntas
   if (selected.length < targetCount) {
     const selectedIds = new Set(selected.map((q) => q.id));
 
@@ -157,6 +155,13 @@ function useGameSounds(enabled) {
       setTimeout(() => beep(900, 0.16), 240);
     },
   };
+}
+
+function getLevelLabel(level) {
+  if (level === 1) return "Fácil";
+  if (level === 2) return "Medio";
+  if (level === 3) return "Difícil";
+  return "";
 }
 
 export default function App() {
@@ -425,16 +430,76 @@ export default function App() {
           padding: 16px;
         }
 
-        .scoreItem {
-          display: flex;
-          justify-content: space-between;
-          gap: 10px;
-          padding: 8px 0;
+        .rankingItem {
+          padding: 12px 0;
           border-bottom: 1px solid #e5e7eb;
         }
 
-        .scoreItem:last-child {
+        .rankingItem:last-child {
           border-bottom: none;
+        }
+
+        .rankingMain {
+          display: flex;
+          gap: 8px;
+          font-weight: 700;
+        }
+
+        .rankingPosition {
+          width: 24px;
+        }
+
+        .rankingName {
+          flex: 1;
+        }
+
+        .rankingMeta {
+          display: flex;
+          gap: 8px;
+          margin-top: 6px;
+          flex-wrap: wrap;
+        }
+
+        .badgeScore {
+          background: #f3f4f6;
+          border-radius: 999px;
+          padding: 4px 10px;
+          font-size: 0.85rem;
+        }
+
+        .badgeWedge {
+          background: #fff7ed;
+          border-radius: 999px;
+          padding: 4px 10px;
+          font-size: 0.85rem;
+        }
+
+        .badgeLevel {
+          border-radius: 999px;
+          padding: 4px 10px;
+          font-size: 0.85rem;
+          font-weight: 700;
+        }
+
+        .level-1 {
+          background: #dcfce7;
+          color: #166534;
+        }
+
+        .level-2 {
+          background: #fef3c7;
+          color: #92400e;
+        }
+
+        .level-3 {
+          background: #fee2e2;
+          color: #991b1b;
+        }
+
+        .rankingDate {
+          font-size: 0.75rem;
+          color: #6b7280;
+          margin-top: 4px;
         }
 
         .quizTop {
@@ -560,44 +625,44 @@ export default function App() {
         <div className="card">
           <img src="/images/portada.png" alt="Portada" className="heroImage" />
 
-  <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
-  <div className="section" style={{ flex: 1 }}>
-    <label className="label">Nivel</label>
-    <select
-      value={difficulty}
-      onChange={(e) => setDifficulty(Number(e.target.value))}
-      className="selectField"
-    >
-      <option value={1}>Fácil</option>
-      <option value={2}>Medio</option>
-      <option value={3}>Difícil</option>
-    </select>
-  </div>
+          <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+            <div className="section" style={{ flex: 1 }}>
+              <label className="label">Nivel</label>
+              <select
+                value={difficulty}
+                onChange={(e) => setDifficulty(Number(e.target.value))}
+                className="selectField"
+              >
+                <option value={1}>Fácil</option>
+                <option value={2}>Medio</option>
+                <option value={3}>Difícil</option>
+              </select>
+            </div>
 
-  <div className="section" style={{ flex: 2 }}>
-    <label className="label">Categorías</label>
-    <select
-      multiple
-      value={selectedCategories}
-      onChange={(e) =>
-        setSelectedCategories(
-          Array.from(e.target.selectedOptions, (option) => option.value)
-        )
-      }
-      className="selectField"
-      style={{ minHeight: 150 }}
-    >
-      {CATEGORY_ORDER.map((category) => (
-        <option key={category} value={category}>
-          {CATEGORY_CONFIG[category].icon} {CATEGORY_CONFIG[category].label}
-        </option>
-      ))}
-    </select>
-    <div style={{ color: "#6b7280", fontSize: ".9rem", marginTop: 6 }}>
-      Si no eliges ninguna, se jugará con todas.
-    </div>
-  </div>
-</div>
+            <div className="section" style={{ flex: 2 }}>
+              <label className="label">Categorías</label>
+              <select
+                multiple
+                value={selectedCategories}
+                onChange={(e) =>
+                  setSelectedCategories(
+                    Array.from(e.target.selectedOptions, (option) => option.value)
+                  )
+                }
+                className="selectField"
+                style={{ minHeight: 150 }}
+              >
+                {CATEGORY_ORDER.map((category) => (
+                  <option key={category} value={category}>
+                    {CATEGORY_CONFIG[category].icon} {CATEGORY_CONFIG[category].label}
+                  </option>
+                ))}
+              </select>
+              <div style={{ color: "#6b7280", fontSize: ".9rem", marginTop: 6 }}>
+                Si no eliges ninguna, se jugará con todas.
+              </div>
+            </div>
+          </div>
 
           <div className="btnRow">
             {!hasProgress ? (
@@ -632,22 +697,35 @@ export default function App() {
             {ranking.length === 0 ? (
               <div style={{ color: "#6b7280" }}>Todavía no hay partidas guardadas.</div>
             ) : (
-              ranking.map((entry, index) => (
-                <div key={entry.id} className="scoreItem">
-                  <span>
-                    {index === 0 ? "🥇 " : index === 1 ? "🥈 " : index === 2 ? "🥉 " : `${index + 1}. `}
-                    <strong>{entry.name}</strong>
-                  </span>
-                  <span>
-                      {entry.score ?? 0} puntos · {entry.quesitos ?? 0} 🧩 <br/>
-                     <small style={{ color: "#6b7280" }}>
-                     {entry.createdAt?.toDate
-                      ? entry.createdAt.toDate().toLocaleDateString()
-                      : ""}
-                     </small>
-                  </span>
-                </div>
-              ))
+              ranking.map((entry, index) => {
+                const nivel = getLevelLabel(entry.nivel);
+                return (
+                  <div key={entry.id} className="rankingItem">
+                    <div className="rankingMain">
+                      <span className="rankingPosition">
+                        {index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : `${index + 1}.`}
+                      </span>
+                      <span className="rankingName">
+                        <strong>{entry.name}</strong>
+                      </span>
+                    </div>
+
+                    <div className="rankingMeta">
+                      <span className="badgeScore">{entry.score ?? 0} pts</span>
+                      <span className="badgeWedge">{entry.quesitos ?? 0} 🧩</span>
+                      <span className={`badgeLevel level-${entry.nivel}`}>
+                        {nivel}
+                      </span>
+                    </div>
+
+                    <div className="rankingDate">
+                      {entry.createdAt?.toDate
+                        ? entry.createdAt.toDate().toLocaleDateString()
+                        : ""}
+                    </div>
+                  </div>
+                );
+              })
             )}
           </div>
         </div>
@@ -681,7 +759,7 @@ export default function App() {
             <span className="chip">
               {CATEGORY_CONFIG[q.category].icon} {CATEGORY_CONFIG[q.category].label}
             </span>
-            <span className="chip">Nivel {q.difficulty}</span>
+            <span className="chip">Nivel {getLevelLabel(q.difficulty)}</span>
             <span className="chip">Puntuación total {progress.totalScore || 0}</span>
           </div>
 
