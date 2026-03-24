@@ -310,15 +310,15 @@ async function saveScore() {
       const existingScore = existingDoc.data().score || 0;
 
       if (payload.score > existingScore) {
-        // 🟢 Mejora → actualiza
+        // 🟢 Mejora puntuación
         await updateDoc(existingDoc.ref, payload);
-        setSaveMessage("¡Nuevo récord! Partida actualizada");
+        setSaveMessage("¡Nuevo récord! 🎉");
       } else if (payload.score === existingScore) {
-        // 🟡 Igual → actualiza fecha/quesitos (opcional)
+        // 🟡 Empate → actualizamos fecha/quesitos
         await updateDoc(existingDoc.ref, payload);
-        setSaveMessage("Has igualado tu mejor puntuación");
+        setSaveMessage("Has igualado tu mejor puntuación 👍");
       } else {
-        // 🔵 Peor → no guarda pero sin error
+        // 🔵 Peor puntuación → NO guardamos
         setSaveMessage("No has superado tu mejor puntuación");
         return;
       }
