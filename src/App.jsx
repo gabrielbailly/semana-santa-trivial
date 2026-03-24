@@ -640,8 +640,8 @@ export default function App() {
             <strong>{entry.name}</strong>
           </span>
           <span style={{ display: "flex", alignItems: "center", gap: "4px", flexWrap: "wrap" }}>
-            <span>nivel {entry.nivel}</span>
-            <span>· {entry.score ?? 0} puntos</span>
+            <span>nivel formatLevel({entry.nivel})</span>
+            <span> | {entry.score ?? 0} puntos</span>
             <span>· {entry.quesitos ?? 0} 🧩</span>
             {entry.createdAt?.toDate && (
               <small style={{ color: "#6b7280" }}>
