@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs, updateDoc } from "firebase/firestore";
 import { db, serverTimestamp } from "./firebase";
 import questionsData from "./data/questions.json";
 import { CATEGORY_CONFIG, CATEGORY_ORDER } from "./config/categories";
