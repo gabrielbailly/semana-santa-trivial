@@ -1,13 +1,17 @@
-  import React, { useEffect, useState } from "react";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import React, { useEffect, useMemo, useState } from "react";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
 
 const scoresCollection = collection(db, "scores");
 
 export default function AdminPage() {
   const [scores, setScores] = useState([]);
-  const [selectedIds, setSelectedIds] = useState(new Set());
+  const [selectedIds, setSelectedIds] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const [filterScore, setFilterScore] = useState("");
+  const [sortBy, setSortBy] = useState("createdAt");
+  const [sortDir, setSortDir] = useState("desc");
 
   useEffect(() => {
     loadScores();
@@ -23,12 +27,6 @@ export default function AdminPage() {
         ...d.data(),
       }));
 
-      rows.sort((a, b) => {
-        const da = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(0);
-        const dbb = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(0);
-        return dbb - da;
-      });
-
       setScores(rows);
     } catch (err) {
       console.error("Error cargando registros:", err);
@@ -37,30 +35,74 @@ export default function AdminPage() {
     }
   }
 
-  function toggleSelect(id) {
-    setSelectedIds((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
+  const filteredAndSortedScores = useMemo(() => {
+    let data = [...scores];
+
+    if (filterScore !== "") {
+      const minScore = Number(filterScore);
+      if (!Number.isNaN(minScore)) {
+        data = data.filter((s) => Number(s.score || 0) >= minScore);
+      }
+    }
+
+    data.sort((a, b) => {
+      let valA;
+      let valB;
+
+      if (sortBy === "createdAt") {
+        valA = a.createdAt?.toDate ? a.createdAt.toDate().getTime() : 0;
+        valB = b.createdAt?.toDate ? b.createdAt.toDate().getTime() : 0;
+      } else if (sortBy === "name") {
+        valA = String(a.name || "").toLowerCase();
+        valB = String(b.name || "").toLowerCase();
+      } else {
+        valA = Number(a[sortBy] || 0);
+        valB = Number(b[sortBy] || 0);
+      }
+
+      if (typeof valA === "string" && typeof valB === "string") {
+        return sortDir === "asc"
+          ? valA.localeCompare(valB)
+          : valB.localeCompare(valA);
+      }
+
+      return sortDir === "asc" ? valA - valB : valB - valA;
     });
+
+    return data;
+  }, [scores, filterScore, sortBy, sortDir]);
+
+  function toggleSelect(id) {
+    setSelectedIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
+    );
   }
 
-  function toggleSelectAll() {
-    if (selectedIds.size === scores.length) {
-      setSelectedIds(new Set());
+  function toggleSelectAllVisible() {
+    const visibleIds = filteredAndSortedScores.map((s) => s.id);
+    const allSelected =
+      visibleIds.length > 0 && visibleIds.every((id) => selectedIds.includes(id));
+
+    if (allSelected) {
+      setSelectedIds((prev) => prev.filter((id) => !visibleIds.includes(id)));
     } else {
-      setSelectedIds(new Set(scores.map((s) => s.id)));
+      setSelectedIds((prev) => [...new Set([...prev, ...visibleIds])]);
     }
   }
 
   async function deleteSelected() {
-    if (selectedIds.size === 0) {
+    if (selectedIds.length === 0) {
       alert("Selecciona al menos un registro");
       return;
     }
 
-    if (!window.confirm("¿Seguro que quieres borrar los registros seleccionados?")) return;
+    if (
+      !window.confirm(
+        `¿Seguro que quieres borrar ${selectedIds.length} registro(s)?`
+      )
+    ) {
+      return;
+    }
 
     try {
       setLoading(true);
@@ -69,15 +111,30 @@ export default function AdminPage() {
         await deleteDoc(doc(db, "scores", id));
       }
 
-      setSelectedIds(new Set());
+      setSelectedIds([]);
       await loadScores();
     } catch (err) {
-      console.error("Error eliminando:", err);
-      alert("Error al eliminar registros");
+      console.error("Error eliminando registros:", err);
+      alert("No se pudieron eliminar algunos registros.");
     } finally {
       setLoading(false);
     }
   }
+
+  function clearSelection() {
+    setSelectedIds([]);
+  }
+
+  function formatLevel(level) {
+    if (level === 1) return "Fácil";
+    if (level === 2) return "Medio";
+    if (level === 3) return "Difícil";
+    return "-";
+  }
+
+  const allVisibleSelected =
+    filteredAndSortedScores.length > 0 &&
+    filteredAndSortedScores.every((row) => selectedIds.includes(row.id));
 
   return (
     <div className="adminShell">
@@ -91,7 +148,7 @@ export default function AdminPage() {
         }
 
         .adminShell {
-          max-width: 1100px;
+          max-width: 1180px;
           margin: 0 auto;
           padding: 24px;
         }
@@ -104,14 +161,38 @@ export default function AdminPage() {
         }
 
         h1 {
-          margin-top: 0;
+          margin: 0 0 16px;
         }
 
         .toolbar {
-          display: flex;
-          gap: 10px;
+          display: grid;
+          grid-template-columns: 1.2fr 1fr 1fr auto auto auto;
+          gap: 12px;
+          align-items: end;
           margin-bottom: 16px;
-          flex-wrap: wrap;
+        }
+
+        .field {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+
+        .label {
+          font-size: 0.9rem;
+          font-weight: 700;
+          color: #374151;
+        }
+
+        input, select, button {
+          font: inherit;
+        }
+
+        input, select {
+          padding: 10px 12px;
+          border-radius: 12px;
+          border: 1px solid #d1d5db;
+          background: white;
         }
 
         .btn {
@@ -120,6 +201,13 @@ export default function AdminPage() {
           padding: 10px 14px;
           font-weight: 700;
           cursor: pointer;
+          transition: opacity .2s ease, transform .2s ease;
+          white-space: nowrap;
+        }
+
+        .btn:hover {
+          opacity: 0.92;
+          transform: translateY(-1px);
         }
 
         .btnDanger {
@@ -129,50 +217,108 @@ export default function AdminPage() {
 
         .btnSecondary {
           background: #e5e7eb;
+          color: #111827;
         }
 
-        .btn:hover {
-          opacity: 0.9;
+        .btnGhost {
+          background: white;
+          border: 1px solid #d1d5db;
+          color: #111827;
+        }
+
+        .statusRow {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 12px;
+          flex-wrap: wrap;
+          margin-bottom: 12px;
+          color: #6b7280;
+          font-size: 0.95rem;
         }
 
         .tableWrapper {
           overflow-x: auto;
+          border: 1px solid #e5e7eb;
+          border-radius: 16px;
         }
 
         table {
           width: 100%;
           border-collapse: collapse;
-          margin-top: 10px;
+          min-width: 860px;
+        }
+
+        th, td {
+          text-align: center;
+        }
+
+        th:nth-child(2),
+        td:nth-child(2) {
+          text-align: left;
+        }
+
+        td:nth-child(2) {
+          padding-left: 16px;
         }
 
         th {
-          padding: 10px;
+          padding: 12px 10px;
           background: #f3f4f6;
           font-weight: 700;
           font-size: 0.95rem;
-        }
-        th, td {
-          text-align: center;
-          }
-
-          th:nth-child(2),
-          td:nth-child(2) {
-          text-align: left;
-          }
-
-       
-        td {
-          padding: 10px;
           border-bottom: 1px solid #e5e7eb;
         }
 
-        tr:hover {
+        td {
+          padding: 12px 10px;
+          border-bottom: 1px solid #e5e7eb;
+          vertical-align: middle;
+        }
+
+        tr:last-child td {
+          border-bottom: none;
+        }
+
+        tbody tr:hover {
           background: #fff7ed;
         }
 
+        .adminRowSelected {
+          background: #fef3c7;
+        }
+
+        .adminRowSelected:hover {
+          background: #fde68a;
+        }
+
         input[type="checkbox"] {
-          transform: scale(1.2);
+          transform: scale(1.15);
           cursor: pointer;
+        }
+
+        .badge {
+          display: inline-block;
+          padding: 4px 10px;
+          border-radius: 999px;
+          font-size: 0.82rem;
+          font-weight: 700;
+          background: #f3f4f6;
+        }
+
+        .badge.easy {
+          background: #dcfce7;
+          color: #166534;
+        }
+
+        .badge.medium {
+          background: #fef3c7;
+          color: #92400e;
+        }
+
+        .badge.hard {
+          background: #fee2e2;
+          color: #991b1b;
         }
 
         .loading {
@@ -181,21 +327,19 @@ export default function AdminPage() {
         }
 
         .empty {
-          margin-top: 20px;
+          padding: 20px 0;
           color: #6b7280;
         }
 
-        .badge {
-          padding: 4px 8px;
-          border-radius: 999px;
-          font-size: 0.8rem;
-          background: #f3f4f6;
+        @media (max-width: 900px) {
+          .toolbar {
+            grid-template-columns: 1fr 1fr;
+          }
         }
 
-        @media (max-width: 700px) {
-          th, td {
-            font-size: 0.85rem;
-            padding: 8px;
+        @media (max-width: 640px) {
+          .toolbar {
+            grid-template-columns: 1fr;
           }
         }
       `}</style>
@@ -204,13 +348,55 @@ export default function AdminPage() {
         <h1>🛠️ Administración de partidas</h1>
 
         <div className="toolbar">
-          <button className="btn btnDanger" onClick={deleteSelected}>
-            🗑️ Borrar seleccionados ({selectedIds.size})
-          </button>
+          <div className="field">
+            <label className="label">Filtrar por puntos mínimos</label>
+            <input
+              type="number"
+              min="0"
+              value={filterScore}
+              onChange={(e) => setFilterScore(e.target.value)}
+              placeholder="Ej. 8"
+            />
+          </div>
+
+          <div className="field">
+            <label className="label">Ordenar por</label>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+              <option value="score">Puntos</option>
+              <option value="quesitos">Quesitos</option>
+              <option value="createdAt">Fecha</option>
+              <option value="name">Nombre</option>
+            </select>
+          </div>
+
+          <div className="field">
+            <label className="label">Dirección</label>
+            <select value={sortDir} onChange={(e) => setSortDir(e.target.value)}>
+              <option value="desc">Descendente</option>
+              <option value="asc">Ascendente</option>
+            </select>
+          </div>
 
           <button className="btn btnSecondary" onClick={loadScores}>
             🔄 Recargar
           </button>
+
+          <button className="btn btnGhost" onClick={clearSelection}>
+            Limpiar selección
+          </button>
+
+          <button className="btn btnDanger" onClick={deleteSelected}>
+            🗑️ Borrar seleccionados
+          </button>
+        </div>
+
+        <div className="statusRow">
+          <span>
+            Mostrando {filteredAndSortedScores.length} registro(s)
+          </span>
+          <span>
+            Seleccionados: {selectedIds.length}
+          </span>
         </div>
 
         {loading && <div className="loading">Cargando...</div>}
@@ -222,8 +408,8 @@ export default function AdminPage() {
                 <th>
                   <input
                     type="checkbox"
-                    checked={selectedIds.size === scores.length && scores.length > 0}
-                    onChange={toggleSelectAll}
+                    checked={allVisibleSelected}
+                    onChange={toggleSelectAllVisible}
                   />
                 </th>
                 <th>Nombre</th>
@@ -235,30 +421,49 @@ export default function AdminPage() {
             </thead>
 
             <tbody>
-              {scores.map((row) => {
-                const date = row.createdAt?.toDate
-                  ? row.createdAt.toDate().toLocaleString()
-                  : "-";
+              {filteredAndSortedScores.map((entry) => {
+                const selectedRow = selectedIds.includes(entry.id);
 
                 return (
-                  <tr key={row.id}>
+                  <tr
+                    key={entry.id}
+                    className={selectedRow ? "adminRowSelected" : ""}
+                  >
                     <td>
                       <input
                         type="checkbox"
-                        checked={selectedIds.has(row.id)}
-                        onChange={() => toggleSelect(row.id)}
+                        checked={selectedRow}
+                        onChange={() => toggleSelect(entry.id)}
                       />
                     </td>
 
-                    <td>{row.name}</td>
-                    <td>{row.score}</td>
-                    <td>{row.quesitos}</td>
+                    <td>{entry.name || "-"}</td>
+
+                    <td>{entry.score ?? 0}</td>
+
+                    <td>{entry.quesitos ?? 0}</td>
+
                     <td>
-                      <span className="badge">
-                        {formatLevel(row.nivel)}
+                      <span
+                        className={`badge ${
+                          entry.nivel === 1
+                            ? "easy"
+                            : entry.nivel === 2
+                              ? "medium"
+                              : entry.nivel === 3
+                                ? "hard"
+                                : ""
+                        }`}
+                      >
+                        {formatLevel(entry.nivel)}
                       </span>
                     </td>
-                    <td>{date}</td>
+
+                    <td>
+                      {entry.createdAt?.toDate
+                        ? entry.createdAt.toDate().toLocaleString()
+                        : "-"}
+                    </td>
                   </tr>
                 );
               })}
@@ -266,17 +471,10 @@ export default function AdminPage() {
           </table>
         </div>
 
-        {!loading && scores.length === 0 && (
-          <div className="empty">No hay registros.</div>
+        {!loading && filteredAndSortedScores.length === 0 && (
+          <div className="empty">No hay registros para mostrar.</div>
         )}
       </div>
     </div>
   );
-}
-
-function formatLevel(level) {
-  if (level === 1) return "Fácil";
-  if (level === 2) return "Medio";
-  if (level === 3) return "Difícil";
-  return "-";
 }
