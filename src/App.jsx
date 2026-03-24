@@ -654,10 +654,6 @@ export default function App() {
     ))
   )}
 </div>
-              ))
-            )}
-          </div>
-        </div>
       )}
 
       {screen === "quiz" && q && (
