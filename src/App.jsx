@@ -627,27 +627,33 @@ export default function App() {
             </div>
           </div>
 
-          <div className="rankingCard">
-            <div style={{ fontWeight: 800, marginBottom: 10 }}>🏆 Top 10</div>
-            {ranking.length === 0 ? (
-              <div style={{ color: "#6b7280" }}>Todavía no hay partidas guardadas.</div>
-            ) : (
-              ranking.map((entry, index) => (
-                <div key={entry.id} className="scoreItem">
-                  <span>
-                    {index === 0 ? "🥇 " : index === 1 ? "🥈 " : index === 2 ? "🥉 " : `${index + 1}. `}
-                    <strong>{entry.name}</strong>
-                  </span>
-                  <span>
-                     nivel {entry.nivel} · 
-                      {entry.score ?? 0} puntos · {entry.quesitos ?? 0} 🧩  · 
-                     <small style={{ color: "#6b7280" }}>
-                     {entry.createdAt?.toDate
-                      ? entry.createdAt.toDate().toLocaleDateString()
-                      : ""}
-                     </small>
-                  </span>
-                </div>
+         <div className="rankingCard">
+  <div style={{ fontWeight: 800, marginBottom: 10 }}>🏆 Top 10</div>
+  {ranking.length === 0 ? (
+    <div style={{ color: "#6b7280" }}>Todavía no hay partidas guardadas.</div>
+  ) : (
+    ranking.map((entry, index) => (
+      <div key={entry.id} className="scoreItem">
+        <span style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", gap: "8px", flexWrap: "wrap" }}>
+          <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+            {index === 0 ? "🥇 " : index === 1 ? "🥈 " : index === 2 ? "🥉 " : `${index + 1}. `}
+            <strong>{entry.name}</strong>
+          </span>
+          <span style={{ display: "flex", alignItems: "center", gap: "4px", flexWrap: "wrap" }}>
+            <span>nivel {entry.nivel}</span>
+            <span>· {entry.score ?? 0} puntos</span>
+            <span>· {entry.quesitos ?? 0} 🧩</span>
+            {entry.createdAt?.toDate && (
+              <small style={{ color: "#6b7280" }}>
+                {entry.createdAt.toDate().toLocaleDateString()}
+              </small>
+            )}
+          </span>
+        </span>
+      </div>
+    ))
+  )}
+</div>
               ))
             )}
           </div>
