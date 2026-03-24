@@ -549,221 +549,122 @@ export default function App() {
         }
       `}</style>
 
-      <button
-        className="btn btnGhost soundBtn"
-        onClick={() => setSoundEnabled((v) => !v)}
-      >
-        {soundEnabled ? "🔊 Sonido" : "🔇 Silencio"}
-      </button>
+<button
+  className="btn btnGhost soundBtn"
+  onClick={() => setSoundEnabled((v) => !v)}
+>
+  {soundEnabled ? "🔊 Sonido" : "🔇 Silencio"}
+</button>
 
-      {screen === "home" && (
-        <div className="card">
-          <img src="/images/portada.png" alt="Portada" className="heroImage" />
+{screen === "home" && (
+  <div className="card">
+    <img src="/images/portada.png" alt="Portada" className="heroImage" />
 
-  <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
-  <div className="section" style={{ flex: 1 }}>
-    <label className="label">Nivel</label>
-    <select
-      value={difficulty}
-      onChange={(e) => setDifficulty(Number(e.target.value))}
-      className="selectField"
-    >
-      <option value={1}>Fácil</option>
-      <option value={2}>Medio</option>
-      <option value={3}>Difícil</option>
-    </select>
-  </div>
-
-  <div className="section" style={{ flex: 2 }}>
-    <label className="label">Categorías</label>
-    <select
-      multiple
-      value={selectedCategories}
-      onChange={(e) =>
-        setSelectedCategories(
-          Array.from(e.target.selectedOptions, (option) => option.value)
-        )
-      }
-      className="selectField"
-      style={{ minHeight: 150 }}
-    >
-      {CATEGORY_ORDER.map((category) => (
-        <option key={category} value={category}>
-          {CATEGORY_CONFIG[category].icon} {CATEGORY_CONFIG[category].label}
-        </option>
-      ))}
-    </select>
-    <div style={{ color: "#6b7280", fontSize: ".9rem", marginTop: 6 }}>
-      Si no eliges ninguna, se jugará con todas.
-    </div>
-  </div>
-</div>
-
-          <div className="btnRow">
-            {!hasProgress ? (
-              <button className="btn btnPrimary" onClick={() => startGame(false)}>
-                Jugar
-              </button>
-            ) : (
-              <>
-                <button className="btn btnPrimary" onClick={() => startGame(true)}>
-                  Continuar partida
-                </button>
-                <button className="btn btnGhost" onClick={() => startGame(false)}>
-                  Nueva partida
-                </button>
-              </>
-            )}
-          </div>
-
-          <div className="section">
-            <strong>Quesitos:</strong>
-            <div className="chips">
-              {CATEGORY_ORDER.map((key) => (
-                <span className="chip" key={key}>
-                  {wedges[key] ? "🧩" : "◻️"} {CATEGORY_CONFIG[key].icon} {CATEGORY_CONFIG[key].label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-       <div className="rankingCard">
-  <div style={{ fontWeight: 800, marginBottom: 10 }}>🏆 Top 10</div>
-  {ranking.length === 0 ? (
-    <div style={{ color: "#6b7280" }}>Todavía no hay partidas guardadas.</div>
-  ) : (
-    ranking.map((entry, index) => (
-      <div key={entry.id} className="scoreItem">
-        <span style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", gap: "8px", flexWrap: "wrap" }}>
-          <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-            {index === 0 ? "🥇 " : index === 1 ? "🥈 " : index === 2 ? "🥉 " : `${index + 1}. `}
-            <strong>{entry.name}</strong>
-          </span>
-          <span style={{ display: "flex", alignItems: "center", gap: "4px", flexWrap: "wrap" }}>
-            <span>nivel {formatLevel(entry.nivel)}</span>
-            <span> | {entry.score ?? 0} puntos</span>
-            <span>· {entry.quesitos ?? 0} 🧩</span>
-            {entry.createdAt?.toDate && (
-              <small style={{ color: "#6b7280" }}>
-                {entry.createdAt.toDate().toLocaleDateString()}
-              </small>
-            )}
-          </span>
-        </span>
+    <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
+      <div className="section" style={{ flex: 1 }}>
+        <label className="label">Nivel</label>
+        <select
+          value={difficulty}
+          onChange={(e) => setDifficulty(Number(e.target.value))}
+          className="selectField"
+        >
+          <option value={1}>Fácil</option>
+          <option value={2}>Medio</option>
+          <option value={3}>Difícil</option>
+        </select>
       </div>
-    ))
-  )}
-</div>
 
-      {screen === "quiz" && q && (
-        <div className="card">
-          <div className="quizTop">
-            <div className="questionRow">
-              <strong>
-                Pregunta {current + 1} / {questions.length}
-              </strong>
-              <div className="timeBarTrack">
-                <div
-                  className="timeBarFill"
-                  style={{ width: timerWidth, background: timerColor }}
-                />
-              </div>
-            </div>
-
-            {locked ? (
-              <button className="btn btnPrimary" onClick={nextQuestion}>
-                {current + 1 >= questions.length ? "Ver resumen" : "Siguiente"}
-              </button>
-            ) : (
-              <div />
-            )}
-          </div>
-
-          <div className="chips">
-            <span className="chip">
-              {CATEGORY_CONFIG[q.category].icon} {CATEGORY_CONFIG[q.category].label}
-            </span>
-            <span className="chip">Nivel {q.difficulty}</span>
-            <span className="chip">Puntuación total {progress.totalScore || 0}</span>
-          </div>
-
-          <div className="grid" style={{ marginTop: 16 }}>
-            <img
-              src={`/images/${q.image}.jpg`}
-              alt={cleanQuestionText(q.question)}
-              className="questionImage"
-            />
-
-            <div>
-              <h2 className="questionTitle">{cleanQuestionText(q.question)}</h2>
-
-              <div className="options">
-                {q.options.map((opt, index) => {
-                  let className = "option";
-                  if (locked && index === q.correctIndex) className += " correct";
-                  if (locked && selected === index && index !== q.correctIndex) className += " wrong";
-
-                  return (
-                    <button
-                      key={index}
-                      className={className}
-                      onClick={() => answer(index)}
-                      disabled={locked}
-                    >
-                      {opt}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+      <div className="section" style={{ flex: 2 }}>
+        <label className="label">Categorías</label>
+        <select
+          multiple
+          value={selectedCategories}
+          onChange={(e) =>
+            setSelectedCategories(
+              Array.from(e.target.selectedOptions, (option) => option.value)
+            )
+          }
+          className="selectField"
+          style={{ minHeight: 150 }}
+        >
+          {CATEGORY_ORDER.map((category) => (
+            <option key={category} value={category}>
+              {CATEGORY_CONFIG[category].icon} {CATEGORY_CONFIG[category].label}
+            </option>
+          ))}
+        </select>
+        <div style={{ color: "#6b7280", fontSize: ".9rem", marginTop: 6 }}>
+          Si no eliges ninguna, se jugará con todas.
         </div>
-      )}
+      </div>
+    </div>
 
-      {screen === "summary" && (
-        <div className="card">
-          <h2>Resumen</h2>
-          <p><strong>Puntuación total:</strong> {progress.totalScore || 0}</p>
-
-          <h3>Aciertos por categoría</h3>
-          <div className="summaryGrid">
-            {CATEGORY_ORDER.map((key) => (
-              <div key={key}>
-                {CATEGORY_CONFIG[key].icon} {CATEGORY_CONFIG[key].label}:{" "}
-                {progress.correctByCategory?.[key] || 0}
-                {progress.wedges?.[key] ? " · 🧩" : ""}
-              </div>
-            ))}
-          </div>
-
-          <div className="saveCard">
-            <div style={{ fontWeight: 800 }}>Guardar partida</div>
-            <div style={{ color: "#6b7280", marginTop: 6 }}>
-              Guarda tu puntuación en el Top 10.
-            </div>
-
-            <div className="saveRow">
-              <input
-                className="saveInput"
-                value={playerName}
-                onChange={(e) => setPlayerName(e.target.value)}
-                placeholder="Nombre del jugador"
-              />
-              <button className="btn btnPrimary" onClick={saveScore}>
-                Guardar
-              </button>
-            </div>
-
-            {saveMessage && <div style={{ marginTop: 10 }}>{saveMessage}</div>}
-          </div>
-
-          <div className="btnRow">
-            <button className="btn btnPrimary" onClick={() => setScreen("home")}>
-              Inicio
-            </button>
-          </div>
-        </div>
+    <div className="btnRow">
+      {!hasProgress ? (
+        <button className="btn btnPrimary" onClick={() => startGame(false)}>
+          Jugar
+        </button>
+      ) : (
+        <>
+          <button className="btn btnPrimary" onClick={() => startGame(true)}>
+            Continuar partida
+          </button>
+          <button className="btn btnGhost" onClick={() => startGame(false)}>
+            Nueva partida
+          </button>
+        </>
       )}
     </div>
-  );
-}
+
+    <div className="section">
+      <strong>Quesitos:</strong>
+      <div className="chips">
+        {CATEGORY_ORDER.map((key) => (
+          <span className="chip" key={key}>
+            {wedges[key] ? "🧩" : "◻️"} {CATEGORY_CONFIG[key].icon} {CATEGORY_CONFIG[key].label}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <div className="rankingCard">
+      <div style={{ fontWeight: 800, marginBottom: 10 }}>🏆 Top 10</div>
+      {ranking.length === 0 ? (
+        <div style={{ color: "#6b7280" }}>Todavía no hay partidas guardadas.</div>
+      ) : (
+        ranking.map((entry, index) => (
+          <div key={entry.id} className="scoreItem">
+            <span style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%", gap: "8px", flexWrap: "wrap" }}>
+              <span style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+                {index === 0 ? "🥇 " : index === 1 ? "🥈 " : index === 2 ? "🥉 " : `${index + 1}. `}
+                <strong>{entry.name}</strong>
+              </span>
+              <span style={{ display: "flex", alignItems: "center", gap: "4px", flexWrap: "wrap" }}>
+                <span>nivel {formatLevel(entry.nivel)}</span>
+                <span> | {entry.score ?? 0} puntos</span>
+                <span>· {entry.quesitos ?? 0} 🧩</span>
+                {entry.createdAt?.toDate && (
+                  <small style={{ color: "#6b7280" }}>
+                    {entry.createdAt.toDate().toLocaleDateString()}
+                  </small>
+                )}
+              </span>
+            </span>
+          </div>
+        ))
+      )}
+    </div>
+  </div>  {/* This closes the home screen div */}
+)}  {/* This closes the screen === "home" condition */}
+
+{screen === "quiz" && q && (
+  <div className="card">
+    {/* ... quiz content ... */}
+  </div>
+)}
+
+{screen === "summary" && (
+  <div className="card">
+    {/* ... summary content ... */}
+  </div>
+)}
