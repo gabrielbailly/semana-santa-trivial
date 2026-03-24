@@ -280,31 +280,50 @@ export default function App() {
     setTimeLeft(QUESTION_TIME);
   }
 
-  async function saveScore() {
-    const trimmedName = playerName.trim();
-    if (!trimmedName) {
-      setSaveMessage("Introduce un nombre");
-      return;
-    }
+ async function saveScore() {
+  const trimmedName = playerName.trim();
 
-    try {
-      const quesitos = Object.values(progress.wedges || {}).filter(Boolean).length;
-
-      await addDoc(scoresCollection, {
-        name: trimmedName,
-        score: Number(progress.totalScore || 0),
-        nivel: Number(difficulty),
-        quesitos,
-        createdAt: serverTimestamp(),
-      });
-
-      setSaveMessage("Partida guardada");
-      await loadScores();
-    } catch (error) {
-      console.error("Error guardando:", error);
-      setSaveMessage("No se pudo guardar la partida");
-    }
+  if (!trimmedName) {
+    setSaveMessage("Introduce un nombre");
+    return;
   }
+
+  try {
+    const quesitos = Object.values(progress.wedges || {}).filter(Boolean).length;
+
+    // 🔍 Buscar si ya existe el jugador
+    const snap = await getDocs(scoresCollection);
+
+    const existingDoc = snap.docs.find(
+      (doc) =>
+        doc.data().name?.toLowerCase() === trimmedName.toLowerCase()
+    );
+
+    const payload = {
+      name: trimmedName,
+      score: Number(progress.totalScore || 0),
+      nivel: Number(difficulty),
+      quesitos,
+      createdAt: serverTimestamp(),
+    };
+
+    if (existingDoc) {
+  const existingScore = existingDoc.data().score || 0;
+  if (payload.score > existingScore) {
+    await updateDoc(existingDoc.ref, payload);
+  }
+} else {
+  await addDoc(scoresCollection, payload);
+}
+
+    setSaveMessage("Partida guardada correctamente");
+    await loadScores();
+
+  } catch (error) {
+    console.error("Error guardando:", error);
+    setSaveMessage("No se pudo guardar la partida");
+  }
+}
 
   useEffect(() => {
     if (screen !== "quiz" || locked || !q) return;
