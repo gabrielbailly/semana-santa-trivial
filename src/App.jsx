@@ -627,7 +627,7 @@ export default function App() {
             </div>
           </div>
 
-         <div className="rankingCard">
+       <div className="rankingCard">
   <div style={{ fontWeight: 800, marginBottom: 10 }}>🏆 Top 10</div>
   {ranking.length === 0 ? (
     <div style={{ color: "#6b7280" }}>Todavía no hay partidas guardadas.</div>
@@ -640,7 +640,7 @@ export default function App() {
             <strong>{entry.name}</strong>
           </span>
           <span style={{ display: "flex", alignItems: "center", gap: "4px", flexWrap: "wrap" }}>
-            <span>nivel formatLevel({entry.nivel})</span>
+            <span>nivel {formatLevel(entry.nivel)}</span>
             <span> | {entry.score ?? 0} puntos</span>
             <span>· {entry.quesitos ?? 0} 🧩</span>
             {entry.createdAt?.toDate && (
@@ -654,7 +654,6 @@ export default function App() {
     ))
   )}
 </div>
-      )}
 
       {screen === "quiz" && q && (
         <div className="card">
