@@ -280,7 +280,7 @@ export default function App() {
     setTimeLeft(QUESTION_TIME);
   }
 
- async function saveScore() {
+async function saveScore() {
   const trimmedName = playerName.trim();
 
   if (!trimmedName) {
@@ -291,7 +291,6 @@ export default function App() {
   try {
     const quesitos = Object.values(progress.wedges || {}).filter(Boolean).length;
 
-    // 🔍 Buscar si ya existe el jugador
     const snap = await getDocs(scoresCollection);
 
     const existingDoc = snap.docs.find(
@@ -308,15 +307,27 @@ export default function App() {
     };
 
     if (existingDoc) {
-  const existingScore = existingDoc.data().score || 0;
-  if (payload.score > existingScore) {
-    await updateDoc(existingDoc.ref, payload);
-  }
-} else {
-  await addDoc(scoresCollection, payload);
-}
+      const existingScore = existingDoc.data().score || 0;
 
-    setSaveMessage("Partida guardada correctamente");
+      if (payload.score > existingScore) {
+        // 🟢 Mejora → actualiza
+        await updateDoc(existingDoc.ref, payload);
+        setSaveMessage("¡Nuevo récord! Partida actualizada");
+      } else if (payload.score === existingScore) {
+        // 🟡 Igual → actualiza fecha/quesitos (opcional)
+        await updateDoc(existingDoc.ref, payload);
+        setSaveMessage("Has igualado tu mejor puntuación");
+      } else {
+        // 🔵 Peor → no guarda pero sin error
+        setSaveMessage("No has superado tu mejor puntuación");
+        return;
+      }
+    } else {
+      // ➕ Nuevo jugador
+      await addDoc(scoresCollection, payload);
+      setSaveMessage("Partida guardada correctamente");
+    }
+
     await loadScores();
 
   } catch (error) {
