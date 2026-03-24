@@ -10,6 +10,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
 
   const [filterScore, setFilterScore] = useState("");
+  const [filterScoreOp, setFilterScoreOp] = useState(">=");
   const [sortBy, setSortBy] = useState("createdAt");
   const [sortDir, setSortDir] = useState("desc");
 
@@ -39,9 +40,26 @@ export default function AdminPage() {
     let data = [...scores];
 
     if (filterScore !== "") {
-      const minScore = Number(filterScore);
-      if (!Number.isNaN(minScore)) {
-        data = data.filter((s) => Number(s.score || 0) >= minScore);
+      const scoreValue = Number(filterScore);
+
+      if (!Number.isNaN(scoreValue)) {
+        data = data.filter((s) => {
+          const points = Number(s.score || 0);
+
+          switch (filterScoreOp) {
+            case ">":
+              return points > scoreValue;
+            case "<":
+              return points < scoreValue;
+            case "=":
+              return points === scoreValue;
+            case "<=":
+              return points <= scoreValue;
+            case ">=":
+            default:
+              return points >= scoreValue;
+          }
+        });
       }
     }
 
@@ -70,7 +88,7 @@ export default function AdminPage() {
     });
 
     return data;
-  }, [scores, filterScore, sortBy, sortDir]);
+  }, [scores, filterScore, filterScoreOp, sortBy, sortDir]);
 
   function toggleSelect(id) {
     setSelectedIds((prev) =>
@@ -166,7 +184,7 @@ export default function AdminPage() {
 
         .toolbar {
           display: grid;
-          grid-template-columns: 1.2fr 1fr 1fr auto auto auto;
+          grid-template-columns: 1.4fr 1fr 1fr auto auto auto;
           gap: 12px;
           align-items: end;
           margin-bottom: 16px;
@@ -193,6 +211,15 @@ export default function AdminPage() {
           border-radius: 12px;
           border: 1px solid #d1d5db;
           background: white;
+        }
+
+        .filterRow {
+          display: flex;
+          gap: 8px;
+        }
+
+        .filterOp {
+          max-width: 90px;
         }
 
         .btn {
@@ -331,7 +358,7 @@ export default function AdminPage() {
           color: #6b7280;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 980px) {
           .toolbar {
             grid-template-columns: 1fr 1fr;
           }
@@ -349,14 +376,28 @@ export default function AdminPage() {
 
         <div className="toolbar">
           <div className="field">
-            <label className="label">Filtrar por puntos mínimos</label>
-            <input
-              type="number"
-              min="0"
-              value={filterScore}
-              onChange={(e) => setFilterScore(e.target.value)}
-              placeholder="Ej. 8"
-            />
+            <label className="label">Filtrar por puntos</label>
+            <div className="filterRow">
+              <select
+                className="filterOp"
+                value={filterScoreOp}
+                onChange={(e) => setFilterScoreOp(e.target.value)}
+              >
+                <option value=">=">{">="}</option>
+                <option value="<=">{"<="}</option>
+                <option value=">">{">"}</option>
+                <option value="<">{"<"}</option>
+                <option value="=">{"="}</option>
+              </select>
+
+              <input
+                type="number"
+                min="0"
+                value={filterScore}
+                onChange={(e) => setFilterScore(e.target.value)}
+                placeholder="Ej. 8"
+              />
+            </div>
           </div>
 
           <div className="field">
@@ -391,12 +432,8 @@ export default function AdminPage() {
         </div>
 
         <div className="statusRow">
-          <span>
-            Mostrando {filteredAndSortedScores.length} registro(s)
-          </span>
-          <span>
-            Seleccionados: {selectedIds.length}
-          </span>
+          <span>Mostrando {filteredAndSortedScores.length} registro(s)</span>
+          <span>Seleccionados: {selectedIds.length}</span>
         </div>
 
         {loading && <div className="loading">Cargando...</div>}
@@ -438,9 +475,7 @@ export default function AdminPage() {
                     </td>
 
                     <td>{entry.name || "-"}</td>
-
                     <td>{entry.score ?? 0}</td>
-
                     <td>{entry.quesitos ?? 0}</td>
 
                     <td>
