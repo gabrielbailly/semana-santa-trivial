@@ -18,6 +18,7 @@ const MAX_QUESTIONS_PER_ROUND = 12;
 const scoresCollection = collection(db, "scores");
 const CURRENT_PLAYER_KEY = "trivial_current_player";
 const homeSettingsDoc = doc(db, "appConfig", "home");
+const HOME_SETTINGS_LOCAL_KEY = "trivial_home_settings";
 
 function shuffle(array) {
   const copy = [...array];
@@ -228,8 +229,21 @@ export default function App() {
       const snap = await getDoc(homeSettingsDoc);
 
       if (!snap.exists()) {
-        setLastUpdateLabel("Actualizado: -");
-        setHomeMessage("");
+        const cached =
+          typeof window !== "undefined"
+            ? window.localStorage.getItem(HOME_SETTINGS_LOCAL_KEY)
+            : "";
+
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          setLastUpdateLabel(
+            parsed.lastUpdateAt ? `Actualizado: ${parsed.lastUpdateAt}` : "Actualizado: -"
+          );
+          setHomeMessage(String(parsed.homeMessage || "").trim());
+        } else {
+          setLastUpdateLabel("Actualizado: -");
+          setHomeMessage("");
+        }
         return;
       }
 
@@ -254,6 +268,23 @@ export default function App() {
       setHomeMessage(String(data.homeMessage || "").trim());
     } catch (error) {
       console.error("Error cargando ajustes de portada:", error);
+
+      try {
+        const cached =
+          typeof window !== "undefined"
+            ? window.localStorage.getItem(HOME_SETTINGS_LOCAL_KEY)
+            : "";
+
+        if (!cached) return;
+
+        const parsed = JSON.parse(cached);
+        setLastUpdateLabel(
+          parsed.lastUpdateAt ? `Actualizado: ${parsed.lastUpdateAt}` : "Actualizado: -"
+        );
+        setHomeMessage(String(parsed.homeMessage || "").trim());
+      } catch (localError) {
+        console.error("Error cargando ajustes locales:", localError);
+      }
     }
   }
 
@@ -462,6 +493,11 @@ async function saveScore() {
           position: relative;
         }
 
+        .homeHeroZone {
+          max-width: 860px;
+          margin: 0 auto;
+        }
+
         .updateStamp {
           position: absolute;
           top: 12px;
@@ -475,13 +511,30 @@ async function saveScore() {
         }
 
         .homeMessage {
-          margin-top: 14px;
-          background: #ecfeff;
-          border: 1px solid #bae6fd;
-          color: #0c4a6e;
-          border-radius: 12px;
-          padding: 10px 12px;
+          margin: 14px auto 0;
+          width: 100%;
+          background: linear-gradient(135deg, #fff7ed, #ffedd5);
+          border: 1px solid #fdba74;
+          color: #9a3412;
+          border-radius: 14px;
+          padding: 12px 14px;
           font-weight: 700;
+          text-align: center;
+          letter-spacing: 0.2px;
+          box-shadow: 0 6px 18px rgba(249, 115, 22, 0.14);
+          animation: homeMessageGlow 3.2s ease-in-out infinite;
+        }
+
+        @keyframes homeMessageGlow {
+          0%,
+          100% {
+            opacity: 1;
+            box-shadow: 0 6px 18px rgba(249, 115, 22, 0.12);
+          }
+          50% {
+            opacity: 0.98;
+            box-shadow: 0 10px 24px rgba(249, 115, 22, 0.22);
+          }
         }
 
         .card {
@@ -817,9 +870,11 @@ async function saveScore() {
       {screen === "home" && (
         <div className="card homeCard">
           <div className="updateStamp">{lastUpdateLabel}</div>
-          <img src="/images/portada.png" alt="Portada" className="heroImage" />
 
-          {homeMessage && <div className="homeMessage">{homeMessage}</div>}
+          <div className="homeHeroZone">
+            <img src="/images/portada.png" alt="Portada" className="heroImage" />
+            {homeMessage && <div className="homeMessage">{homeMessage}</div>}
+          </div>
 
           <div className="homeControls">
             <div className="selectorGrid">
