@@ -475,81 +475,98 @@ body {
 }
 `}</style>
 
-      {screen === "home" && (
-        <div className="card">
-          <img src="/images/portada.png" className="heroImage" />
+  {screen === "home" && (
+  <div className="card homeCard">
+    <img src="/images/portada.png" alt="Portada" className="heroImage" />
 
-          {currentPlayer && (
-            <div className="playerCard">
-              {currentPlayer} · {progress.totalScore} pts ·{" "}
-              {Object.values(progress.wedges).filter(Boolean).length} 🧩
-            </div>
-          )}
-
-          <div className="controls">
-            <select
-              className="select"
-              value={difficulty}
-              onChange={(e) => setDifficulty(Number(e.target.value))}
-            >
-              <option value={1}>Fácil</option>
-              <option value={2}>Medio</option>
-              <option value={3}>Difícil</option>
-            </select>
-
-            <select
-              multiple
-              className="select"
-              value={selectedCategories}
-              onChange={(e) =>
-                setSelectedCategories(
-                  Array.from(e.target.selectedOptions, (o) => o.value)
-                )
-              }
-            >
-              {CATEGORY_ORDER.map((c) => (
-                <option key={c} value={c}>
-                  {CATEGORY_CONFIG[c].label}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="chips">
-            {CATEGORY_ORDER.map((c) => (
-              <span key={c} className="chip">
-                {progress.wedges[c] ? "🧩" : "◻️"}
-              </span>
-            ))}
-          </div>
-
-          <div style={{ marginTop: 20 }}>
-            {!hasProgress ? (
-              <button className="btn btnPrimary" onClick={() => startGame(false)}>
-                Jugar
-              </button>
-            ) : (
-              <>
-                <button className="btn btnPrimary" onClick={() => startGame(true)}>
-                  Continuar
-                </button>
-                <button className="btn btnGhost" onClick={() => startGame(false)}>
-                  Nueva
-                </button>
-              </>
-            )}
-          </div>
-
-          <div style={{ marginTop: 20 }}>
-            <strong>Top 10</strong>
-            {ranking.map((r, i) => (
-              <div key={r.id}>
-                {i + 1}. {r.name} · {r.score}
-              </div>
-            ))}
-          </div>
+    {/* INFO JUGADOR */}
+    {currentPlayer && (
+      <div className="playerCard">
+        <div><strong>Jugador:</strong> {currentPlayer}</div>
+        <div><strong>Puntos:</strong> {progress.totalScore || 0}</div>
+        <div>
+          <strong>Quesitos:</strong>{" "}
+          {Object.values(progress.wedges || {}).filter(Boolean).length} 🧩
         </div>
+      </div>
+    )}
+
+    {/* CONTROLES */}
+    <div className="controlsCentered">
+      <div className="controlBlock">
+        <label className="label">Nivel</label>
+        <select
+          value={difficulty}
+          onChange={(e) => setDifficulty(Number(e.target.value))}
+          className="selectField"
+        >
+          <option value={1}>Fácil</option>
+          <option value={2}>Medio</option>
+          <option value={3}>Difícil</option>
+        </select>
+      </div>
+
+      <div className="controlBlock">
+        <label className="label">Categorías</label>
+        <select
+          multiple
+          value={selectedCategories}
+          onChange={(e) =>
+            setSelectedCategories(
+              Array.from(e.target.selectedOptions, (o) => o.value)
+            )
+          }
+          className="selectField"
+        >
+          {CATEGORY_ORDER.map((c) => (
+            <option key={c} value={c}>
+              {CATEGORY_CONFIG[c].icon} {CATEGORY_CONFIG[c].label}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    {/* INSTRUCCIÓN */}
+    {currentPlayer && (
+      <div className="infoBox">
+        Pulsa <strong>Continuar partida</strong> para seguir con {currentPlayer} o{" "}
+        <strong>Nueva partida</strong> para empezar desde cero con otro jugador.
+      </div>
+    )}
+
+    {/* BOTONES */}
+    <div className="btnRow center">
+      {!hasProgress ? (
+        <button className="btn btnPrimary" onClick={() => startGame(false)}>
+          Jugar
+        </button>
+      ) : (
+        <>
+          <button className="btn btnPrimary" onClick={() => startGame(true)}>
+            Continuar partida
+          </button>
+          <button className="btn btnGhost" onClick={() => startGame(false)}>
+            Nueva partida
+          </button>
+        </>
       )}
+    </div>
+
+    {/* QUESITOS */}
+    <div className="section center">
+      <strong>Quesitos:</strong>
+      <div className="chips center">
+        {CATEGORY_ORDER.map((key) => (
+          <span className="chip" key={key}>
+            {progress.wedges?.[key] ? "🧩" : "◻️"}{" "}
+            {CATEGORY_CONFIG[key].icon}
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
 
       {screen === "quiz" && q && (
         <div className="card">
