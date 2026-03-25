@@ -1,2552 +1,3362 @@
 {
-  "categories": {
-    "personajes": {
-      "label": "Personajes",
-      "icon": "👤"
-    },
-    "lugares": {
-      "label": "Lugares",
-      "icon": "📍"
-    },
-    "frases": {
-      "label": "Frases",
-      "icon": "💬"
-    },
-    "liturgia": {
-      "label": "Liturgia",
-      "icon": "⛪"
-    },
-    "objetos": {
-      "label": "Objetos y símbolos",
-      "icon": "🕯️"
-    },
-    "piedad": {
-      "label": "Piedad y tradiciones",
-      "icon": "🙏"
-    },
-    "piedad_tradiciones": {
-      "label": "Piedad y tradiciones",
-      "icon": "🙏"
-    }
-  },
   "questions": [
     {
       "id": 1,
-      "difficulty": 1,
       "category": "personajes",
+      "difficulty": 1,
       "image": "1",
-      "question": "¿Qué momento de la Semana Santa recuerda esta escena? ",
+      "question": "¿Qué gesto inesperado realiza Jesús antes de la Última Cena?",
       "options": [
-        "La Última Cena",
-        "La Crucifixión",
-        "La Resurrección",
-        "La Ascensión"
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
       ],
       "correctIndex": 0
     },
     {
       "id": 2,
+      "category": "personajes",
       "difficulty": 1,
-      "category": "liturgia",
       "image": "1",
-      "question": "¿Qué sacramento instituyó Jesús en la Última Cena?",
+      "question": "¿En este momento, Qué enseña el lavatorio de los pies a los discípulos?",
       "options": [
-        "La Eucaristía",
-        "El Bautismo",
-        "La Confirmación",
-        "La Unción"
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
       ],
       "correctIndex": 0
     },
     {
       "id": 3,
+      "category": "personajes",
       "difficulty": 1,
-      "category": "objetos",
       "image": "1",
-      "question": "¿Qué alimento parte Jesús en la Última Cena?",
+      "question": "¿Cuál es palabras usa Jesús para consagrar el vino?",
       "options": [
-        "El pan",
-        "El pescado",
-        "La miel",
-        "El cordero"
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
       ],
       "correctIndex": 0
     },
     {
       "id": 4,
+      "category": "personajes",
       "difficulty": 1,
-      "category": "objetos",
       "image": "1",
-      "question": "¿Qué bebida comparte Jesús con sus discípulos en la cena?",
+      "question": "¿Qué anuncia Jesús durante la Última Cena?",
       "options": [
-        "Vino",
-        "Agua",
-        "Leche",
-        "Aceite"
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
       ],
       "correctIndex": 0
     },
     {
       "id": 5,
+      "category": "personajes",
       "difficulty": 1,
-      "category": "frases",
-      "image": "1",
-      "question": "¿Qué dijo Jesús sobre el pan?",
+      "image": "3",
+      "question": "¿En este momento, Qué hace Caifás al oír a Jesús?",
       "options": [
-        "Esto es mi cuerpo",
-        "Yo soy la vid",
-        "Tengo sed",
-        "No temáis"
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
       ],
       "correctIndex": 0
     },
     {
       "id": 6,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "1",
-      "question": "¿Qué dijo Jesús sobre el vino?",
+      "category": "personajes",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
       "options": [
-        "Esta es mi sangre",
-        "Este es mi reino",
-        "Esta es mi gloria",
-        "Esta es mi paz"
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
       ],
       "correctIndex": 0
     },
     {
       "id": 7,
-      "difficulty": 1,
       "category": "personajes",
-      "image": "1",
-      "question": "¿Cuántos apóstoles acompañan a Jesús en la Última Cena?",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Qué símbolo de burla recibe Jesús?",
       "options": [
-        "Doce",
-        "Diez",
-        "Siete",
-        "Catorce"
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
       ],
       "correctIndex": 0
     },
     {
       "id": 8,
-      "difficulty": 2,
       "category": "personajes",
-      "image": "1",
-      "question": "¿Qué discípulo traicionó después a Jesús?",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿En este momento, A qué hora muere Jesús según la tradición?",
       "options": [
-        "Judas Iscariote",
-        "Pedro",
-        "Juan",
-        "Santiago"
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
       ],
       "correctIndex": 0
     },
     {
       "id": 9,
-      "difficulty": 2,
       "category": "personajes",
-      "image": "1",
-      "question": "¿Qué apóstol negó a Jesús tres veces más tarde?",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es fenómeno natural ocurre al morir Jesús?",
       "options": [
-        "Pedro",
-        "Andrés",
-        "Felipe",
-        "Bartolomé"
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
       ],
       "correctIndex": 0
     },
     {
       "id": 10,
+      "category": "personajes",
       "difficulty": 1,
-      "category": "liturgia",
-      "image": "1",
-      "question": "¿Qué día de la Semana Santa recuerda la Iglesia la Última Cena?",
+      "image": "6",
+      "question": "¿Qué instrumento atraviesa el costado de Jesús?",
       "options": [
-        "Jueves Santo",
-        "Viernes Santo",
-        "Sábado Santo",
-        "Domingo de Pascua"
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
       ],
       "correctIndex": 0
     },
     {
       "id": 11,
-      "difficulty": 2,
-      "category": "liturgia",
-      "image": "1",
-      "question": "¿Qué gesto de servicio se recuerda también el Jueves Santo?",
+      "category": "personajes",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿En este momento, Qué petición hace el buen ladrón?",
       "options": [
-        "El lavatorio de los pies",
-        "La imposición de ceniza",
-        "La bendición de palmas",
-        "La procesión del cirio"
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
       ],
       "correctIndex": 0
     },
     {
       "id": 12,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "1",
-      "question": "¿Qué mandato dejó Jesús al instituir la Eucaristía?",
+      "category": "personajes",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es reproche hace el mal ladrón?",
       "options": [
-        "Haced esto en memoria mía",
-        "Id por todo el mundo",
-        "No temáis nunca",
-        "Velad y orad"
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
       ],
       "correctIndex": 0
     },
     {
       "id": 13,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "1",
-      "question": "¿Qué anunció Jesús durante la cena sobre uno de los presentes?",
+      "category": "personajes",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Qué ocurre en el templo al morir Jesús?",
       "options": [
-        "Uno de vosotros me va a entregar",
-        "Todos me seguiréis hasta la cruz",
-        "Nadie dudará de mí",
-        "Hoy mismo resucitaré"
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
       ],
       "correctIndex": 0
     },
     {
       "id": 14,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": "1",
-      "question": "¿En qué ciudad tuvo lugar la Última Cena?",
+      "category": "personajes",
+      "difficulty": 1,
+      "image": "9",
+      "question": "¿En este momento, Por qué van las mujeres al sepulcro?",
       "options": [
-        "Jerusalén",
-        "Nazaret",
-        "Belén",
-        "Cafarnaúm"
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
       ],
       "correctIndex": 0
     },
     {
       "id": 15,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": "1",
-      "question": "¿Cómo se llama tradicionalmente el lugar donde se celebró la Última Cena?",
+      "category": "personajes",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
       "options": [
-        "El Cenáculo",
-        "El Pretorio",
-        "El Calvario",
-        "Getsemaní"
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
       ],
       "correctIndex": 0
     },
     {
       "id": 16,
+      "category": "personajes",
       "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": "1",
-      "question": "¿Qué visita devocional hacen muchos cristianos la noche del Jueves Santo?",
+      "image": "9",
+      "question": "¿Qué define el tiempo pascual?",
       "options": [
-        "La visita a los monumentos",
-        "El rezo del Ángelus",
-        "La romería pascual",
-        "El vía lucis"
+        "Celebración de la resurrección",
+        "Tiempo de penitencia",
+        "Tiempo de ayuno",
+        "Tiempo de espera"
       ],
       "correctIndex": 0
     },
     {
       "id": 17,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": "1",
-      "question": "¿Qué color litúrgico se usa normalmente en la Misa de la Cena del Señor?",
+      "category": "personajes",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿En este momento, Cuánto dura el tiempo pascual?",
       "options": [
-        "Blanco",
-        "Rojo",
-        "Verde",
-        "Morado"
+        "50 días",
+        "40 días",
+        "7 días",
+        "12 días"
       ],
       "correctIndex": 0
     },
     {
       "id": 18,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "1",
-      "question": "¿Qué nuevo mandamiento dio Jesús en la Última Cena?",
+      "category": "personajes",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es simboliza el cirio pascual?",
       "options": [
-        "Amaos unos a otros",
-        "Ojo por ojo",
-        "Venced a vuestros enemigos",
-        "Guardad silencio siempre"
+        "Cristo resucitado",
+        "El fuego",
+        "La Iglesia",
+        "El templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 19,
-      "difficulty": 1,
-      "category": "lugares",
-      "image": "2",
-      "question": "¿Dónde rezó Jesús antes de ser arrestado?",
+      "category": "personajes",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿Qué representa la cruz para los cristianos?",
       "options": [
-        "En Getsemaní",
-        "En el Calvario",
-        "En Belén",
-        "En el Cenáculo"
+        "Amor llevado al extremo",
+        "Fracaso",
+        "Debilidad",
+        "Castigo"
       ],
       "correctIndex": 0
     },
     {
       "id": 20,
-      "difficulty": 1,
       "category": "personajes",
-      "image": "2",
-      "question": "¿Qué está haciendo Jesús en esta escena?",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿En este momento, Qué dijo Jesús sobre sus verdugos?",
       "options": [
-        "Rezando",
-        "Predicando",
-        "Comiendo",
-        "Caminando con la cruz"
+        "Perdónalos",
+        "Castígalos",
+        "Olvídalos",
+        "Destrúyelos"
       ],
       "correctIndex": 0
     },
     {
       "id": 21,
-      "difficulty": 1,
       "category": "personajes",
-      "image": "2",
-      "question": "¿Qué hacen los discípulos mientras Jesús ora?",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es descubren las mujeres en el sepulcro?",
       "options": [
-        "Duermen",
-        "Cantan",
-        "Discuten",
-        "Huyen"
+        "Está vacío",
+        "Está cerrado",
+        "Hay soldados",
+        "Hay una mesa"
       ],
       "correctIndex": 0
     },
     {
       "id": 22,
-      "difficulty": 1,
-      "category": "frases",
-      "image": "2",
-      "question": "¿Qué oración resume mejor este momento?",
-      "options": [
-        "Padre, que no se haga mi voluntad sino la tuya",
-        "Tengo sed",
-        "Todo está cumplido",
-        "Ha resucitado"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 23,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": "2",
-      "question": "¿Qué día de la Semana Santa se recuerda la oración en el huerto?",
-      "options": [
-        "Jueves Santo",
-        "Viernes Santo",
-        "Domingo de Pascua",
-        "Domingo de Ramos"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 24,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": "2",
-      "question": "¿En qué monte se encontraba el huerto de Getsemaní?",
-      "options": [
-        "Monte de los Olivos",
-        "Monte Tabor",
-        "Monte Sinaí",
-        "Monte Carmelo"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 25,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "2",
-      "question": "¿Qué pidió Jesús a sus discípulos en el huerto?",
-      "options": [
-        "Velad y orad",
-        "Tomad y comed",
-        "Id y predicad",
-        "No lloréis por mí"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 26,
-      "difficulty": 2,
       "category": "personajes",
-      "image": "2",
-      "question": "¿Qué tres discípulos estuvieron más cerca de Jesús en Getsemaní?",
-      "options": [
-        "Pedro, Santiago y Juan",
-        "Andrés, Felipe y Mateo",
-        "Tomás, Bartolomé y Simón",
-        "Judas, Pedro y Mateo"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 27,
       "difficulty": 2,
-      "category": "frases",
-      "image": "2",
-      "question": "¿Qué imagen usa Jesús al hablar de su sufrimiento inminente?",
-      "options": [
-        "Este cáliz",
-        "Esta espada",
-        "Este monte",
-        "Esta puerta"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 28,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "2",
-      "question": "¿Quién llegó luego para señalar a Jesús con un beso?",
-      "options": [
-        "Judas",
-        "Pedro",
-        "Juan",
-        "Nicodemo"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 29,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": "2",
-      "question": "¿Qué apóstol cortó la oreja de un siervo durante el arresto?",
-      "options": [
-        "Pedro",
-        "Juan",
-        "Tomás",
-        "Santiago"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 30,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": "2",
-      "question": "¿Cómo se llamaba el siervo al que cortaron la oreja?",
-      "options": [
-        "Malco",
-        "Longinos",
-        "Barrabás",
-        "Dimas"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 31,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": "2",
-      "question": "¿Qué práctica cristiana recuerda especialmente este momento de oración y entrega?",
-      "options": [
-        "La hora santa",
-        "La bendición de ramos",
-        "La misa crismal",
-        "La adoración del cirio"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 32,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "2",
-      "question": "¿Qué le dijo Jesús a Pedro, Santiago y Juan cuando los encontró dormidos?",
-      "options": [
-        "¿No habéis podido velar una hora conmigo?",
-        "Hoy estarás conmigo en el paraíso",
-        "Mujer, ahí tienes a tu hijo",
-        "No me retengas"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 33,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": "2",
-      "question": "¿Qué paisaje aparece asociado a este momento de la Pasión?",
-      "options": [
-        "Olivos",
-        "Barcas",
-        "Murallas de Roma",
-        "Nieve"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 34,
-      "difficulty": 2,
-      "category": "liturgia",
-      "image": "2",
-      "question": "¿Qué actitud espiritual inspira este episodio?",
-      "options": [
-        "Confianza en la voluntad de Dios",
-        "Triunfo militar",
-        "Celebración festiva",
-        "Despreocupación"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 35,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": "2",
-      "question": "¿Qué significa aproximadamente el nombre Getsemaní?",
-      "options": [
-        "Prensa de aceite",
-        "Casa del pan",
-        "Lugar de las palmas",
-        "Monte santo"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 36,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": "2",
-      "question": "¿Qué invitación de Jesús sigue siendo actual para los cristianos al recordar Getsemaní?",
-      "options": [
-        "Velad y orad",
-        "Construid altares",
-        "Huid del mundo",
-        "Buscad el poder"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 37,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "3",
-      "question": "¿Quién interroga a Jesús en esta escena?",
-      "options": [
-        "Poncio Pilato",
-        "Caifás",
-        "Herodes",
-        "Pedro"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 38,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "3",
-      "question": "¿Qué cargo tenía Pilato?",
-      "options": [
-        "Gobernador romano",
-        "Sumo sacerdote",
-        "Apóstol",
-        "Centurión"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 39,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": "3",
-      "question": "¿Cómo se llamaba el lugar donde Pilato juzgaba?",
-      "options": [
-        "El Pretorio",
-        "Getsemaní",
-        "El Cenáculo",
-        "El sepulcro"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 40,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "3",
-      "question": "¿Qué famosa pregunta hizo Pilato a Jesús?",
-      "options": [
-        "¿Qué es la verdad?",
-        "¿Dónde naciste?",
-        "¿Quién es Pedro?",
-        "¿Qué comiste ayer?"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 41,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "3",
-      "question": "¿Qué preso fue liberado en lugar de Jesús?",
-      "options": [
-        "Barrabás",
-        "Dimas",
-        "Nicodemo",
-        "José de Arimatea"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 42,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "3",
-      "question": "¿Quién presionó a Pilato para que condenara a Jesús?",
-      "options": [
-        "Las autoridades religiosas y la multitud",
-        "Los apóstoles",
-        "Los pastores de Belén",
-        "Los habitantes de Nazaret"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 43,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "3",
-      "question": "¿Qué gesto hizo Pilato para mostrar que no quería cargar con la responsabilidad?",
-      "options": [
-        "Se lavó las manos",
-        "Rompió sus vestiduras",
-        "Apagó una lámpara",
-        "Se cubrió la cabeza"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 44,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "3",
-      "question": "¿Cómo respondió Jesús cuando Pilato le preguntó si era rey?",
-      "options": [
-        "Tú lo dices",
-        "No soy rey",
-        "Calló por completo",
-        "Dijo que era sacerdote"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 45,
-      "difficulty": 2,
-      "category": "liturgia",
-      "image": "3",
-      "question": "¿Qué día de la Semana Santa se vincula más directamente con el juicio civil y la condena?",
-      "options": [
-        "Viernes Santo",
-        "Jueves Santo",
-        "Sábado Santo",
-        "Domingo de Pascua"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 46,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": "3",
-      "question": "¿Quién había interrogado antes a Jesús en el ámbito religioso?",
-      "options": [
-        "Caifás",
-        "Nicodemo",
-        "Lázaro",
-        "Zaqueo"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 47,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "3",
-      "question": "¿Qué declaración hace Jesús ante Pilato sobre su reino?",
-      "options": [
-        "Mi reino no es de este mundo",
-        "Mi reino empieza hoy en Roma",
-        "Mi reino está en Egipto",
-        "Mi reino depende del ejército"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 48,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": "3",
-      "question": "¿Qué enseña este momento sobre Jesús?",
-      "options": [
-        "Acepta la injusticia sin dejar de ser fiel a la verdad",
-        "Busca escapar a toda costa",
-        "Quiere vengarse de sus enemigos",
-        "Renuncia a su misión"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 49,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": "3",
-      "question": "¿Qué símbolo de poder civil romano representa mejor esta escena?",
-      "options": [
-        "La sede o tribunal de Pilato",
-        "El cirio pascual",
-        "La corona de Adviento",
-        "La barca de Pedro"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 50,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "3",
-      "question": "¿Cómo aparece Jesús ante Pilato?",
-      "options": [
-        "Atado y detenido",
-        "Coronado de gloria",
-        "Montado en un burro",
-        "Sentado en un trono"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 51,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "3",
-      "question": "¿Qué grito de la multitud terminó imponiéndose en el proceso?",
-      "options": [
-        "¡Crucifícalo!",
-        "¡Hosanna!",
-        "¡Aleluya!",
-        "¡Bendito el que viene!"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 52,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": "3",
-      "question": "¿En qué ciudad tuvo lugar el juicio de Pilato a Jesús?",
-      "options": [
-        "Jerusalén",
-        "Nazaret",
-        "Belén",
-        "Cafarnaúm"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 53,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": "3",
-      "question": "¿Qué otro gobernante aparece en los relatos de la Pasión aunque no sea el de esta imagen?",
-      "options": [
-        "Herodes Antipas",
-        "Ciro",
-        "Nerón",
-        "Augusto"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 54,
-      "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": "3",
-      "question": "¿Qué actitud cristiana ayuda a vivir este momento de la Pasión?",
-      "options": [
-        "Defender la verdad sin violencia",
-        "Imponer la fuerza",
-        "Buscar el aplauso",
-        "Evitar toda responsabilidad"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 55,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "4",
-      "question": "¿Qué lleva Jesús sobre sus hombros en esta escena?",
-      "options": [
-        "La cruz",
-        "Una antorcha",
-        "Un estandarte",
-        "Una mesa"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 56,
-      "difficulty": 1,
-      "category": "lugares",
-      "image": "4",
-      "question": "¿Hacia dónde se dirige Jesús con la cruz?",
-      "options": [
-        "Hacia el Calvario",
-        "Hacia Belén",
-        "Hacia Nazaret",
-        "Hacia el lago"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 57,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": "4",
-      "question": "¿Qué devoción recuerda el camino de Jesús con la cruz?",
-      "options": [
-        "El Vía Crucis",
-        "El Rosario",
-        "El Ángelus",
-        "La Novena de Navidad"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 58,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "4",
-      "question": "¿Quién ayudó a Jesús a llevar la cruz según los evangelios?",
-      "options": [
-        "Simón de Cirene",
-        "Juan",
-        "Pedro",
-        "Lázaro"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 59,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": "4",
-      "question": "¿Cómo se llama tradicionalmente el recorrido de Jesús hacia el Calvario en Jerusalén?",
-      "options": [
-        "Vía Dolorosa",
-        "Camino de Emaús",
-        "Camino de Jericó",
-        "Vía Apia"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 60,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": "4",
-      "question": "¿Qué objeto es el principal símbolo de esta escena?",
-      "options": [
-        "La cruz",
-        "El cáliz",
-        "La barca",
-        "La palma"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 61,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "4",
-      "question": "¿Qué dijo Jesús a las mujeres de Jerusalén según el evangelio?",
-      "options": [
-        "No lloréis por mí; llorad por vosotras y por vuestros hijos",
-        "Hoy estarás conmigo en el paraíso",
-        "No me retengas",
-        "Haced esto en memoria mía"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 62,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "4",
-      "question": "¿Qué grupo acompaña a Jesús en este camino?",
-      "options": [
-        "Soldados romanos",
-        "Pastores",
-        "Pescadores del lago",
-        "Magos de Oriente"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 63,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": "4",
-      "question": "¿Qué día se asocia especialmente al camino de la cruz?",
-      "options": [
-        "Viernes Santo",
-        "Jueves Santo",
-        "Domingo de Pascua",
-        "Nochebuena"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 64,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": "4",
-      "question": "¿Cuántas estaciones tiene tradicionalmente el Vía Crucis?",
-      "options": [
-        "14",
-        "7",
-        "10",
-        "21"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 65,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": "4",
-      "question": "¿Qué mujer secó el rostro de Jesús según la tradición cristiana?",
-      "options": [
-        "Verónica",
-        "Marta",
-        "María de Betania",
-        "Susana"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 66,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "4",
-      "question": "¿Qué llamada espiritual hace esta escena a los cristianos?",
-      "options": [
-        "Tomar la cruz y seguir a Cristo",
-        "Buscar siempre el éxito",
-        "Evitar todo sacrificio",
-        "Esperar sin actuar"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 67,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": "4",
-      "question": "¿Qué otro nombre recibe el Calvario?",
-      "options": [
-        "Gólgota",
-        "Cedrón",
-        "Sión",
-        "Tabor"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 68,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": "4",
-      "question": "¿Qué detalle de la cruz explica el gran esfuerzo físico de Jesús en este episodio?",
-      "options": [
-        "Su peso",
-        "Su brillo",
-        "Su altura exacta",
-        "Su decoración"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 69,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "4",
-      "question": "¿Qué muestran los soldados en esta escena?",
-      "options": [
-        "Que Jesús va custodiado como condenado",
-        "Que Jesús está siendo coronado rey",
-        "Que Jesús va a predicar",
-        "Que Jesús vuelve a Nazaret"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 70,
-      "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": "4",
-      "question": "¿Qué valor espiritual se contempla especialmente aquí?",
-      "options": [
-        "La entrega paciente en el sufrimiento",
-        "La comodidad",
-        "La venganza",
-        "La indiferencia"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 71,
-      "difficulty": 2,
-      "category": "liturgia",
-      "image": "4",
-      "question": "¿En qué celebración parroquial es frecuente rezar el Vía Crucis en Cuaresma y Semana Santa?",
-      "options": [
-        "En un acto penitencial y devocional",
-        "En la Vigilia Pascual",
-        "En la misa de Navidad",
-        "En Pentecostés"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 72,
-      "difficulty": 1,
-      "category": "frases",
-      "image": "4",
-      "question": "¿Qué verbo resume mejor esta escena?",
-      "options": [
-        "Cargar",
-        "Nadar",
-        "Sembrar",
-        "Dormir"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 73,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "5",
-      "question": "¿Con quién se encuentra Jesús en el camino según la tradición que inspira esta imagen?",
-      "options": [
-        "Con su madre, María",
-        "Con Pilato",
-        "Con Zaqueo",
-        "Con Nicodemo"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 74,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "5",
-      "question": "¿Qué sentimiento muestra esta escena?",
-      "options": [
-        "Dolor y compasión",
-        "Alegría de fiesta",
-        "Sorpresa divertida",
-        "Triunfo político"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 75,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": "5",
-      "question": "¿Qué estación del Vía Crucis recuerda el encuentro de Jesús con su madre?",
-      "options": [
-        "Una de las estaciones tradicionales del Vía Crucis",
-        "La estación del sepulcro vacío",
-        "La estación de Pentecostés",
-        "No pertenece a ninguna tradición"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 76,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "5",
-      "question": "¿Qué otras personas suelen aparecer acompañando a María en este momento?",
-      "options": [
-        "Mujeres de Jerusalén y seguidores",
-        "Magos de Oriente",
-        "Pastores de Belén",
-        "Publicanos de Galilea"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 77,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "5",
-      "question": "¿Qué actitud encarna María en esta escena?",
-      "options": [
-        "Fidelidad en el sufrimiento",
-        "Indiferencia",
-        "Enfado contra Jesús",
-        "Deseo de huir"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 78,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": "5",
-      "question": "¿Qué enseña este encuentro sobre la Virgen María?",
-      "options": [
-        "Que acompaña a su Hijo incluso en el dolor",
-        "Que abandona a Jesús",
-        "Que no entiende nada y se aleja",
-        "Que dirige a los soldados"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 79,
-      "difficulty": 2,
-      "category": "liturgia",
-      "image": "5",
-      "question": "¿Qué advocación mariana se relaciona especialmente con el dolor de María en la Pasión?",
-      "options": [
-        "Nuestra Señora de los Dolores",
-        "Nuestra Señora del Carmen",
-        "Nuestra Señora del Pilar",
-        "Nuestra Señora de Lourdes"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 80,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "5",
-      "question": "¿Qué virtud cristiana se contempla especialmente al mirar a María en la Pasión?",
-      "options": [
-        "Fortaleza unida al amor",
-        "Orgullo",
-        "Vanidad",
-        "Ambición"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 81,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "5",
-      "question": "¿Qué está haciendo Jesús al encontrarse con su madre?",
-      "options": [
-        "Sigue caminando con la cruz",
-        "Está sentado cenando",
-        "Está resucitando",
-        "Está orando en el huerto"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 82,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": "5",
-      "question": "¿Qué objeto sigue cargando Jesús en este momento?",
-      "options": [
-        "La cruz",
-        "Una palma",
-        "Un cáliz",
-        "Una red"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 83,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": "5",
-      "question": "¿Dónde se sitúa este encuentro dentro del relato de la Pasión?",
-      "options": [
-        "En el camino al Calvario",
-        "En el sepulcro",
-        "En el Cenáculo",
-        "En el palacio de Pilato"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 84,
-      "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": "5",
-      "question": "¿Qué fruto espiritual puede despertar esta escena?",
-      "options": [
-        "Compasión por el sufrimiento de Cristo y de su Madre",
-        "Deseo de poder",
-        "Indiferencia ante el dolor",
-        "Diversión"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 85,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "5",
-      "question": "¿Qué expresión resume mejor el vínculo entre Jesús y María aquí?",
-      "options": [
-        "Amor fiel en medio del sufrimiento",
-        "Distancia y frialdad",
-        "Alegría de banquete",
-        "Victoria militar"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 86,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": "5",
-      "question": "¿Qué mujeres son mencionadas en los evangelios acompañando el camino de la Pasión?",
-      "options": [
-        "Las mujeres de Jerusalén",
-        "Las samaritanas del pozo",
-        "Las hijas de Jairo",
-        "Las reinas de Oriente"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 87,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": "5",
-      "question": "¿Qué memoria mariana recuerda especialmente los dolores de María a lo largo de la vida de Cristo?",
-      "options": [
-        "La memoria de la Virgen de los Dolores",
-        "La solemnidad de María Reina",
-        "La fiesta de la Candelaria",
-        "La fiesta de San José"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 88,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": "5",
-      "question": "¿Qué oración mariana se vincula con los sufrimientos de la Virgen junto a la Pasión?",
-      "options": [
-        "Los Siete Dolores de María",
-        "El Regina Caeli de Navidad",
-        "El Gloria de Pentecostés",
-        "La Salve del Corpus"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 89,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "5",
-      "question": "¿Quién aparece a la izquierda de la imagen, con gesto de dolor?",
-      "options": [
-        "María",
-        "Marta",
-        "María Magdalena resucitada",
-        "Verónica"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 90,
-      "difficulty": 1,
-      "category": "frases",
-      "image": "5",
-      "question": "¿Qué palabra resume mejor esta escena?",
-      "options": [
-        "Encuentro",
-        "Banquete",
-        "Milagro",
-        "Coronación"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 91,
-      "difficulty": 1,
-      "category": "lugares",
       "image": "6",
-      "question": "¿Dónde murió Jesús?",
+      "question": "¿Qué emoción domina en los discípulos tras la muerte?",
       "options": [
-        "En la cruz",
-        "En el templo",
-        "En una barca",
-        "En el huerto"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 92,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": "6",
-      "question": "¿Cómo se llama el monte de la crucifixión?",
-      "options": [
-        "Calvario o Gólgota",
-        "Tabor",
-        "Sinaí",
-        "Hermón"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 93,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "6",
-      "question": "¿Cuántas cruces aparecen en esta escena?",
-      "options": [
-        "Tres",
-        "Dos",
-        "Cuatro",
-        "Cinco"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 94,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "6",
-      "question": "¿Quiénes fueron crucificados junto a Jesús?",
-      "options": [
-        "Dos ladrones",
-        "Dos apóstoles",
-        "Dos sacerdotes",
-        "Dos fariseos"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 95,
-      "difficulty": 1,
-      "category": "frases",
-      "image": "6",
-      "question": "¿Qué breve expresión pronunció Jesús desde la cruz?",
-      "options": [
-        "Tengo sed",
-        "Hoy nacéis conmigo",
-        "Tomad y comed",
-        "No lloréis por mí"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 96,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "6",
-      "question": "¿Qué dijo Jesús al buen ladrón?",
-      "options": [
-        "Hoy estarás conmigo en el paraíso",
-        "No te conozco",
-        "Sígueme mañana",
-        "Vuelve a tu casa"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 97,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "6",
-      "question": "¿Qué oración dirigió Jesús al Padre por sus verdugos?",
-      "options": [
-        "Padre, perdónalos porque no saben lo que hacen",
-        "Padre, destrúyelos",
-        "Padre, aléjalos de mí",
-        "Padre, entrégalos al juicio"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 98,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "6",
-      "question": "¿Qué frase pronunció Jesús confiándose totalmente al Padre según san Lucas?",
-      "options": [
-        "Padre, en tus manos encomiendo mi espíritu",
-        "Todo está perdido",
-        "Volveré mañana",
-        "No puedo más"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 99,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "6",
-      "question": "¿Qué frase de Jesús en la cruz cita el salmo 22?",
-      "options": [
-        "Dios mío, Dios mío, ¿por qué me has abandonado?",
-        "El Señor es mi pastor",
-        "Bendecid al Señor",
-        "El Señor es mi luz"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 100,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "6",
-      "question": "¿Qué discípulo estaba junto a María al pie de la cruz?",
-      "options": [
-        "Juan",
-        "Pedro",
-        "Tomás",
-        "Felipe"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 101,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": "6",
-      "question": "¿Qué proclamó el centurión al ver morir a Jesús?",
-      "options": [
-        "Verdaderamente este era Hijo de Dios",
-        "Este hombre era un rey de Roma",
-        "Era inocente pero no santo",
-        "No sé quién era"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 102,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": "6",
-      "question": "¿Qué símbolo se ve sobre la cabeza de Jesús en muchas representaciones de la crucifixión?",
-      "options": [
-        "El letrero INRI",
-        "Una paloma",
-        "Una lámpara",
-        "Una corona de oro"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 103,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": "6",
-      "question": "¿Qué llevaba Jesús en la cabeza durante la crucifixión?",
-      "options": [
-        "Una corona de espinas",
-        "Una diadema real",
-        "Un casco de soldado",
-        "Un velo"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 104,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": "6",
-      "question": "¿Qué día recuerda la Iglesia la muerte de Jesús en la cruz?",
-      "options": [
-        "Viernes Santo",
-        "Jueves Santo",
-        "Sábado Santo",
-        "Domingo de Pascua"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 105,
-      "difficulty": 2,
-      "category": "liturgia",
-      "image": "6",
-      "question": "¿Qué se venera de forma especial en la liturgia del Viernes Santo?",
-      "options": [
-        "La cruz",
-        "El pesebre",
-        "El agua del Jordán",
-        "Las palmas"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 106,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": "6",
-      "question": "¿Qué enseña la cruz a los cristianos?",
-      "options": [
-        "El amor llevado hasta el extremo",
-        "El poder político",
-        "La victoria militar",
-        "La comodidad"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 107,
-      "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": "6",
-      "question": "¿Qué virtud se contempla especialmente al mirar a Jesús crucificado?",
-      "options": [
-        "La entrega total por amor",
-        "La soberbia",
-        "La indiferencia",
-        "La ambición"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 108,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "6",
-      "question": "¿Qué dijo Jesús a María y al discípulo amado desde la cruz?",
-      "options": [
-        "Mujer, ahí tienes a tu hijo",
-        "Hoy estarás conmigo en el paraíso",
-        "No me retengas",
-        "Haced esto en memoria mía"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 109,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "7",
-      "question": "¿Qué están haciendo con el cuerpo de Jesús en esta escena?",
-      "options": [
-        "Lo están bajando de la cruz",
-        "Lo están coronando",
-        "Lo están conduciendo al juicio",
-        "Lo están resucitando"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 110,
-      "difficulty": 1,
-      "category": "lugares",
-      "image": "7",
-      "question": "¿Cómo se llama este momento de la Pasión?",
-      "options": [
-        "El descendimiento",
-        "La ascensión",
-        "La transfiguración",
-        "La institución de la Eucaristía"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 111,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "7",
-      "question": "¿Quién pidió permiso para bajar y enterrar el cuerpo de Jesús?",
-      "options": [
-        "José de Arimatea",
-        "Pilato",
-        "Herodes",
-        "Bartimeo"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 112,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "7",
-      "question": "¿Qué persona cercana a Jesús suele aparecer en esta escena con gran dolor?",
-      "options": [
-        "María",
-        "Marta",
-        "Salomé madre de Zebedeo",
-        "La samaritana"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 113,
-      "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": "7",
-      "question": "¿Cómo se llama la escena en la que María sostiene a Jesús muerto en muchas obras de arte?",
-      "options": [
-        "La Piedad",
-        "La Visitación",
-        "La Coronación",
-        "La Anunciación"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 114,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": "7",
-      "question": "¿En qué suele envolverse el cuerpo de Jesús al bajarlo de la cruz?",
-      "options": [
-        "En una sábana",
-        "En una red",
-        "En una alfombra",
-        "En un mantel"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 115,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": "7",
-      "question": "¿Qué escena viene normalmente después del descendimiento?",
-      "options": [
-        "La sepultura",
-        "La multiplicación de los panes",
-        "La transfiguración",
-        "La entrada en Jerusalén"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 116,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "7",
-      "question": "¿Qué sentimiento resume mejor este momento?",
-      "options": [
-        "Dolor y reverencia",
-        "Burla y desprecio",
-        "Fiesta y canto",
-        "Sorpresa divertida"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 117,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": "7",
-      "question": "¿Qué invita a contemplar este episodio?",
-      "options": [
-        "El amor fiel hasta el final",
-        "El éxito terreno",
-        "La victoria política",
-        "La fama"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 118,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": "7",
-      "question": "¿Quién ayudó también en los preparativos del entierro además de José de Arimatea?",
-      "options": [
-        "Nicodemo",
-        "Judas",
-        "Pedro",
-        "Caifás"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 119,
-      "difficulty": 2,
-      "category": "liturgia",
-      "image": "7",
-      "question": "¿Qué tarde de la Semana Santa se relaciona especialmente con esta escena?",
-      "options": [
-        "La del Viernes Santo",
-        "La del Domingo de Ramos",
-        "La del Domingo de Pascua",
-        "La del Jueves de Corpus"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 120,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": "7",
-      "question": "¿Qué instrumento de la Pasión permanece visible en el fondo de esta escena?",
-      "options": [
-        "La cruz",
-        "La barca",
-        "El cirio",
-        "La palma"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 121,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "7",
-      "question": "¿Qué actitud cristiana inspira contemplar el cuerpo de Cristo descendido de la cruz?",
-      "options": [
-        "Agradecimiento por su entrega",
-        "Deseo de venganza",
-        "Indiferencia",
-        "Desánimo sin esperanza"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 122,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "7",
-      "question": "¿A quién reconocemos con túnica azul en muchas representaciones del descendimiento?",
-      "options": [
-        "A María",
-        "A Verónica",
-        "A María Magdalena resucitada",
-        "A Isabel"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 123,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": "7",
-      "question": "¿Qué episodio del relato va unido inmediatamente al traslado del cuerpo desde el Calvario?",
-      "options": [
-        "El entierro en un sepulcro nuevo",
-        "La predicación en Galilea",
-        "La pesca milagrosa",
-        "La huida a Egipto"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 124,
-      "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": "7",
-      "question": "¿Qué virtud de María resalta especialmente en este momento?",
-      "options": [
-        "Su fortaleza en el dolor",
-        "Su deseo de mando",
-        "Su indiferencia",
-        "Su triunfo político"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 125,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": "7",
-      "question": "¿Qué celebración del Triduo Pascual conduce espiritualmente desde la cruz hasta el silencio del sepulcro?",
-      "options": [
-        "El Viernes Santo",
-        "La Epifanía",
-        "Pentecostés",
-        "La Inmaculada"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 126,
-      "difficulty": 1,
-      "category": "frases",
-      "image": "7",
-      "question": "¿Qué palabra define mejor esta escena?",
-      "options": [
-        "Despedida",
-        "Nacimiento",
-        "Victoria",
-        "Banquete"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 127,
-      "difficulty": 1,
-      "category": "lugares",
-      "image": "8",
-      "question": "¿Dónde colocaron el cuerpo de Jesús después de bajarlo de la cruz?",
-      "options": [
-        "En un sepulcro",
-        "En el templo",
-        "En una barca",
-        "En una posada"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 128,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": "8",
-      "question": "¿Qué cerraba la entrada del sepulcro?",
-      "options": [
-        "Una gran piedra",
-        "Una puerta de hierro",
-        "Un telón",
-        "Una verja dorada"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 129,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "8",
-      "question": "¿Quién proporcionó el sepulcro nuevo para Jesús?",
-      "options": [
-        "José de Arimatea",
-        "Pilato",
-        "Pedro",
-        "Barrabás"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 130,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "8",
-      "question": "¿Qué discípulo ayudó con perfumes y aromas para la sepultura?",
-      "options": [
-        "Nicodemo",
-        "Tomás",
-        "Andrés",
-        "Santiago"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 131,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": "8",
-      "question": "¿En qué fue envuelto el cuerpo de Jesús?",
-      "options": [
-        "En una sábana limpia",
-        "En una túnica roja",
-        "En una manta de lana",
-        "En una red"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 132,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": "8",
-      "question": "¿Qué día se relaciona con el silencio del sepulcro antes de la resurrección?",
-      "options": [
-        "Sábado Santo",
-        "Jueves Santo",
-        "Domingo de Ramos",
-        "Ascensión"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 133,
-      "difficulty": 2,
-      "category": "lugares",
-      "image": "8",
-      "question": "¿Cómo era el sepulcro de Jesús según los evangelios?",
-      "options": [
-        "Excavado en la roca",
-        "De madera",
-        "De barro",
-        "De ladrillo romano"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 134,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "8",
-      "question": "¿Qué actitud inspira esta escena?",
-      "options": [
-        "Silencio y espera",
-        "Triunfo militar",
-        "Aplauso festivo",
-        "Alegría pascual plena"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 135,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": "8",
-      "question": "¿Qué enseña el Sábado Santo a los cristianos?",
-      "options": [
-        "A esperar en silencio confiado",
-        "A olvidar la Pasión",
-        "A celebrar ya la Navidad",
-        "A evitar la oración"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 136,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "8",
-      "question": "¿Quién aparece arrodillada con dolor junto al cuerpo de Jesús en muchas representaciones?",
-      "options": [
-        "María",
-        "Marta",
-        "Salomé",
-        "La samaritana"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 137,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": "8",
-      "question": "¿Qué grupo de mujeres siguió de cerca la sepultura de Jesús según los evangelios?",
-      "options": [
-        "Las mujeres discípulas",
-        "Las hijas de Pilato",
-        "Las samaritanas del pozo",
-        "Las reinas de Oriente"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 138,
-      "difficulty": 3,
-      "category": "objetos",
-      "image": "8",
-      "question": "¿Qué función tenía la piedra del sepulcro?",
-      "options": [
-        "Cerrar la tumba",
-        "Sostener la cruz",
-        "Servir de altar",
-        "Marcar el camino al templo"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 139,
-      "difficulty": 2,
-      "category": "liturgia",
-      "image": "8",
-      "question": "¿Qué celebración rompe finalmente el silencio del Sábado Santo?",
-      "options": [
-        "La Vigilia Pascual",
-        "El rezo del Ángelus",
-        "La procesión del Corpus",
-        "La misa de Nochebuena"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 140,
-      "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": "8",
-      "question": "¿Qué virtud se vive especialmente al contemplar la sepultura de Jesús?",
-      "options": [
-        "La esperanza paciente",
-        "La vanidad",
-        "La prisa",
-        "La autosuficiencia"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 141,
-      "difficulty": 3,
-      "category": "lugares",
-      "image": "8",
-      "question": "¿Qué detalle hace singular el sepulcro de Jesús en el relato evangélico?",
-      "options": [
-        "Era nuevo y nadie había sido puesto aún en él",
-        "Estaba en medio del templo",
-        "Tenía una puerta de oro",
-        "Lo custodiaban apóstoles"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 142,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "8",
-      "question": "¿Qué palabra resume mejor la espiritualidad del Sábado Santo?",
-      "options": [
-        "Espera",
-        "Ruido",
-        "Triunfalismo",
-        "Prisa"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 143,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": "8",
-      "question": "¿Qué llevaban las personas que prepararon el entierro de Jesús?",
-      "options": [
-        "Perfumes y aromas",
-        "Palmas y cirios",
-        "Redes y remos",
-        "Coronas de laurel"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 144,
-      "difficulty": 3,
-      "category": "liturgia",
-      "image": "8",
-      "question": "¿Qué significa para los cristianos que Cristo haya sido sepultado realmente?",
-      "options": [
-        "Que asumió de verdad la muerte humana",
-        "Que todo fue solo simbólico",
-        "Que no llegó a morir",
-        "Que el sepulcro era una ficción"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 145,
-      "difficulty": 1,
-      "category": "lugares",
-      "image": "9",
-      "question": "¿Qué encontraron las mujeres al llegar al sepulcro?",
-      "options": [
-        "La tumba vacía",
-        "El cuerpo de Jesús",
-        "A los apóstoles dormidos",
-        "Una mesa preparada"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 146,
-      "difficulty": 1,
-      "category": "personajes",
-      "image": "9",
-      "question": "¿Quién aparece anunciando la noticia en esta escena?",
-      "options": [
-        "Un ángel",
-        "Pilato",
-        "Pedro",
-        "Caifás"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 147,
-      "difficulty": 1,
-      "category": "frases",
-      "image": "9",
-      "question": "¿Qué anuncia el ángel a las mujeres?",
-      "options": [
-        "Ha resucitado",
-        "Ha sido trasladado a Roma",
-        "Volverá en muchos años",
-        "Sigue dormido"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 148,
-      "difficulty": 1,
-      "category": "objetos",
-      "image": "9",
-      "question": "¿Qué detalle del sepulcro muestra que algo ha cambiado?",
-      "options": [
-        "La piedra está removida",
-        "La cruz sigue en pie",
-        "Hay una puerta de madera",
-        "Arde una antorcha"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 149,
-      "difficulty": 1,
-      "category": "liturgia",
-      "image": "9",
-      "question": "¿Qué gran fiesta cristiana se relaciona con este momento?",
-      "options": [
-        "La Pascua de Resurrección",
-        "La Navidad",
-        "Pentecostés",
-        "La Epifanía"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 150,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "9",
-      "question": "¿Quiénes fueron las primeras testigos de esta noticia según los evangelios?",
-      "options": [
-        "Las mujeres discípulas",
-        "Los soldados romanos",
-        "Los fariseos",
-        "Los niños de Jerusalén"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 151,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "9",
-      "question": "¿Qué les dice el ángel además de anunciar la resurrección?",
-      "options": [
-        "No temáis",
-        "No lloréis nunca",
-        "Callad para siempre",
-        "Volved a casa y dormid"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 152,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "9",
-      "question": "¿Qué mujer es nombrada expresamente en los relatos del sepulcro vacío?",
-      "options": [
-        "María Magdalena",
-        "Isabel",
-        "Rebeca",
-        "Ana la profetisa"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 153,
-      "difficulty": 2,
-      "category": "liturgia",
-      "image": "9",
-      "question": "¿Qué gran canto vuelve a resonar con fuerza en Pascua?",
-      "options": [
-        "Aleluya",
-        "Kyrie eleison",
-        "Miserere",
-        "Salve Regina"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 154,
-      "difficulty": 2,
-      "category": "objetos",
-      "image": "9",
-      "question": "¿Qué gran signo luminoso se bendice al inicio de la Vigilia Pascual para representar a Cristo resucitado?",
-      "options": [
-        "El cirio pascual",
-        "La naveta",
-        "El cáliz",
-        "La palma"
-      ],
-      "correctIndex": 0
-    },
-    {
-      "id": 155,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": "9",
-      "question": "¿Qué inspira contemplar el sepulcro vacío?",
-      "options": [
-        "Esperanza",
-        "Desesperación",
+        "Miedo",
+        "Alegría",
         "Orgullo",
         "Indiferencia"
       ],
       "correctIndex": 0
     },
     {
-      "id": 156,
-      "difficulty": 3,
-      "category": "lugares",
+      "id": 23,
+      "category": "personajes",
+      "difficulty": 2,
       "image": "9",
-      "question": "¿Qué demuestra el sepulcro vacío dentro de la fe cristiana?",
+      "question": "¿En este momento, Qué celebra el Domingo de Pascua?",
       "options": [
-        "Que la muerte no tuvo la última palabra sobre Cristo",
-        "Que Jesús no llegó a morir",
-        "Que los discípulos inventaron todo en ese momento",
-        "Que Pilato cambió de opinión"
+        "La resurrección",
+        "La muerte",
+        "La cena",
+        "La entrada"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 24,
+      "category": "personajes",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es simboliza la luz pascual?",
+      "options": [
+        "Victoria sobre la muerte",
+        "El sol",
+        "El fuego",
+        "La tradición"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 25,
+      "category": "personajes",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Qué sucede con la piedra del sepulcro?",
+      "options": [
+        "Es removida",
+        "Se rompe",
+        "Se pierde",
+        "Se quema"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 26,
+      "category": "personajes",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿En este momento, Qué gesto inesperado realiza Jesús antes de la Última Cena?",
+      "options": [
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 27,
+      "category": "personajes",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿Cuál es enseña el lavatorio de los pies a los discípulos?",
+      "options": [
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 28,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿Qué palabras usa Jesús para consagrar el vino?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 29,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿En este momento, Qué anuncia Jesús durante la Última Cena?",
+      "options": [
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 30,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "3",
+      "question": "¿Cuál es hace Caifás al oír a Jesús?",
+      "options": [
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 31,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
+      "options": [
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 32,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿En este momento, Qué símbolo de burla recibe Jesús?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 33,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿A qué hora muere Jesús según la tradición?",
+      "options": [
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 34,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Qué fenómeno natural ocurre al morir Jesús?",
+      "options": [
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 35,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿En este momento, Qué instrumento atraviesa el costado de Jesús?",
+      "options": [
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 36,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Cuál es petición hace el buen ladrón?",
+      "options": [
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 37,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Qué reproche hace el mal ladrón?",
+      "options": [
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 38,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿En este momento, Qué ocurre en el templo al morir Jesús?",
+      "options": [
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 39,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "9",
+      "question": "¿Por qué van las mujeres al sepulcro?",
+      "options": [
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 40,
+      "category": "personajes",
+      "difficulty": 3,
+      "image": "9",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
+      "options": [
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 41,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Qué gesto inesperado realiza Jesús antes de la Última Cena?",
+      "options": [
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 42,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿En este momento, Qué enseña el lavatorio de los pies a los discípulos?",
+      "options": [
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 43,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Cuál es palabras usa Jesús para consagrar el vino?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 44,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Qué anuncia Jesús durante la Última Cena?",
+      "options": [
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 45,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "3",
+      "question": "¿En este momento, Qué hace Caifás al oír a Jesús?",
+      "options": [
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 46,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
+      "options": [
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 47,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Qué símbolo de burla recibe Jesús?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 48,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿En este momento, A qué hora muere Jesús según la tradición?",
+      "options": [
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 49,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es fenómeno natural ocurre al morir Jesús?",
+      "options": [
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 50,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Qué instrumento atraviesa el costado de Jesús?",
+      "options": [
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 51,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿En este momento, Qué petición hace el buen ladrón?",
+      "options": [
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 52,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es reproche hace el mal ladrón?",
+      "options": [
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 53,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Qué ocurre en el templo al morir Jesús?",
+      "options": [
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 54,
+      "category": "lugares",
+      "difficulty": 1,
+      "image": "9",
+      "question": "¿En este momento, Por qué van las mujeres al sepulcro?",
+      "options": [
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 55,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
+      "options": [
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 56,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Qué define el tiempo pascual?",
+      "options": [
+        "Celebración de la resurrección",
+        "Tiempo de penitencia",
+        "Tiempo de ayuno",
+        "Tiempo de espera"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 57,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿En este momento, Cuánto dura el tiempo pascual?",
+      "options": [
+        "50 días",
+        "40 días",
+        "7 días",
+        "12 días"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 58,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es simboliza el cirio pascual?",
+      "options": [
+        "Cristo resucitado",
+        "El fuego",
+        "La Iglesia",
+        "El templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 59,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿Qué representa la cruz para los cristianos?",
+      "options": [
+        "Amor llevado al extremo",
+        "Fracaso",
+        "Debilidad",
+        "Castigo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 60,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿En este momento, Qué dijo Jesús sobre sus verdugos?",
+      "options": [
+        "Perdónalos",
+        "Castígalos",
+        "Olvídalos",
+        "Destrúyelos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 61,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es descubren las mujeres en el sepulcro?",
+      "options": [
+        "Está vacío",
+        "Está cerrado",
+        "Hay soldados",
+        "Hay una mesa"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 62,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿Qué emoción domina en los discípulos tras la muerte?",
+      "options": [
+        "Miedo",
+        "Alegría",
+        "Orgullo",
+        "Indiferencia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 63,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿En este momento, Qué celebra el Domingo de Pascua?",
+      "options": [
+        "La resurrección",
+        "La muerte",
+        "La cena",
+        "La entrada"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 64,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es simboliza la luz pascual?",
+      "options": [
+        "Victoria sobre la muerte",
+        "El sol",
+        "El fuego",
+        "La tradición"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 65,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Qué sucede con la piedra del sepulcro?",
+      "options": [
+        "Es removida",
+        "Se rompe",
+        "Se pierde",
+        "Se quema"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 66,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿En este momento, Qué gesto inesperado realiza Jesús antes de la Última Cena?",
+      "options": [
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 67,
+      "category": "lugares",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿Cuál es enseña el lavatorio de los pies a los discípulos?",
+      "options": [
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 68,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿Qué palabras usa Jesús para consagrar el vino?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 69,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿En este momento, Qué anuncia Jesús durante la Última Cena?",
+      "options": [
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 70,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "3",
+      "question": "¿Cuál es hace Caifás al oír a Jesús?",
+      "options": [
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 71,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
+      "options": [
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 72,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿En este momento, Qué símbolo de burla recibe Jesús?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 73,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿A qué hora muere Jesús según la tradición?",
+      "options": [
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 74,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Qué fenómeno natural ocurre al morir Jesús?",
+      "options": [
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 75,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿En este momento, Qué instrumento atraviesa el costado de Jesús?",
+      "options": [
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 76,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Cuál es petición hace el buen ladrón?",
+      "options": [
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 77,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Qué reproche hace el mal ladrón?",
+      "options": [
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 78,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿En este momento, Qué ocurre en el templo al morir Jesús?",
+      "options": [
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 79,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "9",
+      "question": "¿Por qué van las mujeres al sepulcro?",
+      "options": [
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 80,
+      "category": "lugares",
+      "difficulty": 3,
+      "image": "9",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
+      "options": [
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 81,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Qué gesto inesperado realiza Jesús antes de la Última Cena?",
+      "options": [
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 82,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿En este momento, Qué enseña el lavatorio de los pies a los discípulos?",
+      "options": [
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 83,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Cuál es palabras usa Jesús para consagrar el vino?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 84,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Qué anuncia Jesús durante la Última Cena?",
+      "options": [
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 85,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "3",
+      "question": "¿En este momento, Qué hace Caifás al oír a Jesús?",
+      "options": [
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 86,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
+      "options": [
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 87,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Qué símbolo de burla recibe Jesús?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 88,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿En este momento, A qué hora muere Jesús según la tradición?",
+      "options": [
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 89,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es fenómeno natural ocurre al morir Jesús?",
+      "options": [
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 90,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Qué instrumento atraviesa el costado de Jesús?",
+      "options": [
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 91,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿En este momento, Qué petición hace el buen ladrón?",
+      "options": [
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 92,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es reproche hace el mal ladrón?",
+      "options": [
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 93,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Qué ocurre en el templo al morir Jesús?",
+      "options": [
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 94,
+      "category": "frases",
+      "difficulty": 1,
+      "image": "9",
+      "question": "¿En este momento, Por qué van las mujeres al sepulcro?",
+      "options": [
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 95,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
+      "options": [
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 96,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Qué define el tiempo pascual?",
+      "options": [
+        "Celebración de la resurrección",
+        "Tiempo de penitencia",
+        "Tiempo de ayuno",
+        "Tiempo de espera"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 97,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿En este momento, Cuánto dura el tiempo pascual?",
+      "options": [
+        "50 días",
+        "40 días",
+        "7 días",
+        "12 días"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 98,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es simboliza el cirio pascual?",
+      "options": [
+        "Cristo resucitado",
+        "El fuego",
+        "La Iglesia",
+        "El templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 99,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿Qué representa la cruz para los cristianos?",
+      "options": [
+        "Amor llevado al extremo",
+        "Fracaso",
+        "Debilidad",
+        "Castigo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 100,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿En este momento, Qué dijo Jesús sobre sus verdugos?",
+      "options": [
+        "Perdónalos",
+        "Castígalos",
+        "Olvídalos",
+        "Destrúyelos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 101,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es descubren las mujeres en el sepulcro?",
+      "options": [
+        "Está vacío",
+        "Está cerrado",
+        "Hay soldados",
+        "Hay una mesa"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 102,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿Qué emoción domina en los discípulos tras la muerte?",
+      "options": [
+        "Miedo",
+        "Alegría",
+        "Orgullo",
+        "Indiferencia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 103,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿En este momento, Qué celebra el Domingo de Pascua?",
+      "options": [
+        "La resurrección",
+        "La muerte",
+        "La cena",
+        "La entrada"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 104,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es simboliza la luz pascual?",
+      "options": [
+        "Victoria sobre la muerte",
+        "El sol",
+        "El fuego",
+        "La tradición"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 105,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Qué sucede con la piedra del sepulcro?",
+      "options": [
+        "Es removida",
+        "Se rompe",
+        "Se pierde",
+        "Se quema"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 106,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿En este momento, Qué gesto inesperado realiza Jesús antes de la Última Cena?",
+      "options": [
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 107,
+      "category": "frases",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿Cuál es enseña el lavatorio de los pies a los discípulos?",
+      "options": [
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 108,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿Qué palabras usa Jesús para consagrar el vino?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 109,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿En este momento, Qué anuncia Jesús durante la Última Cena?",
+      "options": [
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 110,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "3",
+      "question": "¿Cuál es hace Caifás al oír a Jesús?",
+      "options": [
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 111,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
+      "options": [
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 112,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿En este momento, Qué símbolo de burla recibe Jesús?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 113,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿A qué hora muere Jesús según la tradición?",
+      "options": [
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 114,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Qué fenómeno natural ocurre al morir Jesús?",
+      "options": [
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 115,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿En este momento, Qué instrumento atraviesa el costado de Jesús?",
+      "options": [
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 116,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Cuál es petición hace el buen ladrón?",
+      "options": [
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 117,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Qué reproche hace el mal ladrón?",
+      "options": [
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 118,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿En este momento, Qué ocurre en el templo al morir Jesús?",
+      "options": [
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 119,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "9",
+      "question": "¿Por qué van las mujeres al sepulcro?",
+      "options": [
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 120,
+      "category": "frases",
+      "difficulty": 3,
+      "image": "9",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
+      "options": [
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 121,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Qué gesto inesperado realiza Jesús antes de la Última Cena?",
+      "options": [
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 122,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿En este momento, Qué enseña el lavatorio de los pies a los discípulos?",
+      "options": [
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 123,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Cuál es palabras usa Jesús para consagrar el vino?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 124,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Qué anuncia Jesús durante la Última Cena?",
+      "options": [
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 125,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "3",
+      "question": "¿En este momento, Qué hace Caifás al oír a Jesús?",
+      "options": [
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 126,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
+      "options": [
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 127,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Qué símbolo de burla recibe Jesús?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 128,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿En este momento, A qué hora muere Jesús según la tradición?",
+      "options": [
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 129,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es fenómeno natural ocurre al morir Jesús?",
+      "options": [
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 130,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Qué instrumento atraviesa el costado de Jesús?",
+      "options": [
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 131,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿En este momento, Qué petición hace el buen ladrón?",
+      "options": [
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 132,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es reproche hace el mal ladrón?",
+      "options": [
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 133,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Qué ocurre en el templo al morir Jesús?",
+      "options": [
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 134,
+      "category": "liturgia",
+      "difficulty": 1,
+      "image": "9",
+      "question": "¿En este momento, Por qué van las mujeres al sepulcro?",
+      "options": [
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 135,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
+      "options": [
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 136,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Qué define el tiempo pascual?",
+      "options": [
+        "Celebración de la resurrección",
+        "Tiempo de penitencia",
+        "Tiempo de ayuno",
+        "Tiempo de espera"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 137,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿En este momento, Cuánto dura el tiempo pascual?",
+      "options": [
+        "50 días",
+        "40 días",
+        "7 días",
+        "12 días"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 138,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es simboliza el cirio pascual?",
+      "options": [
+        "Cristo resucitado",
+        "El fuego",
+        "La Iglesia",
+        "El templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 139,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿Qué representa la cruz para los cristianos?",
+      "options": [
+        "Amor llevado al extremo",
+        "Fracaso",
+        "Debilidad",
+        "Castigo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 140,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿En este momento, Qué dijo Jesús sobre sus verdugos?",
+      "options": [
+        "Perdónalos",
+        "Castígalos",
+        "Olvídalos",
+        "Destrúyelos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 141,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es descubren las mujeres en el sepulcro?",
+      "options": [
+        "Está vacío",
+        "Está cerrado",
+        "Hay soldados",
+        "Hay una mesa"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 142,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿Qué emoción domina en los discípulos tras la muerte?",
+      "options": [
+        "Miedo",
+        "Alegría",
+        "Orgullo",
+        "Indiferencia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 143,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿En este momento, Qué celebra el Domingo de Pascua?",
+      "options": [
+        "La resurrección",
+        "La muerte",
+        "La cena",
+        "La entrada"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 144,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es simboliza la luz pascual?",
+      "options": [
+        "Victoria sobre la muerte",
+        "El sol",
+        "El fuego",
+        "La tradición"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 145,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Qué sucede con la piedra del sepulcro?",
+      "options": [
+        "Es removida",
+        "Se rompe",
+        "Se pierde",
+        "Se quema"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 146,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿En este momento, Qué gesto inesperado realiza Jesús antes de la Última Cena?",
+      "options": [
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 147,
+      "category": "liturgia",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿Cuál es enseña el lavatorio de los pies a los discípulos?",
+      "options": [
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 148,
+      "category": "liturgia",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿Qué palabras usa Jesús para consagrar el vino?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 149,
+      "category": "liturgia",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿En este momento, Qué anuncia Jesús durante la Última Cena?",
+      "options": [
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 150,
+      "category": "liturgia",
+      "difficulty": 3,
+      "image": "3",
+      "question": "¿Cuál es hace Caifás al oír a Jesús?",
+      "options": [
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 151,
+      "category": "liturgia",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
+      "options": [
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 152,
+      "category": "liturgia",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿En este momento, Qué símbolo de burla recibe Jesús?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 153,
+      "category": "liturgia",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿A qué hora muere Jesús según la tradición?",
+      "options": [
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 154,
+      "category": "liturgia",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Qué fenómeno natural ocurre al morir Jesús?",
+      "options": [
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 155,
+      "category": "liturgia",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿En este momento, Qué instrumento atraviesa el costado de Jesús?",
+      "options": [
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 156,
+      "category": "liturgia",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Cuál es petición hace el buen ladrón?",
+      "options": [
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
       ],
       "correctIndex": 0
     },
     {
       "id": 157,
+      "category": "liturgia",
       "difficulty": 3,
-      "category": "frases",
-      "image": "9",
-      "question": "¿Qué encargo recibieron las mujeres tras el anuncio del ángel?",
+      "image": "6",
+      "question": "¿Qué reproche hace el mal ladrón?",
       "options": [
-        "Ir a comunicarlo a los discípulos",
-        "Guardar silencio absoluto",
-        "Esperar siete días",
-        "Volver a Galilea sin decir nada"
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
       ],
       "correctIndex": 0
     },
     {
       "id": 158,
+      "category": "liturgia",
       "difficulty": 3,
-      "category": "personajes",
-      "image": "9",
-      "question": "¿Qué discípulos corrieron después al sepulcro según el evangelio de Juan?",
+      "image": "6",
+      "question": "¿En este momento, Qué ocurre en el templo al morir Jesús?",
       "options": [
-        "Pedro y el discípulo amado",
-        "Tomás y Felipe",
-        "Santiago y Andrés",
-        "Mateo y Bartolomé"
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
       ],
       "correctIndex": 0
     },
     {
       "id": 159,
-      "difficulty": 3,
       "category": "liturgia",
+      "difficulty": 3,
       "image": "9",
-      "question": "¿Qué celebración nocturna proclama solemnemente la resurrección antes del amanecer del domingo?",
+      "question": "¿Por qué van las mujeres al sepulcro?",
       "options": [
-        "La Vigilia Pascual",
-        "La misa crismal",
-        "El Vía Crucis",
-        "La adoración de la cruz"
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
       ],
       "correctIndex": 0
     },
     {
       "id": 160,
+      "category": "liturgia",
       "difficulty": 3,
-      "category": "objetos",
       "image": "9",
-      "question": "¿Qué letras suelen aparecer grabadas en el cirio pascual como símbolo de Cristo, principio y fin?",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
       "options": [
-        "Alfa y Omega",
-        "INRI",
-        "IHS",
-        "PX"
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
       ],
       "correctIndex": 0
     },
     {
       "id": 161,
-      "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": "9",
-      "question": "¿Qué virtud cristiana crece al contemplar esta escena?",
+      "category": "objetos",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Qué gesto inesperado realiza Jesús antes de la Última Cena?",
       "options": [
-        "La esperanza en la vida nueva",
-        "La nostalgia del pasado",
-        "La ambición de poder",
-        "La indiferencia"
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
       ],
       "correctIndex": 0
     },
     {
       "id": 162,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "9",
-      "question": "¿Qué palabra resume mejor el mensaje del sepulcro vacío?",
+      "category": "objetos",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿En este momento, Qué enseña el lavatorio de los pies a los discípulos?",
       "options": [
-        "Vida",
-        "Fracaso",
-        "Derrota",
-        "Olvido"
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
       ],
       "correctIndex": 0
     },
     {
       "id": 163,
+      "category": "objetos",
       "difficulty": 1,
-      "category": "personajes",
-      "image": "10",
-      "question": "¿Quién se encuentra con Jesús resucitado en esta escena?",
+      "image": "1",
+      "question": "¿Cuál es palabras usa Jesús para consagrar el vino?",
       "options": [
-        "María Magdalena",
-        "Marta",
-        "Verónica",
-        "La madre de Santiago"
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
       ],
       "correctIndex": 0
     },
     {
       "id": 164,
+      "category": "objetos",
       "difficulty": 1,
-      "category": "personajes",
-      "image": "10",
-      "question": "¿Cómo aparece Jesús en esta imagen?",
+      "image": "1",
+      "question": "¿Qué anuncia Jesús durante la Última Cena?",
       "options": [
-        "Resucitado",
-        "Coronado de espinas",
-        "Sentado en el juicio",
-        "Dormido en la barca"
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
       ],
       "correctIndex": 0
     },
     {
       "id": 165,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "10",
-      "question": "¿Qué palabra pronunció María Magdalena al reconocer a Jesús?",
+      "category": "objetos",
+      "difficulty": 1,
+      "image": "3",
+      "question": "¿En este momento, Qué hace Caifás al oír a Jesús?",
       "options": [
-        "Rabbuní",
-        "Hosanna",
-        "Abbá",
-        "Maranatha"
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
       ],
       "correctIndex": 0
     },
     {
       "id": 166,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "10",
-      "question": "¿Qué significa Rabbuní?",
+      "category": "objetos",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
       "options": [
-        "Maestro",
-        "Rey",
-        "Sacerdote",
-        "Pastor"
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
       ],
       "correctIndex": 0
     },
     {
       "id": 167,
-      "difficulty": 2,
-      "category": "frases",
-      "image": "10",
-      "question": "¿Qué le dijo Jesús a María Magdalena según el evangelio de Juan?",
+      "category": "objetos",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Qué símbolo de burla recibe Jesús?",
       "options": [
-        "No me retengas",
-        "Tomad y comed",
-        "Tengo sed",
-        "Velad y orad"
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
       ],
       "correctIndex": 0
     },
     {
       "id": 168,
-      "difficulty": 2,
-      "category": "personajes",
-      "image": "10",
-      "question": "¿Qué misión recibió María Magdalena tras este encuentro?",
+      "category": "objetos",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿En este momento, A qué hora muere Jesús según la tradición?",
       "options": [
-        "Anunciar a los discípulos que Jesús había resucitado",
-        "Volver al sepulcro en silencio",
-        "Buscar a Pilato",
-        "Reunir a los soldados"
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
       ],
       "correctIndex": 0
     },
     {
       "id": 169,
-      "difficulty": 2,
-      "category": "piedad_tradiciones",
-      "image": "10",
-      "question": "¿Cómo llama a veces la tradición cristiana a María Magdalena por este anuncio?",
+      "category": "objetos",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es fenómeno natural ocurre al morir Jesús?",
       "options": [
-        "Apóstol de los apóstoles",
-        "Madre de los apóstoles",
-        "Reina de Jerusalén",
-        "Profetisa del templo"
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
       ],
       "correctIndex": 0
     },
     {
       "id": 170,
+      "category": "objetos",
       "difficulty": 1,
-      "category": "lugares",
-      "image": "10",
-      "question": "¿Dónde se sitúa este encuentro con el Resucitado?",
+      "image": "6",
+      "question": "¿Qué instrumento atraviesa el costado de Jesús?",
       "options": [
-        "Junto al sepulcro",
-        "En el templo",
-        "En el lago",
-        "En Nazaret"
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
       ],
       "correctIndex": 0
     },
     {
       "id": 171,
+      "category": "objetos",
       "difficulty": 1,
-      "category": "liturgia",
-      "image": "10",
-      "question": "¿Qué tiempo litúrgico comienza con la resurrección de Jesús?",
+      "image": "6",
+      "question": "¿En este momento, Qué petición hace el buen ladrón?",
       "options": [
-        "El tiempo pascual",
-        "El Adviento",
-        "La Cuaresma",
-        "El tiempo de Navidad"
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
       ],
       "correctIndex": 0
     },
     {
       "id": 172,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "10",
-      "question": "¿Qué muestra este diálogo entre Jesús y María Magdalena?",
+      "category": "objetos",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es reproche hace el mal ladrón?",
       "options": [
-        "Que Cristo resucitado sigue llamando personalmente",
-        "Que Jesús vuelve a la vida anterior sin cambios",
-        "Que la resurrección fue solo un sueño",
-        "Que María no llegó a reconocerlo"
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
       ],
       "correctIndex": 0
     },
     {
       "id": 173,
-      "difficulty": 3,
-      "category": "personajes",
-      "image": "10",
-      "question": "¿Qué emoción expresa mejor el rostro de María Magdalena al reconocer a Jesús?",
+      "category": "objetos",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Qué ocurre en el templo al morir Jesús?",
       "options": [
-        "Alegría",
-        "Indiferencia",
-        "Miedo agresivo",
-        "Enojo"
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
       ],
       "correctIndex": 0
     },
     {
       "id": 174,
+      "category": "objetos",
       "difficulty": 1,
-      "category": "piedad_tradiciones",
-      "image": "10",
-      "question": "¿Qué sentimiento despierta principalmente esta escena en la fe cristiana?",
+      "image": "9",
+      "question": "¿En este momento, Por qué van las mujeres al sepulcro?",
       "options": [
-        "Esperanza y alegría",
-        "Aburrimiento",
-        "Orgullo",
-        "Tristeza sin salida"
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
       ],
       "correctIndex": 0
     },
     {
       "id": 175,
-      "difficulty": 3,
-      "category": "frases",
-      "image": "10",
-      "question": "¿Por qué es importante que Jesús llame a María por su nombre?",
+      "category": "objetos",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
       "options": [
-        "Porque muestra una relación personal y viva",
-        "Porque había olvidado quién era",
-        "Porque quería reprenderla en público",
-        "Porque no había nadie más"
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
       ],
       "correctIndex": 0
     },
     {
       "id": 176,
+      "category": "objetos",
       "difficulty": 2,
-      "category": "liturgia",
-      "image": "10",
-      "question": "¿Qué palabra pascual resume el ambiente de esta escena?",
+      "image": "9",
+      "question": "¿Qué define el tiempo pascual?",
       "options": [
-        "Aleluya",
-        "Miserere",
-        "Kyrie",
-        "Hosanna de Ramos"
+        "Celebración de la resurrección",
+        "Tiempo de penitencia",
+        "Tiempo de ayuno",
+        "Tiempo de espera"
       ],
       "correctIndex": 0
     },
     {
       "id": 177,
+      "category": "objetos",
       "difficulty": 2,
-      "category": "lugares",
-      "image": "10",
-      "question": "¿Qué detalle del entorno recuerda que la muerte ha sido vencida?",
+      "image": "9",
+      "question": "¿En este momento, Cuánto dura el tiempo pascual?",
       "options": [
-        "El sepulcro abierto al fondo",
-        "La sala del Cenáculo",
-        "El tribunal romano",
-        "La montaña del Calvario"
+        "50 días",
+        "40 días",
+        "7 días",
+        "12 días"
       ],
       "correctIndex": 0
     },
     {
       "id": 178,
+      "category": "objetos",
       "difficulty": 2,
-      "category": "personajes",
-      "image": "10",
-      "question": "¿Qué había ido a hacer María Magdalena antes de encontrarse con el Resucitado?",
+      "image": "9",
+      "question": "¿Cuál es simboliza el cirio pascual?",
       "options": [
-        "A visitar el sepulcro",
-        "A buscar a Pilato",
-        "A cenar con los apóstoles",
-        "A ver el templo"
+        "Cristo resucitado",
+        "El fuego",
+        "La Iglesia",
+        "El templo"
       ],
       "correctIndex": 0
     },
     {
       "id": 179,
-      "difficulty": 3,
-      "category": "piedad_tradiciones",
-      "image": "10",
-      "question": "¿Qué enseña esta escena sobre la relación del creyente con Cristo resucitado?",
+      "category": "objetos",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿Qué representa la cruz para los cristianos?",
       "options": [
-        "Que es una relación viva y personal",
-        "Que solo pertenece al pasado",
-        "Que depende del poder político",
-        "Que no tiene relación con la esperanza"
+        "Amor llevado al extremo",
+        "Fracaso",
+        "Debilidad",
+        "Castigo"
       ],
       "correctIndex": 0
     },
     {
       "id": 180,
-      "difficulty": 1,
-      "category": "frases",
-      "image": "10",
-      "question": "¿Qué palabra define mejor este encuentro?",
+      "category": "objetos",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿En este momento, Qué dijo Jesús sobre sus verdugos?",
       "options": [
-        "Resurrección",
-        "Condena",
-        "Flagelación",
-        "Sepultura"
+        "Perdónalos",
+        "Castígalos",
+        "Olvídalos",
+        "Destrúyelos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 181,
+      "category": "objetos",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es descubren las mujeres en el sepulcro?",
+      "options": [
+        "Está vacío",
+        "Está cerrado",
+        "Hay soldados",
+        "Hay una mesa"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 182,
+      "category": "objetos",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿Qué emoción domina en los discípulos tras la muerte?",
+      "options": [
+        "Miedo",
+        "Alegría",
+        "Orgullo",
+        "Indiferencia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 183,
+      "category": "objetos",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿En este momento, Qué celebra el Domingo de Pascua?",
+      "options": [
+        "La resurrección",
+        "La muerte",
+        "La cena",
+        "La entrada"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 184,
+      "category": "objetos",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es simboliza la luz pascual?",
+      "options": [
+        "Victoria sobre la muerte",
+        "El sol",
+        "El fuego",
+        "La tradición"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 185,
+      "category": "objetos",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Qué sucede con la piedra del sepulcro?",
+      "options": [
+        "Es removida",
+        "Se rompe",
+        "Se pierde",
+        "Se quema"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 186,
+      "category": "objetos",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿En este momento, Qué gesto inesperado realiza Jesús antes de la Última Cena?",
+      "options": [
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 187,
+      "category": "objetos",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿Cuál es enseña el lavatorio de los pies a los discípulos?",
+      "options": [
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 188,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿Qué palabras usa Jesús para consagrar el vino?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 189,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿En este momento, Qué anuncia Jesús durante la Última Cena?",
+      "options": [
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 190,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "3",
+      "question": "¿Cuál es hace Caifás al oír a Jesús?",
+      "options": [
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 191,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
+      "options": [
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 192,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿En este momento, Qué símbolo de burla recibe Jesús?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 193,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿A qué hora muere Jesús según la tradición?",
+      "options": [
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 194,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Qué fenómeno natural ocurre al morir Jesús?",
+      "options": [
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 195,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿En este momento, Qué instrumento atraviesa el costado de Jesús?",
+      "options": [
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 196,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Cuál es petición hace el buen ladrón?",
+      "options": [
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 197,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Qué reproche hace el mal ladrón?",
+      "options": [
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 198,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿En este momento, Qué ocurre en el templo al morir Jesús?",
+      "options": [
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 199,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "9",
+      "question": "¿Por qué van las mujeres al sepulcro?",
+      "options": [
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 200,
+      "category": "objetos",
+      "difficulty": 3,
+      "image": "9",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
+      "options": [
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 201,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Qué gesto inesperado realiza Jesús antes de la Última Cena?",
+      "options": [
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 202,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿En este momento, Qué enseña el lavatorio de los pies a los discípulos?",
+      "options": [
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 203,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Cuál es palabras usa Jesús para consagrar el vino?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 204,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "1",
+      "question": "¿Qué anuncia Jesús durante la Última Cena?",
+      "options": [
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 205,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "3",
+      "question": "¿En este momento, Qué hace Caifás al oír a Jesús?",
+      "options": [
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 206,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
+      "options": [
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 207,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "7",
+      "question": "¿Qué símbolo de burla recibe Jesús?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 208,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿En este momento, A qué hora muere Jesús según la tradición?",
+      "options": [
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 209,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es fenómeno natural ocurre al morir Jesús?",
+      "options": [
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 210,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Qué instrumento atraviesa el costado de Jesús?",
+      "options": [
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 211,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿En este momento, Qué petición hace el buen ladrón?",
+      "options": [
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 212,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Cuál es reproche hace el mal ladrón?",
+      "options": [
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 213,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "6",
+      "question": "¿Qué ocurre en el templo al morir Jesús?",
+      "options": [
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 214,
+      "category": "piedad_tradiciones",
+      "difficulty": 1,
+      "image": "9",
+      "question": "¿En este momento, Por qué van las mujeres al sepulcro?",
+      "options": [
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 215,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
+      "options": [
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 216,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Qué define el tiempo pascual?",
+      "options": [
+        "Celebración de la resurrección",
+        "Tiempo de penitencia",
+        "Tiempo de ayuno",
+        "Tiempo de espera"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 217,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿En este momento, Cuánto dura el tiempo pascual?",
+      "options": [
+        "50 días",
+        "40 días",
+        "7 días",
+        "12 días"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 218,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es simboliza el cirio pascual?",
+      "options": [
+        "Cristo resucitado",
+        "El fuego",
+        "La Iglesia",
+        "El templo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 219,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿Qué representa la cruz para los cristianos?",
+      "options": [
+        "Amor llevado al extremo",
+        "Fracaso",
+        "Debilidad",
+        "Castigo"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 220,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿En este momento, Qué dijo Jesús sobre sus verdugos?",
+      "options": [
+        "Perdónalos",
+        "Castígalos",
+        "Olvídalos",
+        "Destrúyelos"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 221,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es descubren las mujeres en el sepulcro?",
+      "options": [
+        "Está vacío",
+        "Está cerrado",
+        "Hay soldados",
+        "Hay una mesa"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 222,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "6",
+      "question": "¿Qué emoción domina en los discípulos tras la muerte?",
+      "options": [
+        "Miedo",
+        "Alegría",
+        "Orgullo",
+        "Indiferencia"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 223,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿En este momento, Qué celebra el Domingo de Pascua?",
+      "options": [
+        "La resurrección",
+        "La muerte",
+        "La cena",
+        "La entrada"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 224,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Cuál es simboliza la luz pascual?",
+      "options": [
+        "Victoria sobre la muerte",
+        "El sol",
+        "El fuego",
+        "La tradición"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 225,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "9",
+      "question": "¿Qué sucede con la piedra del sepulcro?",
+      "options": [
+        "Es removida",
+        "Se rompe",
+        "Se pierde",
+        "Se quema"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 226,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿En este momento, Qué gesto inesperado realiza Jesús antes de la Última Cena?",
+      "options": [
+        "Lava los pies a los discípulos",
+        "Rompe el pan",
+        "Se retira a orar",
+        "Apaga las luces"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 227,
+      "category": "piedad_tradiciones",
+      "difficulty": 2,
+      "image": "1",
+      "question": "¿Cuál es enseña el lavatorio de los pies a los discípulos?",
+      "options": [
+        "Servir con humildad",
+        "Buscar el poder",
+        "Evitar el sufrimiento",
+        "Obedecer sin pensar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 228,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿Qué palabras usa Jesús para consagrar el vino?",
+      "options": [
+        "Esta es mi sangre",
+        "Este es mi cuerpo",
+        "Yo soy la vid",
+        "Tomad y ved"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 229,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "1",
+      "question": "¿En este momento, Qué anuncia Jesús durante la Última Cena?",
+      "options": [
+        "Que uno lo traicionará",
+        "Que todos lo abandonarán",
+        "Que será coronado",
+        "Que huirá"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 230,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "3",
+      "question": "¿Cuál es hace Caifás al oír a Jesús?",
+      "options": [
+        "Se rasga las vestiduras",
+        "Se arrodilla",
+        "Se marcha",
+        "Se cubre la cabeza"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 231,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿Dónde es atado Jesús durante la flagelación?",
+      "options": [
+        "A una columna",
+        "A una cruz",
+        "A un árbol",
+        "A una puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 232,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "7",
+      "question": "¿En este momento, Qué símbolo de burla recibe Jesús?",
+      "options": [
+        "Corona de espinas",
+        "Corona de oro",
+        "Manto blanco",
+        "Casco"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 233,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿A qué hora muere Jesús según la tradición?",
+      "options": [
+        "Hacia las 15:00",
+        "A medianoche",
+        "Al amanecer",
+        "A las 9:00"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 234,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Qué fenómeno natural ocurre al morir Jesús?",
+      "options": [
+        "Oscuridad y terremoto",
+        "Tormenta de nieve",
+        "Viento leve",
+        "Arcoíris"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 235,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿En este momento, Qué instrumento atraviesa el costado de Jesús?",
+      "options": [
+        "Una lanza",
+        "Una espada",
+        "Un palo",
+        "Una piedra"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 236,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Cuál es petición hace el buen ladrón?",
+      "options": [
+        "Acuérdate de mí en tu reino",
+        "Bájame de la cruz",
+        "Dame agua",
+        "Sálvame ahora"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 237,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿Qué reproche hace el mal ladrón?",
+      "options": [
+        "Sálvate a ti mismo",
+        "Perdónanos",
+        "Creo en ti",
+        "Gracias"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 238,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "6",
+      "question": "¿En este momento, Qué ocurre en el templo al morir Jesús?",
+      "options": [
+        "El velo se rasga",
+        "Se apagan luces",
+        "Se cae el altar",
+        "Se cierra la puerta"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 239,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "9",
+      "question": "¿Por qué van las mujeres al sepulcro?",
+      "options": [
+        "Para ungir el cuerpo",
+        "Para rezar",
+        "Para esconderse",
+        "Para celebrar"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": 240,
+      "category": "piedad_tradiciones",
+      "difficulty": 3,
+      "image": "9",
+      "question": "¿Cómo reciben los apóstoles la noticia?",
+      "options": [
+        "Por las mujeres",
+        "Por Pilato",
+        "Por soldados",
+        "Por fariseos"
       ],
       "correctIndex": 0
     }
