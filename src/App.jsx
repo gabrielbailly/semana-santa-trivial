@@ -13,10 +13,11 @@ import {
   resetUsedQuestions,
 } from "./services/progressStorage";
 
-const QUESTION_TIME = 10;
+const QUESTION_TIME = 12;
 const MAX_QUESTIONS_PER_ROUND = 12;
 const scoresCollection = collection(db, "scores");
 const CURRENT_PLAYER_KEY = "trivial_current_player";
+const LAST_UPDATE_LABEL = "Actualizado: 25/03/2026";
 
 function shuffle(array) {
   const copy = [...array];
@@ -421,6 +422,19 @@ async function saveScore() {
         .homeCard {
           max-width: 980px;
           margin: 0 auto;
+          position: relative;
+        }
+
+        .updateStamp {
+          position: absolute;
+          top: 12px;
+          right: 16px;
+          font-size: 0.76rem;
+          color: #6b7280;
+          background: rgba(255, 255, 255, 0.88);
+          border: 1px solid #e5e7eb;
+          border-radius: 999px;
+          padding: 4px 8px;
         }
 
         .card {
@@ -755,6 +769,7 @@ async function saveScore() {
 
       {screen === "home" && (
         <div className="card homeCard">
+          <div className="updateStamp">{LAST_UPDATE_LABEL}</div>
           <img src="/images/portada.png" alt="Portada" className="heroImage" />
 
           <div className="homeControls">
