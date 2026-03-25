@@ -8,17 +8,66 @@ import {
   loadProgress,
   resetProgress,
   saveProgress,
-  loadUsedQuestions,
-  saveUsedQuestions,
-  resetUsedQuestions,
 } from "./services/progressStorage";
 
-const QUESTION_TIME = 11;
+const QUESTION_TIME = 12;
 const MAX_QUESTIONS_PER_ROUND = 12;
 const scoresCollection = collection(db, "scores");
 const CURRENT_PLAYER_KEY = "trivial_current_player";
 const homeSettingsDoc = doc(db, "appConfig", "home");
 const HOME_SETTINGS_LOCAL_KEY = "trivial_home_settings";
+const USED_QUESTIONS_BY_PLAYER_KEY = "trivial_used_questions_by_player_v1";
+
+function normalizePlayerKey(name) {
+  const key = String(name || "").trim().toLowerCase();
+  return key || "__anon__";
+}
+
+function loadUsedQuestionsMap() {
+  if (typeof window === "undefined") return {};
+
+  try {
+    const raw = window.localStorage.getItem(USED_QUESTIONS_BY_PLAYER_KEY);
+    if (!raw) return {};
+
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveUsedQuestionsMap(map) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(USED_QUESTIONS_BY_PLAYER_KEY, JSON.stringify(map));
+}
+
+function getUsedQuestionsForPlayer(playerName) {
+  const map = loadUsedQuestionsMap();
+  const key = normalizePlayerKey(playerName);
+  return Array.isArray(map[key]) ? map[key] : [];
+}
+
+function setUsedQuestionsForPlayer(playerName, ids) {
+  const map = loadUsedQuestionsMap();
+  const key = normalizePlayerKey(playerName);
+  map[key] = [...new Set(ids)];
+  saveUsedQuestionsMap(map);
+}
+
+function transferUsedQuestionsToPlayer(fromPlayer, toPlayer) {
+  const fromKey = normalizePlayerKey(fromPlayer);
+  const toKey = normalizePlayerKey(toPlayer);
+  if (fromKey === toKey) return;
+
+  const map = loadUsedQuestionsMap();
+  const fromIds = Array.isArray(map[fromKey]) ? map[fromKey] : [];
+  const toIds = Array.isArray(map[toKey]) ? map[toKey] : [];
+
+  map[toKey] = [...new Set([...toIds, ...fromIds])];
+  delete map[fromKey];
+  saveUsedQuestionsMap(map);
+}
 
 function shuffle(array) {
   const copy = [...array];
@@ -54,8 +103,13 @@ function getEarnedWedges(correctByCategory) {
   );
 }
 
-function buildRoundQuestions(allQuestions, difficulty, selectedCategories = []) {
-  const used = loadUsedQuestions();
+function buildRoundQuestions(
+  allQuestions,
+  difficulty,
+  selectedCategories = [],
+  usedQuestionIds = []
+) {
+  const used = usedQuestionIds;
 
   const categories =
     selectedCategories.length > 0 ? selectedCategories : CATEGORY_ORDER;
@@ -111,8 +165,12 @@ function buildRoundQuestions(allQuestions, difficulty, selectedCategories = []) 
   }
 
   const round = shuffle(selected).map(shuffleQuestionOptions);
-  saveUsedQuestions([...used, ...round.map((q) => q.id)]);
-  return round;
+  const nextUsed = [...new Set([...used, ...round.map((q) => q.id)])];
+
+  return {
+    round,
+    nextUsed,
+  };
 }
 
 function useGameSounds(enabled) {
@@ -184,6 +242,7 @@ export default function App() {
 
   const [playerName, setPlayerName] = useState("");
   const [currentPlayerName, setCurrentPlayerName] = useState("");
+  const [activePlayerKey, setActivePlayerKey] = useState("__anon__");
   const [continuedSession, setContinuedSession] = useState(false);
   const [savedScores, setSavedScores] = useState([]);
   const [saveMessage, setSaveMessage] = useState("");
@@ -306,11 +365,11 @@ export default function App() {
 
   function startGame(keepProgress) {
     const next = keepProgress ? loadProgress() : resetProgress();
-    if (!keepProgress) resetUsedQuestions();
 
     setSaveMessage("");
     setContinuedSession(keepProgress);
 
+    let nextPlayerName = "";
     if (keepProgress) {
       const storedPlayer =
         typeof window !== "undefined"
@@ -318,20 +377,31 @@ export default function App() {
           : currentPlayerName;
       setCurrentPlayerName(storedPlayer);
       setPlayerName(storedPlayer);
+      nextPlayerName = storedPlayer;
     } else {
       setPlayerName("");
       setCurrentPlayerName("");
       if (typeof window !== "undefined") {
         window.localStorage.removeItem(CURRENT_PLAYER_KEY);
       }
+
+      setUsedQuestionsForPlayer("__anon__", []);
     }
+
+    const playerKey = normalizePlayerKey(nextPlayerName);
+    const usedForPlayer = getUsedQuestionsForPlayer(playerKey);
+    const { round, nextUsed } = buildRoundQuestions(
+      questionsData.questions,
+      difficulty,
+      selectedCategories,
+      usedForPlayer
+    );
+    setUsedQuestionsForPlayer(playerKey, nextUsed);
+    setActivePlayerKey(playerKey);
 
     setProgress(next);
     setHasProgress(next.totalScore > 0 || (next.history?.length ?? 0) > 0);
-
-    setQuestions(
-      buildRoundQuestions(questionsData.questions, difficulty, selectedCategories)
-    );
+    setQuestions(round);
     setCurrent(0);
     setSelected(null);
     setLocked(false);
@@ -393,6 +463,8 @@ async function saveScore() {
   if (typeof window !== "undefined") {
     window.localStorage.setItem(CURRENT_PLAYER_KEY, trimmedName);
   }
+
+  transferUsedQuestionsToPlayer(activePlayerKey, trimmedName);
 
   try {
     const quesitos = Object.values(progress.wedges || {}).filter(Boolean).length;
@@ -592,10 +664,27 @@ async function saveScore() {
 
         .playerStatus {
           margin-top: 18px;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 620px;
           padding: 14px;
           background: #fff7ed;
           border: 1px solid #fed7aa;
           border-radius: 16px;
+        }
+
+        .playerHeader {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          flex-wrap: wrap;
+        }
+
+        .playerBadges {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
         }
 
         .playerTitle {
@@ -605,7 +694,8 @@ async function saveScore() {
         .resumeHint {
           margin-top: 8px;
           color: #9a3412;
-          font-size: .92rem;
+          font-size: .82rem;
+          line-height: 1.3;
         }
 
         .section {
@@ -868,6 +958,10 @@ async function saveScore() {
           .selectorGrid {
             grid-template-columns: 1fr;
           }
+
+          .playerHeader {
+            align-items: flex-start;
+          }
         }
       `}</style>
 
@@ -932,15 +1026,19 @@ async function saveScore() {
 
           {hasProgress && (
             <div className="playerStatus">
-              <div className="playerTitle">
-                Jugador actual: {currentPlayerName ? <strong>{currentPlayerName}</strong> : <strong>sin nombre guardado</strong>}
+              <div className="playerHeader">
+                <div className="playerTitle">
+                  Jugador actual: {currentPlayerName ? <strong>{currentPlayerName}</strong> : <strong>sin nombre guardado</strong>}
+                </div>
+
+                <div className="playerBadges">
+                  <span className="badgeScore">{progress.totalScore || 0} pts</span>
+                  <span className="badgeWedge">
+                    {Object.values(wedges).filter(Boolean).length} 🧩
+                  </span>
+                </div>
               </div>
-              <div className="rankingMeta" style={{ marginTop: 8 }}>
-                <span className="badgeScore">{progress.totalScore || 0} pts</span>
-                <span className="badgeWedge">
-                  {Object.values(wedges).filter(Boolean).length} 🧩
-                </span>
-              </div>
+
               <div className="resumeHint">
                 Pulsa <strong>Continuar partida</strong> para seguir con este jugador o <strong>Nueva partida</strong> para empezar desde cero con otro.
               </div>
