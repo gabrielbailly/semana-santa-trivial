@@ -6,12 +6,12 @@ import {
   getDoc,
   getDocs,
   setDoc,
-  serverTimestamp,
 } from "firebase/firestore";
-import { db } from "./firebase";
+import { db, serverTimestamp } from "./firebase";
 
 const scoresCollection = collection(db, "scores");
 const homeSettingsDoc = doc(db, "appConfig", "home");
+const HOME_SETTINGS_LOCAL_KEY = "trivial_home_settings";
 
 export default function AdminPage() {
   const [scores, setScores] = useState([]);
@@ -35,13 +35,40 @@ export default function AdminPage() {
   async function loadHomeSettings() {
     try {
       const snap = await getDoc(homeSettingsDoc);
-      if (!snap.exists()) return;
+      if (!snap.exists()) {
+        const cached =
+          typeof window !== "undefined"
+            ? window.localStorage.getItem(HOME_SETTINGS_LOCAL_KEY)
+            : "";
+
+        if (!cached) return;
+
+        const parsed = JSON.parse(cached);
+        setLastUpdateAt(String(parsed.lastUpdateAt || ""));
+        setHomeMessage(String(parsed.homeMessage || ""));
+        return;
+      }
 
       const data = snap.data();
       setLastUpdateAt(String(data.lastUpdateAt || ""));
       setHomeMessage(String(data.homeMessage || ""));
     } catch (err) {
       console.error("Error cargando ajustes de portada:", err);
+
+      try {
+        const cached =
+          typeof window !== "undefined"
+            ? window.localStorage.getItem(HOME_SETTINGS_LOCAL_KEY)
+            : "";
+
+        if (!cached) return;
+
+        const parsed = JSON.parse(cached);
+        setLastUpdateAt(String(parsed.lastUpdateAt || ""));
+        setHomeMessage(String(parsed.homeMessage || ""));
+      } catch (localErr) {
+        console.error("Error cargando ajustes locales:", localErr);
+      }
     }
   }
 
@@ -63,7 +90,26 @@ export default function AdminPage() {
       setSettingsStatus("Cambios guardados correctamente.");
     } catch (err) {
       console.error("Error guardando ajustes de portada:", err);
-      setSettingsStatus("No se pudieron guardar los cambios.");
+
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(
+          HOME_SETTINGS_LOCAL_KEY,
+          JSON.stringify({
+            lastUpdateAt: lastUpdateAt || "",
+            homeMessage: homeMessage.trim(),
+          })
+        );
+      }
+
+      if (err?.code === "permission-denied") {
+        setSettingsStatus(
+          "Sin permisos para guardar en Firebase. Se ha guardado solo en este dispositivo."
+        );
+      } else {
+        setSettingsStatus(
+          "No se pudo guardar en Firebase. Se ha guardado solo en este dispositivo."
+        );
+      }
     } finally {
       setLoading(false);
     }
@@ -270,7 +316,7 @@ export default function AdminPage() {
           display: grid;
           grid-template-columns: 1fr 2fr auto;
           gap: 12px;
-          align-items: end;
+          align-items: start;
         }
 
         .hint {
