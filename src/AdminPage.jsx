@@ -1,8 +1,17 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  setDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { db } from "./firebase";
 
 const scoresCollection = collection(db, "scores");
+const homeSettingsDoc = doc(db, "appConfig", "home");
 
 export default function AdminPage() {
   const [scores, setScores] = useState([]);
@@ -14,9 +23,51 @@ export default function AdminPage() {
   const [sortBy, setSortBy] = useState("createdAt");
   const [sortDir, setSortDir] = useState("desc");
 
+  const [lastUpdateAt, setLastUpdateAt] = useState("");
+  const [homeMessage, setHomeMessage] = useState("");
+  const [settingsStatus, setSettingsStatus] = useState("");
+
   useEffect(() => {
     loadScores();
+    loadHomeSettings();
   }, []);
+
+  async function loadHomeSettings() {
+    try {
+      const snap = await getDoc(homeSettingsDoc);
+      if (!snap.exists()) return;
+
+      const data = snap.data();
+      setLastUpdateAt(String(data.lastUpdateAt || ""));
+      setHomeMessage(String(data.homeMessage || ""));
+    } catch (err) {
+      console.error("Error cargando ajustes de portada:", err);
+    }
+  }
+
+  async function saveHomeSettings() {
+    try {
+      setLoading(true);
+      setSettingsStatus("");
+
+      await setDoc(
+        homeSettingsDoc,
+        {
+          lastUpdateAt: lastUpdateAt || "",
+          homeMessage: homeMessage.trim(),
+          updatedAt: serverTimestamp(),
+        },
+        { merge: true }
+      );
+
+      setSettingsStatus("Cambios guardados correctamente.");
+    } catch (err) {
+      console.error("Error guardando ajustes de portada:", err);
+      setSettingsStatus("No se pudieron guardar los cambios.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   async function loadScores() {
     try {
@@ -154,6 +205,17 @@ export default function AdminPage() {
     filteredAndSortedScores.length > 0 &&
     filteredAndSortedScores.every((row) => selectedIds.includes(row.id));
 
+  function setCurrentDateTime() {
+    const now = new Date();
+    const pad = (value) => String(value).padStart(2, "0");
+
+    const formatted = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(
+      now.getDate()
+    )}T${pad(now.getHours())}:${pad(now.getMinutes())}`;
+
+    setLastUpdateAt(formatted);
+  }
+
   return (
     <div className="adminShell">
       <style>{`
@@ -194,6 +256,61 @@ export default function AdminPage() {
           display: flex;
           flex-direction: column;
           gap: 6px;
+        }
+
+        .homeSettingsCard {
+          background: #fffbeb;
+          border: 1px solid #fed7aa;
+          border-radius: 16px;
+          padding: 14px;
+          margin-bottom: 16px;
+        }
+
+        .homeSettingsGrid {
+          display: grid;
+          grid-template-columns: 1fr 2fr auto;
+          gap: 12px;
+          align-items: end;
+        }
+
+        .hint {
+          font-size: 0.85rem;
+          color: #6b7280;
+          margin-top: 6px;
+        }
+
+        .miniBtn {
+          margin-top: 6px;
+          align-self: flex-start;
+          border: 1px solid #d1d5db;
+          background: white;
+          border-radius: 10px;
+          padding: 6px 10px;
+          font-size: 0.82rem;
+          font-weight: 700;
+          cursor: pointer;
+          color: #374151;
+        }
+
+        .miniBtn:hover {
+          background: #f9fafb;
+        }
+
+        textarea {
+          min-height: 42px;
+          max-height: 120px;
+          resize: vertical;
+          padding: 10px 12px;
+          border-radius: 12px;
+          border: 1px solid #d1d5db;
+          background: white;
+          font: inherit;
+        }
+
+        .settingsStatus {
+          margin-top: 8px;
+          color: #374151;
+          font-size: 0.92rem;
         }
 
         .label {
@@ -362,6 +479,10 @@ export default function AdminPage() {
           .toolbar {
             grid-template-columns: 1fr 1fr;
           }
+
+          .homeSettingsGrid {
+            grid-template-columns: 1fr;
+          }
         }
 
         @media (max-width: 640px) {
@@ -373,6 +494,45 @@ export default function AdminPage() {
 
       <div className="card">
         <h1>🛠️ Administración de partidas</h1>
+
+        <div className="homeSettingsCard">
+          <div style={{ fontWeight: 800, marginBottom: 8 }}>
+            Ajustes de portada
+          </div>
+
+          <div className="homeSettingsGrid">
+            <div className="field">
+              <label className="label">Fecha y hora de actualización</label>
+              <input
+                type="datetime-local"
+                value={lastUpdateAt}
+                onChange={(e) => setLastUpdateAt(e.target.value)}
+              />
+              <button className="miniBtn" onClick={setCurrentDateTime}>
+                Usar fecha/hora actual
+              </button>
+            </div>
+
+            <div className="field">
+              <label className="label">Mensaje en portada</label>
+              <textarea
+                value={homeMessage}
+                onChange={(e) => setHomeMessage(e.target.value)}
+                placeholder="Ej: ¡Nuevas preguntas añadidas!"
+              />
+            </div>
+
+            <button className="btn btnSecondary" onClick={saveHomeSettings}>
+              Guardar portada
+            </button>
+          </div>
+
+          <div className="hint">
+            Este mensaje y fecha se mostrarán en la página de inicio del juego.
+          </div>
+
+          {settingsStatus && <div className="settingsStatus">{settingsStatus}</div>}
+        </div>
 
         <div className="toolbar">
           <div className="field">
