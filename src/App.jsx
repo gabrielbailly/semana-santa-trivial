@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { addDoc, collection, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import { db, serverTimestamp } from "./firebase";
 import questionsData from "./data/questions.json";
 import { CATEGORY_CONFIG, CATEGORY_ORDER } from "./config/categories";
@@ -14,16 +14,10 @@ import {
 } from "./services/progressStorage";
 
 const QUESTION_TIME = 10;
-const MAX_QUESTIONS_PER_ROUND = 12;
 const scoresCollection = collection(db, "scores");
 
 function shuffle(array) {
-  const copy = [...array];
-  for (let i = copy.length - 1; i > 0; i -= 1) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
+  return [...array].sort(() => Math.random() - 0.5);
 }
 
 function cleanQuestionText(text) {
@@ -31,137 +25,85 @@ function cleanQuestionText(text) {
 }
 
 function shuffleQuestionOptions(question) {
-  const options = question.options.map((text, index) => ({
+  const options = question.options.map((text, i) => ({
     text,
-    isCorrect: index === question.correctIndex,
+    correct: i === question.correctIndex,
   }));
 
   const shuffled = shuffle(options);
 
   return {
     ...question,
-    options: shuffled.map((item) => item.text),
-    correctIndex: shuffled.findIndex((item) => item.isCorrect),
+    options: shuffled.map((o) => o.text),
+    correctIndex: shuffled.findIndex((o) => o.correct),
   };
 }
 
 function getEarnedWedges(correctByCategory) {
   return Object.fromEntries(
-    Object.entries(correctByCategory).map(([cat, hits]) => [cat, hits >= 5])
+    Object.entries(correctByCategory).map(([k, v]) => [k, v >= 5])
   );
 }
 
-function buildRoundQuestions(allQuestions, difficulty, selectedCategories = []) {
+function buildRoundQuestions(all, difficulty, selectedCategories = []) {
   const used = loadUsedQuestions();
 
   const categories =
     selectedCategories.length > 0 ? selectedCategories : CATEGORY_ORDER;
 
-  const targetCount =
-    selectedCategories.length === 0
-      ? 12
-      : selectedCategories.length === 1
-        ? 6
-        : 12;
+  const target =
+    selectedCategories.length === 1 ? 6 : 12;
 
-  const questionsPerCategory =
-    selectedCategories.length === 0
-      ? 2
-      : selectedCategories.length === 1
-        ? 6
-        : Math.max(1, Math.floor(targetCount / categories.length));
-
-  let selected = categories.flatMap((category) => {
-    const pool = allQuestions.filter(
-      (q) => Number(q.difficulty) === Number(difficulty) && q.category === category
+  let selected = categories.flatMap((cat) => {
+    const pool = all.filter(
+      (q) => q.category === cat && Number(q.difficulty) === Number(difficulty)
     );
 
     let unused = pool.filter((q) => !used.includes(q.id));
-    if (unused.length < questionsPerCategory) unused = pool;
+    if (unused.length === 0) unused = pool;
 
-    return shuffle(unused).slice(0, questionsPerCategory);
+    return shuffle(unused).slice(0, 2);
   });
 
   selected = [...new Map(selected.map((q) => [q.id, q])).values()];
+  selected = shuffle(selected).slice(0, target);
 
-  if (selected.length < targetCount) {
-    const selectedIds = new Set(selected.map((q) => q.id));
-
-    const fallbackPool = allQuestions.filter((q) => {
-      const validDifficulty = Number(q.difficulty) === Number(difficulty);
-      const validCategory =
-        selectedCategories.length === 0
-          ? CATEGORY_ORDER.includes(q.category)
-          : selectedCategories.includes(q.category);
-
-      return validDifficulty && validCategory && !selectedIds.has(q.id);
-    });
-
-    selected = [
-      ...selected,
-      ...shuffle(fallbackPool).slice(0, targetCount - selected.length),
-    ];
-  }
-
-  if (selected.length > targetCount) {
-    selected = shuffle(selected).slice(0, targetCount);
-  }
-
-  const round = shuffle(selected).map(shuffleQuestionOptions);
+  const round = selected.map(shuffleQuestionOptions);
   saveUsedQuestions([...used, ...round.map((q) => q.id)]);
+
   return round;
 }
 
 function useGameSounds(enabled) {
   const ctxRef = useRef(null);
 
-  const getCtx = () => {
-    if (!enabled || typeof window === "undefined") return null;
-    const AudioCtx = window.AudioContext || window.webkitAudioContext;
-    if (!AudioCtx) return null;
-    if (!ctxRef.current) ctxRef.current = new AudioCtx();
-    if (ctxRef.current.state === "suspended") ctxRef.current.resume();
-    return ctxRef.current;
-  };
-
-  const beep = (freq, dur = 0.1, type = "triangle") => {
-    const ctx = getCtx();
-    if (!ctx) return;
+  const beep = (freq) => {
+    if (!enabled) return;
+    const ctx =
+      ctxRef.current ||
+      new (window.AudioContext || window.webkitAudioContext)();
+    ctxRef.current = ctx;
 
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
 
     osc.frequency.value = freq;
-    osc.type = type;
     osc.connect(gain);
     gain.connect(ctx.destination);
 
-    gain.gain.setValueAtTime(0.08, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
-
+    gain.gain.value = 0.05;
     osc.start();
-    osc.stop(ctx.currentTime + dur);
+    osc.stop(ctx.currentTime + 0.1);
   };
 
   return {
-    correct: () => {
-      beep(700, 0.1);
-      setTimeout(() => beep(900, 0.1), 100);
-    },
-    error: () => beep(220, 0.18, "sawtooth"),
+    correct: () => beep(800),
+    error: () => beep(200),
     final: () => {
-      beep(500, 0.12);
-      setTimeout(() => beep(700, 0.12), 120);
-      setTimeout(() => beep(900, 0.16), 240);
+      beep(400);
+      setTimeout(() => beep(700), 120);
     },
   };
-}
-
-function getLevelLabel(level) {
-  if (level === 1) return "Fácil";
-  if (level === 2) return "Medio";
-  if (level === 3) return "Difícil";
-  return "";
 }
 
 export default function App() {
@@ -174,67 +116,67 @@ export default function App() {
   const [selected, setSelected] = useState(null);
   const [locked, setLocked] = useState(false);
   const [timeLeft, setTimeLeft] = useState(QUESTION_TIME);
-  const [soundEnabled, setSoundEnabled] = useState(true);
 
   const [progress, setProgress] = useState(emptyProgress);
   const [hasProgress, setHasProgress] = useState(false);
 
+  const [currentPlayer, setCurrentPlayer] = useState("");
   const [playerName, setPlayerName] = useState("");
+  const [isContinuing, setIsContinuing] = useState(false);
+
   const [savedScores, setSavedScores] = useState([]);
   const [saveMessage, setSaveMessage] = useState("");
 
-  const sounds = useGameSounds(soundEnabled);
+  const sounds = useGameSounds(true);
   const q = questions[current];
 
   useEffect(() => {
     const stored = loadProgress();
     setProgress(stored);
-    setHasProgress(stored.totalScore > 0 || (stored.history?.length ?? 0) > 0);
-  }, []);
 
-  useEffect(() => {
+    const savedName = localStorage.getItem("playerName") || "";
+    setCurrentPlayer(savedName);
+
+    setHasProgress(stored.totalScore > 0);
     loadScores();
   }, []);
 
   async function loadScores() {
-    try {
-      const snap = await getDocs(scoresCollection);
-      const rows = snap.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setSavedScores(rows);
-    } catch (error) {
-      console.error("Error cargando puntuaciones:", error);
-    }
+    const snap = await getDocs(scoresCollection);
+    const rows = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    setSavedScores(rows);
   }
 
   const ranking = useMemo(() => {
     return [...savedScores]
-      .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+      .sort((a, b) => b.score - a.score)
       .slice(0, 10);
   }, [savedScores]);
 
   const wedges = useMemo(
     () => getEarnedWedges(progress.correctByCategory || {}),
-    [progress.correctByCategory]
+    [progress]
   );
 
-  const timerWidth = `${(timeLeft / QUESTION_TIME) * 100}%`;
-  let timerColor = "#22c55e";
-  if (timeLeft <= 4) timerColor = "#f59e0b";
-  if (timeLeft <= 2) timerColor = "#ef4444";
+  function startGame(keep) {
+    const next = keep ? loadProgress() : resetProgress();
 
-  function startGame(keepProgress) {
-    const next = keepProgress ? loadProgress() : resetProgress();
-    if (!keepProgress) resetUsedQuestions();
+    if (!keep) {
+      resetUsedQuestions();
+      setCurrentPlayer("");
+    }
 
+    setIsContinuing(keep);
     setProgress(next);
-    setHasProgress(next.totalScore > 0 || (next.history?.length ?? 0) > 0);
 
     setQuestions(
-      buildRoundQuestions(questionsData.questions, difficulty, selectedCategories)
+      buildRoundQuestions(
+        questionsData.questions,
+        difficulty,
+        selectedCategories
+      )
     );
+
     setCurrent(0);
     setSelected(null);
     setLocked(false);
@@ -243,29 +185,27 @@ export default function App() {
   }
 
   function answer(index) {
-    if (locked || !q) return;
+    if (locked) return;
 
     const ok = index === q.correctIndex;
     setSelected(index);
     setLocked(true);
 
-    if (ok) sounds.correct();
-    else sounds.error();
+    ok ? sounds.correct() : sounds.error();
 
     const next = {
       ...progress,
-      totalScore: (progress.totalScore || 0) + (ok ? 1 : 0),
+      totalScore: progress.totalScore + (ok ? 1 : 0),
       correctByCategory: {
         ...progress.correctByCategory,
-        [q.category]: (progress.correctByCategory?.[q.category] || 0) + (ok ? 1 : 0),
+        [q.category]:
+          (progress.correctByCategory[q.category] || 0) + (ok ? 1 : 0),
       },
     };
 
     next.wedges = getEarnedWedges(next.correctByCategory);
-
     setProgress(next);
     saveProgress(next);
-    setHasProgress(true);
   }
 
   function nextQuestion() {
@@ -274,427 +214,316 @@ export default function App() {
       setScreen("summary");
       return;
     }
-    setCurrent((prev) => prev + 1);
+
+    setCurrent(current + 1);
     setSelected(null);
     setLocked(false);
     setTimeLeft(QUESTION_TIME);
   }
 
-async function saveScore() {
-  const trimmedName = playerName.trim();
+  async function saveScore() {
+    let name = currentPlayer;
 
-  if (!trimmedName) {
-    setSaveMessage("Introduce un nombre");
-    return;
-  }
-
-  try {
-    const quesitos = Object.values(progress.wedges || {}).filter(Boolean).length;
-
-    const snap = await getDocs(scoresCollection);
-
-    const existingDoc = snap.docs.find(
-      (doc) =>
-        doc.data().name?.toLowerCase() === trimmedName.toLowerCase()
-    );
-
-    const payload = {
-      name: trimmedName,
-      score: Number(progress.totalScore || 0),
-      nivel: Number(difficulty),
-      quesitos,
-      createdAt: serverTimestamp(),
-    };
-
-    if (existingDoc) {
-      const existingScore = existingDoc.data().score || 0;
-
-      if (payload.score > existingScore) {
-        // 🟢 Mejora puntuación
-        await updateDoc(existingDoc.ref, payload);
-        setSaveMessage("¡Nuevo récord! 🎉");
-      } else if (payload.score === existingScore) {
-        // 🟡 Empate → actualizamos fecha/quesitos
-        await updateDoc(existingDoc.ref, payload);
-        setSaveMessage("Has igualado tu mejor puntuación 👍");
-      } else {
-        // 🔵 Peor puntuación → NO guardamos
-        setSaveMessage("No has superado tu mejor puntuación");
-        return;
-      }
-    } else {
-      // ➕ Nuevo jugador
-      await addDoc(scoresCollection, payload);
-      setSaveMessage("Partida guardada correctamente");
+    if (!isContinuing) {
+      const trimmed = playerName.trim();
+      if (!trimmed) return setSaveMessage("Introduce un nombre");
+      name = trimmed;
+      localStorage.setItem("playerName", name);
+      setCurrentPlayer(name);
     }
 
-    await loadScores();
+    const quesitos = Object.values(progress.wedges).filter(Boolean).length;
 
-  } catch (error) {
-    console.error("Error guardando:", error);
-    setSaveMessage("No se pudo guardar la partida");
+    await addDoc(scoresCollection, {
+      name,
+      score: progress.totalScore,
+      nivel: difficulty,
+      quesitos,
+      createdAt: serverTimestamp(),
+    });
+
+    setSaveMessage("Partida guardada");
+    loadScores();
   }
-}
 
   useEffect(() => {
-    if (screen !== "quiz" || locked || !q) return;
+    if (screen !== "quiz" || locked) return;
 
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
+    const i = setInterval(() => {
+      setTimeLeft((t) => {
+        if (t <= 1) {
           setLocked(true);
-          sounds.error();
           return 0;
         }
-        return prev - 1;
+        return t - 1;
       });
     }, 1000);
 
-    return () => clearInterval(interval);
-  }, [screen, locked, current, q]);
+    return () => clearInterval(i);
+  }, [screen, locked]);
+
+  const timerWidth = `${(timeLeft / QUESTION_TIME) * 100}%`;
 
   return (
     <div className="appShell">
       <style>{`
-        * { box-sizing: border-box; }
-        body {
-          margin: 0;
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-          background: #fff7ed;
-        }
+* { box-sizing: border-box; }
 
-        button, input, select {
-          font: inherit;
-        }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fff7ed;
+}
 
-        .appShell {
-          max-width: 1100px;
-          margin: 0 auto;
-          padding: 20px;
-        }
+.appShell {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
-        .card {
-          background: white;
-          border-radius: 24px;
-          padding: 20px;
-          box-shadow: 0 16px 40px rgba(0,0,0,.08);
-        }
+/* CARDS */
+.card {
+  background: white;
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.08);
+}
 
-        .heroImage {
-          width: 100%;
-          max-height: 300px;
-          object-fit: contain;
-          border-radius: 18px;
-          display: block;
-          background: white;
-        }
+/* PORTADA */
+.heroImage {
+  width: 100%;
+  max-height: 240px;
+  object-fit: contain;
+  border-radius: 18px;
+  display: block;
+}
 
-        .section {
-          margin-top: 20px;
-        }
+/* CONTROLES */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
 
-        .label {
-          display: block;
-          font-weight: 700;
-          margin-bottom: 6px;
-        }
+.select {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  min-width: 200px;
+}
 
-        .selectField {
-          width: 100%;
-          max-width: 320px;
-          padding: 12px 14px;
-          border-radius: 12px;
-          border: 1px solid #d1d5db;
-          background: white;
-        }
+/* BOTONES */
+.btn {
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 14px 18px;
+  transition: all .2s ease;
+}
 
-        .btnRow {
-          display: flex;
-          gap: 12px;
-          flex-wrap: wrap;
-          margin-top: 18px;
-        }
+.btnPrimary {
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  color: white;
+}
 
-        .btn {
-          border: none;
-          border-radius: 14px;
-          cursor: pointer;
-          font-weight: 700;
-          padding: 14px 18px;
-        }
+.btnGhost {
+  background: white;
+  border: 1px solid #e5e7eb;
+}
 
-        .btnPrimary {
-          background: linear-gradient(135deg, #f59e0b, #ea580c);
-          color: white;
-        }
+.btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.95;
+}
 
-        .btnGhost {
-          background: white;
-          border: 1px solid #e5e7eb;
-        }
+/* JUGADOR */
+.playerCard {
+  background: #fef3c7;
+  padding: 12px;
+  border-radius: 14px;
+  margin-top: 14px;
+  text-align: center;
+  font-weight: 600;
+}
 
-        .soundBtn {
-          margin-bottom: 14px;
-        }
+/* QUESITOS */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 12px;
+}
 
-        .chips {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          margin-top: 10px;
-        }
+.chip {
+  background: #f3f4f6;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: .92rem;
+}
 
-        .chip {
-          background: #f3f4f6;
-          border-radius: 999px;
-          padding: 6px 10px;
-          font-size: .92rem;
-        }
+/* QUIZ */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
 
-        .rankingCard, .saveCard {
-          margin-top: 18px;
-          text-align: left;
-          background: #f9fafb;
-          border: 1px solid #e5e7eb;
-          border-radius: 18px;
-          padding: 16px;
-        }
+.questionImage {
+  width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  display: block;
+  background: #f3f4f6;
+}
 
-        .rankingItem {
-          padding: 12px 0;
-          border-bottom: 1px solid #e5e7eb;
-        }
+.questionTitle {
+  margin: 0 0 14px 0;
+  font-size: clamp(1.4rem, 2.6vw, 2.4rem);
+  line-height: 1.15;
+}
 
-        .rankingItem:last-child {
-          border-bottom: none;
-        }
+/* RESPUESTAS */
+.options {
+  display: grid;
+  gap: 10px;
+}
 
-        .rankingMain {
-          display: flex;
-          gap: 8px;
-          font-weight: 700;
-        }
+.option {
+  border: 2px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 14px;
+  background: white;
+  cursor: pointer;
+  text-align: left;
+  transition: all .2s ease;
+}
 
-        .rankingPosition {
-          width: 24px;
-        }
+.option:hover {
+  background: #fffbeb;
+  border-color: #f59e0b;
+}
 
-        .rankingName {
-          flex: 1;
-        }
+.option.correct {
+  background: #ecfdf5;
+  border-color: #22c55e;
+}
 
-        .rankingMeta {
-          display: flex;
-          gap: 8px;
-          margin-top: 6px;
-          flex-wrap: wrap;
-        }
+.option.wrong {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
 
-        .badgeScore {
-          background: #f3f4f6;
-          border-radius: 999px;
-          padding: 4px 10px;
-          font-size: 0.85rem;
-        }
+/* BARRA TIEMPO */
+.timeBarTrack {
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 8px;
+}
 
-        .badgeWedge {
-          background: #fff7ed;
-          border-radius: 999px;
-          padding: 4px 10px;
-          font-size: 0.85rem;
-        }
+.timeBarFill {
+  height: 100%;
+  transition: width .25s linear, background .25s ease;
+  border-radius: 999px;
+}
 
-        .badgeLevel {
-          border-radius: 999px;
-          padding: 4px 10px;
-          font-size: 0.85rem;
-          font-weight: 700;
-        }
+/* TOP 10 */
+.rankingCard {
+  margin-top: 20px;
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 14px;
+  border: 1px solid #e5e7eb;
+}
 
-        .level-1 {
-          background: #dcfce7;
-          color: #166534;
-        }
+.scoreItem {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
 
-        .level-2 {
-          background: #fef3c7;
-          color: #92400e;
-        }
+.scoreItem:last-child {
+  border-bottom: none;
+}
 
-        .level-3 {
-          background: #fee2e2;
-          color: #991b1b;
-        }
+/* SUMMARY */
+.saveInput {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  width: 100%;
+}
 
-        .rankingDate {
-          font-size: 0.75rem;
-          color: #6b7280;
-          margin-top: 4px;
-        }
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 
-        .quizTop {
-          display: grid;
-          grid-template-columns: minmax(0,1fr) auto;
-          gap: 12px;
-          align-items: center;
-          margin-bottom: 16px;
-        }
-
-        .questionRow {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          flex-wrap: wrap;
-        }
-
-        .timeBarTrack {
-          flex: 1;
-          min-width: 180px;
-          height: 10px;
-          background: #e5e7eb;
-          border-radius: 999px;
-          overflow: hidden;
-        }
-
-        .timeBarFill {
-          height: 100%;
-          transition: width .25s linear, background .25s ease;
-          border-radius: 999px;
-        }
-
-        .grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 18px;
-          align-items: start;
-        }
-
-        .questionImage {
-          width: 100%;
-          border-radius: 18px;
-          object-fit: cover;
-          display: block;
-          background: #f3f4f6;
-        }
-
-        .questionTitle {
-          margin: 0 0 14px 0;
-          font-size: clamp(1.4rem, 2.6vw, 2.4rem);
-          line-height: 1.15;
-        }
-
-        .options {
-          display: grid;
-          gap: 10px;
-        }
-
-        .option {
-          border: 2px solid #e5e7eb;
-          border-radius: 14px;
-          padding: 14px;
-          background: white;
-          cursor: pointer;
-          text-align: left;
-        }
-
-        .option:hover {
-          background: #fffbeb;
-          border-color: #f59e0b;
-        }
-
-        .option.correct {
-          background: #ecfdf5;
-          border-color: #22c55e;
-        }
-
-        .option.wrong {
-          background: #fef2f2;
-          border-color: #ef4444;
-        }
-
-        .summaryGrid {
-          display: grid;
-          gap: 10px;
-        }
-
-        .saveRow {
-          display: flex;
-          gap: 10px;
-          flex-wrap: wrap;
-          margin-top: 12px;
-        }
-
-        .saveInput {
-          flex: 1;
-          min-width: 220px;
-          padding: 12px 14px;
-          border-radius: 12px;
-          border: 1px solid #d1d5db;
-          background: white;
-        }
-
-        @media (max-width: 900px) {
-          .grid {
-            grid-template-columns: 1fr;
-          }
-
-          .quizTop {
-            grid-template-columns: 1fr;
-          }
-        }
-      `}</style>
-
-      <button
-        className="btn btnGhost soundBtn"
-        onClick={() => setSoundEnabled((v) => !v)}
-      >
-        {soundEnabled ? "🔊 Sonido" : "🔇 Silencio"}
-      </button>
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+`}</style>
 
       {screen === "home" && (
         <div className="card">
-          <img src="/images/portada.png" alt="Portada" className="heroImage" />
+          <img src="/images/portada.png" className="heroImage" />
 
-          <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
-            <div className="section" style={{ flex: 1 }}>
-              <label className="label">Nivel</label>
-              <select
-                value={difficulty}
-                onChange={(e) => setDifficulty(Number(e.target.value))}
-                className="selectField"
-              >
-                <option value={1}>Fácil</option>
-                <option value={2}>Medio</option>
-                <option value={3}>Difícil</option>
-              </select>
+          {currentPlayer && (
+            <div className="playerCard">
+              {currentPlayer} · {progress.totalScore} pts ·{" "}
+              {Object.values(progress.wedges).filter(Boolean).length} 🧩
             </div>
+          )}
 
-            <div className="section" style={{ flex: 2 }}>
-              <label className="label">Categorías</label>
-              <select
-                multiple
-                value={selectedCategories}
-                onChange={(e) =>
-                  setSelectedCategories(
-                    Array.from(e.target.selectedOptions, (option) => option.value)
-                  )
-                }
-                className="selectField"
-                style={{ minHeight: 150 }}
-              >
-                {CATEGORY_ORDER.map((category) => (
-                  <option key={category} value={category}>
-                    {CATEGORY_CONFIG[category].icon} {CATEGORY_CONFIG[category].label}
-                  </option>
-                ))}
-              </select>
-              <div style={{ color: "#6b7280", fontSize: ".9rem", marginTop: 6 }}>
-                Si no eliges ninguna, se jugará con todas.
-              </div>
-            </div>
+          <div className="controls">
+            <select
+              className="select"
+              value={difficulty}
+              onChange={(e) => setDifficulty(Number(e.target.value))}
+            >
+              <option value={1}>Fácil</option>
+              <option value={2}>Medio</option>
+              <option value={3}>Difícil</option>
+            </select>
+
+            <select
+              multiple
+              className="select"
+              value={selectedCategories}
+              onChange={(e) =>
+                setSelectedCategories(
+                  Array.from(e.target.selectedOptions, (o) => o.value)
+                )
+              }
+            >
+              {CATEGORY_ORDER.map((c) => (
+                <option key={c} value={c}>
+                  {CATEGORY_CONFIG[c].label}
+                </option>
+              ))}
+            </select>
           </div>
 
-          <div className="btnRow">
+          <div className="chips">
+            {CATEGORY_ORDER.map((c) => (
+              <span key={c} className="chip">
+                {progress.wedges[c] ? "🧩" : "◻️"}
+              </span>
+            ))}
+          </div>
+
+          <div style={{ marginTop: 20 }}>
             {!hasProgress ? (
               <button className="btn btnPrimary" onClick={() => startGame(false)}>
                 Jugar
@@ -702,172 +531,89 @@ async function saveScore() {
             ) : (
               <>
                 <button className="btn btnPrimary" onClick={() => startGame(true)}>
-                  Continuar partida
+                  Continuar
                 </button>
                 <button className="btn btnGhost" onClick={() => startGame(false)}>
-                  Nueva partida
+                  Nueva
                 </button>
               </>
             )}
           </div>
 
-          <div className="section">
-            <strong>Quesitos:</strong>
-            <div className="chips">
-              {CATEGORY_ORDER.map((key) => (
-                <span className="chip" key={key}>
-                  {wedges[key] ? "🧩" : "◻️"} {CATEGORY_CONFIG[key].icon} {CATEGORY_CONFIG[key].label}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="rankingCard">
-            <div style={{ fontWeight: 800, marginBottom: 10 }}>🏆 Top 10</div>
-            {ranking.length === 0 ? (
-              <div style={{ color: "#6b7280" }}>Todavía no hay partidas guardadas.</div>
-            ) : (
-              ranking.map((entry, index) => {
-                const nivel = getLevelLabel(entry.nivel);
-                return (
-                  <div key={entry.id} className="rankingItem">
-                    <div className="rankingMain">
-                      <span className="rankingPosition">
-                        {index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : `${index + 1}.`}
-                      </span>
-                      <span className="rankingName">
-                        <strong>{entry.name}</strong>
-                      </span>
-                    </div>
-
-                    <div className="rankingMeta">
-                      <span className="badgeScore">{entry.score ?? 0} pts</span>
-                      <span className="badgeWedge">{entry.quesitos ?? 0} 🧩</span>
-                      <span className={`badgeLevel level-${entry.nivel}`}>
-                        {nivel}
-                      </span>
-                    </div>
-
-                    <div className="rankingDate">
-                      {entry.createdAt?.toDate
-                        ? entry.createdAt.toDate().toLocaleDateString()
-                        : ""}
-                    </div>
-                  </div>
-                );
-              })
-            )}
+          <div style={{ marginTop: 20 }}>
+            <strong>Top 10</strong>
+            {ranking.map((r, i) => (
+              <div key={r.id}>
+                {i + 1}. {r.name} · {r.score}
+              </div>
+            ))}
           </div>
         </div>
       )}
 
       {screen === "quiz" && q && (
         <div className="card">
-          <div className="quizTop">
-            <div className="questionRow">
-              <strong>
-                Pregunta {current + 1} / {questions.length}
-              </strong>
-              <div className="timeBarTrack">
-                <div
-                  className="timeBarFill"
-                  style={{ width: timerWidth, background: timerColor }}
-                />
-              </div>
+          <div>
+            Pregunta {current + 1}/{questions.length}
+            <div className="timeBarTrack">
+              <div className="timeBarFill" style={{ width: timerWidth }} />
             </div>
-
-            {locked ? (
-              <button className="btn btnPrimary" onClick={nextQuestion}>
-                {current + 1 >= questions.length ? "Ver resumen" : "Siguiente"}
-              </button>
-            ) : (
-              <div />
-            )}
           </div>
 
-          <div className="chips">
-            <span className="chip">
-              {CATEGORY_CONFIG[q.category].icon} {CATEGORY_CONFIG[q.category].label}
-            </span>
-            <span className="chip">Nivel {getLevelLabel(q.difficulty)}</span>
-            <span className="chip">Puntuación total {progress.totalScore || 0}</span>
-          </div>
-
-          <div className="grid" style={{ marginTop: 16 }}>
-            <img
-              src={`/images/${q.image}.jpg`}
-              alt={cleanQuestionText(q.question)}
-              className="questionImage"
-            />
+          <div className="grid">
+            <img src={`/images/${q.image}.jpg`} className="questionImage" />
 
             <div>
-              <h2 className="questionTitle">{cleanQuestionText(q.question)}</h2>
+              <h2>{cleanQuestionText(q.question)}</h2>
 
-              <div className="options">
-                {q.options.map((opt, index) => {
-                  let className = "option";
-                  if (locked && index === q.correctIndex) className += " correct";
-                  if (locked && selected === index && index !== q.correctIndex) className += " wrong";
+              {q.options.map((o, i) => {
+                let cls = "option";
+                if (locked && i === q.correctIndex) cls += " correct";
+                if (locked && selected === i && i !== q.correctIndex)
+                  cls += " wrong";
 
-                  return (
-                    <button
-                      key={index}
-                      className={className}
-                      onClick={() => answer(index)}
-                      disabled={locked}
-                    >
-                      {opt}
-                    </button>
-                  );
-                })}
-              </div>
+                return (
+                  <div
+                    key={i}
+                    className={cls}
+                    onClick={() => answer(i)}
+                  >
+                    {o}
+                  </div>
+                );
+              })}
             </div>
           </div>
+
+          {locked && (
+            <button className="btn btnPrimary" onClick={nextQuestion}>
+              Siguiente
+            </button>
+          )}
         </div>
       )}
 
       {screen === "summary" && (
         <div className="card">
-          <h2>Resumen</h2>
-          <p><strong>Puntuación total:</strong> {progress.totalScore || 0}</p>
+          <h2>Puntuación: {progress.totalScore}</h2>
 
-          <h3>Aciertos por categoría</h3>
-          <div className="summaryGrid">
-            {CATEGORY_ORDER.map((key) => (
-              <div key={key}>
-                {CATEGORY_CONFIG[key].icon} {CATEGORY_CONFIG[key].label}:{" "}
-                {progress.correctByCategory?.[key] || 0}
-                {progress.wedges?.[key] ? " · 🧩" : ""}
-              </div>
-            ))}
-          </div>
+          {!isContinuing && (
+            <input
+              value={playerName}
+              onChange={(e) => setPlayerName(e.target.value)}
+              placeholder="Nombre"
+            />
+          )}
 
-          <div className="saveCard">
-            <div style={{ fontWeight: 800 }}>Guardar partida</div>
-            <div style={{ color: "#6b7280", marginTop: 6 }}>
-              Guarda tu puntuación en el Top 10.
-            </div>
+          <button className="btn btnPrimary" onClick={saveScore}>
+            Guardar
+          </button>
 
-            <div className="saveRow">
-              <input
-                className="saveInput"
-                value={playerName}
-                onChange={(e) => setPlayerName(e.target.value)}
-                placeholder="Nombre del jugador"
-              />
-              <button className="btn btnPrimary" onClick={saveScore}>
-                Guardar
-              </button>
-            </div>
+          {saveMessage}
 
-            {saveMessage && <div style={{ marginTop: 10 }}>{saveMessage}</div>}
-          </div>
-
-          <div className="btnRow">
-            <button className="btn btnPrimary" onClick={() => setScreen("home")}>
-              Inicio
-            </button>
-          </div>
+          <button className="btn btnGhost" onClick={() => setScreen("home")}>
+            Inicio
+          </button>
         </div>
       )}
     </div>
