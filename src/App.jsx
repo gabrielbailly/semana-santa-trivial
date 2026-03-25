@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { addDoc, collection, getDocs, updateDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
 import { db, serverTimestamp } from "./firebase";
 import questionsData from "./data/questions.json";
 import { CATEGORY_CONFIG, CATEGORY_ORDER } from "./config/categories";
@@ -17,7 +17,7 @@ const QUESTION_TIME = 12;
 const MAX_QUESTIONS_PER_ROUND = 12;
 const scoresCollection = collection(db, "scores");
 const CURRENT_PLAYER_KEY = "trivial_current_player";
-const LAST_UPDATE_LABEL = "Actualizado: 25/03/2026";
+const homeSettingsDoc = doc(db, "appConfig", "home");
 
 function shuffle(array) {
   const copy = [...array];
@@ -186,6 +186,8 @@ export default function App() {
   const [continuedSession, setContinuedSession] = useState(false);
   const [savedScores, setSavedScores] = useState([]);
   const [saveMessage, setSaveMessage] = useState("");
+  const [lastUpdateLabel, setLastUpdateLabel] = useState("Actualizado: -");
+  const [homeMessage, setHomeMessage] = useState("");
 
   const sounds = useGameSounds(soundEnabled);
   const q = questions[current];
@@ -205,6 +207,7 @@ export default function App() {
 
   useEffect(() => {
     loadScores();
+    loadHomeSettings();
   }, []);
 
   async function loadScores() {
@@ -217,6 +220,40 @@ export default function App() {
       setSavedScores(rows);
     } catch (error) {
       console.error("Error cargando puntuaciones:", error);
+    }
+  }
+
+  async function loadHomeSettings() {
+    try {
+      const snap = await getDoc(homeSettingsDoc);
+
+      if (!snap.exists()) {
+        setLastUpdateLabel("Actualizado: -");
+        setHomeMessage("");
+        return;
+      }
+
+      const data = snap.data();
+      const rawDate = data.lastUpdateAt;
+
+      if (!rawDate) {
+        setLastUpdateLabel("Actualizado: -");
+      } else if (typeof rawDate === "string") {
+        const parsed = new Date(rawDate);
+        setLastUpdateLabel(
+          Number.isNaN(parsed.getTime())
+            ? `Actualizado: ${rawDate}`
+            : `Actualizado: ${parsed.toLocaleString()}`
+        );
+      } else if (rawDate?.toDate) {
+        setLastUpdateLabel(`Actualizado: ${rawDate.toDate().toLocaleString()}`);
+      } else {
+        setLastUpdateLabel("Actualizado: -");
+      }
+
+      setHomeMessage(String(data.homeMessage || "").trim());
+    } catch (error) {
+      console.error("Error cargando ajustes de portada:", error);
     }
   }
 
@@ -435,6 +472,16 @@ async function saveScore() {
           border: 1px solid #e5e7eb;
           border-radius: 999px;
           padding: 4px 8px;
+        }
+
+        .homeMessage {
+          margin-top: 14px;
+          background: #ecfeff;
+          border: 1px solid #bae6fd;
+          color: #0c4a6e;
+          border-radius: 12px;
+          padding: 10px 12px;
+          font-weight: 700;
         }
 
         .card {
@@ -769,8 +816,10 @@ async function saveScore() {
 
       {screen === "home" && (
         <div className="card homeCard">
-          <div className="updateStamp">{LAST_UPDATE_LABEL}</div>
+          <div className="updateStamp">{lastUpdateLabel}</div>
           <img src="/images/portada.png" alt="Portada" className="heroImage" />
+
+          {homeMessage && <div className="homeMessage">{homeMessage}</div>}
 
           <div className="homeControls">
             <div className="selectorGrid">
