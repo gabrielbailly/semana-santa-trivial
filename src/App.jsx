@@ -367,6 +367,14 @@ async function saveScore() {
 
     await loadScores();
 
+    if (continuedSession) {
+      setSaveMessage("Partida guardada. Volviendo al inicio...");
+      setTimeout(() => {
+        setScreen("home");
+        setSaveMessage("");
+      }, 900);
+    }
+
   } catch (error) {
     console.error("Error guardando:", error);
     setSaveMessage("No se pudo guardar la partida");
