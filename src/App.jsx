@@ -82,6 +82,15 @@ function cleanQuestionText(text) {
   return String(text || "").replace(/\s*\(\d+\)\s*$/, "").trim();
 }
 
+function getQuestionUniqueKey(question) {
+  return [
+    String(question.id ?? ""),
+    String(question.category ?? ""),
+    String(question.difficulty ?? ""),
+    cleanQuestionText(question.question),
+  ].join("::");
+}
+
 function shuffleQuestionOptions(question) {
   const options = question.options.map((text, index) => ({
     text,
@@ -110,6 +119,7 @@ function buildRoundQuestions(
   usedQuestionIds = []
 ) {
   const used = usedQuestionIds;
+  const usedSet = new Set(used.map((item) => String(item)));
 
   const categories =
     selectedCategories.length > 0 ? selectedCategories : CATEGORY_ORDER;
@@ -133,16 +143,20 @@ function buildRoundQuestions(
       (q) => Number(q.difficulty) === Number(difficulty) && q.category === category
     );
 
-    let unused = pool.filter((q) => !used.includes(q.id));
+    let unused = pool.filter((q) => {
+      const questionKey = getQuestionUniqueKey(q);
+      const questionId = String(q.id ?? "");
+      return !usedSet.has(questionKey) && !usedSet.has(questionId);
+    });
     if (unused.length < questionsPerCategory) unused = pool;
 
     return shuffle(unused).slice(0, questionsPerCategory);
   });
 
-  selected = [...new Map(selected.map((q) => [q.id, q])).values()];
+  selected = [...new Map(selected.map((q) => [getQuestionUniqueKey(q), q])).values()];
 
   if (selected.length < targetCount) {
-    const selectedIds = new Set(selected.map((q) => q.id));
+    const selectedKeys = new Set(selected.map((q) => getQuestionUniqueKey(q)));
 
     const fallbackPool = allQuestions.filter((q) => {
       const validDifficulty = Number(q.difficulty) === Number(difficulty);
@@ -151,7 +165,11 @@ function buildRoundQuestions(
           ? CATEGORY_ORDER.includes(q.category)
           : selectedCategories.includes(q.category);
 
-      return validDifficulty && validCategory && !selectedIds.has(q.id);
+      return (
+        validDifficulty &&
+        validCategory &&
+        !selectedKeys.has(getQuestionUniqueKey(q))
+      );
     });
 
     selected = [
@@ -165,7 +183,8 @@ function buildRoundQuestions(
   }
 
   const round = shuffle(selected).map(shuffleQuestionOptions);
-  const nextUsed = [...new Set([...used, ...round.map((q) => q.id)])];
+  const roundKeys = round.map((q) => getQuestionUniqueKey(q));
+  const nextUsed = [...new Set([...used.map((item) => String(item)), ...roundKeys])];
 
   return {
     round,
@@ -459,13 +478,6 @@ async function saveScore() {
     return;
   }
 
-  setCurrentPlayerName(trimmedName);
-  if (typeof window !== "undefined") {
-    window.localStorage.setItem(CURRENT_PLAYER_KEY, trimmedName);
-  }
-
-  transferUsedQuestionsToPlayer(activePlayerKey, trimmedName);
-
   try {
     const quesitos = Object.values(progress.wedges || {}).filter(Boolean).length;
 
@@ -475,6 +487,15 @@ async function saveScore() {
       (doc) =>
         doc.data().name?.toLowerCase() === trimmedName.toLowerCase()
     );
+
+    const samePlayerContinuing =
+      continuedSession &&
+      currentPlayerName.trim().toLowerCase() === trimmedName.toLowerCase();
+
+    if (existingDoc && !samePlayerContinuing) {
+      setSaveMessage("Ese nombre ya existe. Elige otro nombre de jugador.");
+      return;
+    }
 
     const payload = {
       name: trimmedName,
@@ -505,6 +526,13 @@ async function saveScore() {
       await addDoc(scoresCollection, payload);
       setSaveMessage("Partida guardada correctamente");
     }
+
+    setCurrentPlayerName(trimmedName);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(CURRENT_PLAYER_KEY, trimmedName);
+    }
+
+    transferUsedQuestionsToPlayer(activePlayerKey, trimmedName);
 
     await loadScores();
 
