@@ -415,6 +415,33 @@ export default function App() {
       selectedCategories,
       usedForPlayer
     );
+
+    const roundKeys = round.map((question) => getQuestionUniqueKey(question));
+    const duplicateKeys = roundKeys.filter(
+      (key, index, arr) => arr.indexOf(key) !== index
+    );
+
+    console.groupCollapsed("[DEBUG] Ronda generada");
+    console.log("Jugador:", nextPlayerName || "anonimo");
+    console.log("Dificultad:", difficulty);
+    console.log("Categorias seleccionadas:", selectedCategories);
+    console.log("Total preguntas ronda:", round.length);
+    console.log("Duplicadas en ronda:", duplicateKeys.length);
+    if (duplicateKeys.length > 0) {
+      console.warn("Claves duplicadas:", [...new Set(duplicateKeys)]);
+    }
+    console.table(
+      round.map((question, index) => ({
+        n: index + 1,
+        id: question.id,
+        category: question.category,
+        difficulty: question.difficulty,
+        key: getQuestionUniqueKey(question),
+        question: cleanQuestionText(question.question),
+      }))
+    );
+    console.groupEnd();
+
     setUsedQuestionsForPlayer(playerKey, nextUsed);
     setActivePlayerKey(playerKey);
 
