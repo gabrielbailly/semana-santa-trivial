@@ -501,10 +501,16 @@ async function saveScore() {
           flex-direction: column;
         }
 
+        .topControls {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 14px;
+          flex-wrap: wrap;
+        }
+
         .updateStamp {
-          position: absolute;
-          top: 12px;
-          right: 16px;
           font-size: 0.76rem;
           color: #6b7280;
           background: rgba(255, 255, 255, 0.88);
@@ -651,7 +657,7 @@ async function saveScore() {
         }
 
         .soundBtn {
-          margin-bottom: 14px;
+          margin-bottom: 0;
         }
 
         .chips {
@@ -865,17 +871,19 @@ async function saveScore() {
         }
       `}</style>
 
-      <button
-        className="btn btnGhost soundBtn"
-        onClick={() => setSoundEnabled((v) => !v)}
-      >
-        {soundEnabled ? "🔊 Sonido" : "🔇 Silencio"}
-      </button>
+      <div className="topControls">
+        <button
+          className="btn btnGhost soundBtn"
+          onClick={() => setSoundEnabled((v) => !v)}
+        >
+          {soundEnabled ? "🔊 Sonido" : "🔇 Silencio"}
+        </button>
+
+        {screen === "home" && <div className="updateStamp">{lastUpdateLabel}</div>}
+      </div>
 
       {screen === "home" && (
         <div className="card homeCard">
-          <div className="updateStamp">{lastUpdateLabel}</div>
-
           <div className="homeHeroZone">
             <img src="/images/portada.png" alt="Portada" className="heroImage" />
             {homeMessage && <div className="homeMessage">{homeMessage}</div>}
