@@ -320,6 +320,11 @@ async function saveScore() {
     return;
   }
 
+  setCurrentPlayerName(trimmedName);
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem(CURRENT_PLAYER_KEY, trimmedName);
+  }
+
   try {
     const quesitos = Object.values(progress.wedges || {}).filter(Boolean).length;
 
@@ -358,11 +363,6 @@ async function saveScore() {
       // ➕ Nuevo jugador
       await addDoc(scoresCollection, payload);
       setSaveMessage("Partida guardada correctamente");
-    }
-
-    setCurrentPlayerName(trimmedName);
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(CURRENT_PLAYER_KEY, trimmedName);
     }
 
     await loadScores();
