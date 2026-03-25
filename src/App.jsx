@@ -16,6 +16,7 @@ import {
 const QUESTION_TIME = 10;
 const MAX_QUESTIONS_PER_ROUND = 12;
 const scoresCollection = collection(db, "scores");
+const CURRENT_PLAYER_KEY = "trivial_current_player";
 
 function shuffle(array) {
   const copy = [...array];
@@ -180,6 +181,8 @@ export default function App() {
   const [hasProgress, setHasProgress] = useState(false);
 
   const [playerName, setPlayerName] = useState("");
+  const [currentPlayerName, setCurrentPlayerName] = useState("");
+  const [continuedSession, setContinuedSession] = useState(false);
   const [savedScores, setSavedScores] = useState([]);
   const [saveMessage, setSaveMessage] = useState("");
 
@@ -188,8 +191,15 @@ export default function App() {
 
   useEffect(() => {
     const stored = loadProgress();
+    const storedPlayer =
+      typeof window !== "undefined"
+        ? window.localStorage.getItem(CURRENT_PLAYER_KEY) || ""
+        : "";
+
     setProgress(stored);
     setHasProgress(stored.totalScore > 0 || (stored.history?.length ?? 0) > 0);
+    setCurrentPlayerName(storedPlayer);
+    setPlayerName(storedPlayer);
   }, []);
 
   useEffect(() => {
@@ -228,6 +238,24 @@ export default function App() {
   function startGame(keepProgress) {
     const next = keepProgress ? loadProgress() : resetProgress();
     if (!keepProgress) resetUsedQuestions();
+
+    setSaveMessage("");
+    setContinuedSession(keepProgress);
+
+    if (keepProgress) {
+      const storedPlayer =
+        typeof window !== "undefined"
+          ? window.localStorage.getItem(CURRENT_PLAYER_KEY) || ""
+          : currentPlayerName;
+      setCurrentPlayerName(storedPlayer);
+      setPlayerName(storedPlayer);
+    } else {
+      setPlayerName("");
+      setCurrentPlayerName("");
+      if (typeof window !== "undefined") {
+        window.localStorage.removeItem(CURRENT_PLAYER_KEY);
+      }
+    }
 
     setProgress(next);
     setHasProgress(next.totalScore > 0 || (next.history?.length ?? 0) > 0);
@@ -281,7 +309,11 @@ export default function App() {
   }
 
 async function saveScore() {
-  const trimmedName = playerName.trim();
+  const trimmedName = (
+    continuedSession && currentPlayerName.trim()
+      ? currentPlayerName
+      : playerName
+  ).trim();
 
   if (!trimmedName) {
     setSaveMessage("Introduce un nombre");
@@ -326,6 +358,11 @@ async function saveScore() {
       // ➕ Nuevo jugador
       await addDoc(scoresCollection, payload);
       setSaveMessage("Partida guardada correctamente");
+    }
+
+    setCurrentPlayerName(trimmedName);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(CURRENT_PLAYER_KEY, trimmedName);
     }
 
     await loadScores();
@@ -373,6 +410,11 @@ async function saveScore() {
           padding: 20px;
         }
 
+        .homeCard {
+          max-width: 980px;
+          margin: 0 auto;
+        }
+
         .card {
           background: white;
           border-radius: 24px;
@@ -389,6 +431,50 @@ async function saveScore() {
           background: white;
         }
 
+        .homeControls {
+          margin: 20px auto 0;
+          max-width: 760px;
+          width: 100%;
+        }
+
+        .selectorGrid {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+          gap: 18px;
+          align-items: start;
+        }
+
+        .selectorBlock {
+          background: #fffbeb;
+          border: 1px solid #fed7aa;
+          border-radius: 16px;
+          padding: 14px;
+        }
+
+        .homeHint {
+          color: #6b7280;
+          font-size: .9rem;
+          margin-top: 6px;
+        }
+
+        .playerStatus {
+          margin-top: 18px;
+          padding: 14px;
+          background: #fff7ed;
+          border: 1px solid #fed7aa;
+          border-radius: 16px;
+        }
+
+        .playerTitle {
+          font-weight: 800;
+        }
+
+        .resumeHint {
+          margin-top: 8px;
+          color: #9a3412;
+          font-size: .92rem;
+        }
+
         .section {
           margin-top: 20px;
         }
@@ -401,7 +487,7 @@ async function saveScore() {
 
         .selectField {
           width: 100%;
-          max-width: 320px;
+          max-width: none;
           padding: 12px 14px;
           border-radius: 12px;
           border: 1px solid #d1d5db;
@@ -413,6 +499,10 @@ async function saveScore() {
           gap: 12px;
           flex-wrap: wrap;
           margin-top: 18px;
+        }
+
+        .homeActions {
+          justify-content: center;
         }
 
         .btn {
@@ -641,6 +731,10 @@ async function saveScore() {
           .quizTop {
             grid-template-columns: 1fr;
           }
+
+          .selectorGrid {
+            grid-template-columns: 1fr;
+          }
         }
       `}</style>
 
@@ -652,49 +746,68 @@ async function saveScore() {
       </button>
 
       {screen === "home" && (
-        <div className="card">
+        <div className="card homeCard">
           <img src="/images/portada.png" alt="Portada" className="heroImage" />
 
-          <div style={{ display: "flex", gap: "2rem", flexWrap: "wrap" }}>
-            <div className="section" style={{ flex: 1 }}>
-              <label className="label">Nivel</label>
-              <select
-                value={difficulty}
-                onChange={(e) => setDifficulty(Number(e.target.value))}
-                className="selectField"
-              >
-                <option value={1}>Fácil</option>
-                <option value={2}>Medio</option>
-                <option value={3}>Difícil</option>
-              </select>
-            </div>
+          <div className="homeControls">
+            <div className="selectorGrid">
+              <div className="section selectorBlock">
+                <label className="label">Nivel</label>
+                <select
+                  value={difficulty}
+                  onChange={(e) => setDifficulty(Number(e.target.value))}
+                  className="selectField"
+                >
+                  <option value={1}>Fácil</option>
+                  <option value={2}>Medio</option>
+                  <option value={3}>Difícil</option>
+                </select>
+              </div>
 
-            <div className="section" style={{ flex: 2 }}>
-              <label className="label">Categorías</label>
-              <select
-                multiple
-                value={selectedCategories}
-                onChange={(e) =>
-                  setSelectedCategories(
-                    Array.from(e.target.selectedOptions, (option) => option.value)
-                  )
-                }
-                className="selectField"
-                style={{ minHeight: 150 }}
-              >
-                {CATEGORY_ORDER.map((category) => (
-                  <option key={category} value={category}>
-                    {CATEGORY_CONFIG[category].icon} {CATEGORY_CONFIG[category].label}
-                  </option>
-                ))}
-              </select>
-              <div style={{ color: "#6b7280", fontSize: ".9rem", marginTop: 6 }}>
-                Si no eliges ninguna, se jugará con todas.
+              <div className="section selectorBlock">
+                <label className="label">Categorías</label>
+                <select
+                  multiple
+                  value={selectedCategories}
+                  onChange={(e) =>
+                    setSelectedCategories(
+                      Array.from(e.target.selectedOptions, (option) => option.value)
+                    )
+                  }
+                  className="selectField"
+                  style={{ minHeight: 150 }}
+                >
+                  {CATEGORY_ORDER.map((category) => (
+                    <option key={category} value={category}>
+                      {CATEGORY_CONFIG[category].icon} {CATEGORY_CONFIG[category].label}
+                    </option>
+                  ))}
+                </select>
+                <div className="homeHint">
+                  Si no eliges ninguna, se jugará con todas.
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="btnRow">
+          {hasProgress && (
+            <div className="playerStatus">
+              <div className="playerTitle">
+                Jugador actual: {currentPlayerName ? <strong>{currentPlayerName}</strong> : <strong>sin nombre guardado</strong>}
+              </div>
+              <div className="rankingMeta" style={{ marginTop: 8 }}>
+                <span className="badgeScore">{progress.totalScore || 0} pts</span>
+                <span className="badgeWedge">
+                  {Object.values(wedges).filter(Boolean).length} 🧩
+                </span>
+              </div>
+              <div className="resumeHint">
+                Pulsa <strong>Continuar partida</strong> para seguir con este jugador o <strong>Nueva partida</strong> para empezar desde cero con otro.
+              </div>
+            </div>
+          )}
+
+          <div className="btnRow homeActions">
             {!hasProgress ? (
               <button className="btn btnPrimary" onClick={() => startGame(false)}>
                 Jugar
@@ -848,17 +961,28 @@ async function saveScore() {
               Guarda tu puntuación en el Top 10.
             </div>
 
-            <div className="saveRow">
-              <input
-                className="saveInput"
-                value={playerName}
-                onChange={(e) => setPlayerName(e.target.value)}
-                placeholder="Nombre del jugador"
-              />
-              <button className="btn btnPrimary" onClick={saveScore}>
-                Guardar
-              </button>
-            </div>
+            {continuedSession && currentPlayerName ? (
+              <div className="saveRow">
+                <div style={{ alignSelf: "center", color: "#374151" }}>
+                  Se guardará como <strong>{currentPlayerName}</strong>.
+                </div>
+                <button className="btn btnPrimary" onClick={saveScore}>
+                  Guardar
+                </button>
+              </div>
+            ) : (
+              <div className="saveRow">
+                <input
+                  className="saveInput"
+                  value={playerName}
+                  onChange={(e) => setPlayerName(e.target.value)}
+                  placeholder="Nombre del jugador"
+                />
+                <button className="btn btnPrimary" onClick={saveScore}>
+                  Guardar
+                </button>
+              </div>
+            )}
 
             {saveMessage && <div style={{ marginTop: 10 }}>{saveMessage}</div>}
           </div>
