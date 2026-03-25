@@ -494,8 +494,11 @@ async function saveScore() {
         }
 
         .homeHeroZone {
-          max-width: 860px;
           margin: 0 auto;
+          width: fit-content;
+          max-width: 100%;
+          display: flex;
+          flex-direction: column;
         }
 
         .updateStamp {
@@ -545,7 +548,9 @@ async function saveScore() {
         }
 
         .heroImage {
-          width: 100%;
+          width: auto;
+          max-width: 100%;
+          height: auto;
           max-height: 300px;
           object-fit: contain;
           border-radius: 18px;
