@@ -17,7 +17,7 @@
     {
       "id": 2,
       "category": "personajes",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Qué discípulo pregunta quién va a traicionar a Jesús?",
       "options": [
@@ -101,7 +101,7 @@
     {
       "id": 8,
       "category": "personajes",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué mujer permanece al pie de la cruz como madre de Jesús?",
       "options": [
@@ -115,7 +115,7 @@
     {
       "id": 9,
       "category": "personajes",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué apóstol está al pie de la cruz con María?",
       "options": [
@@ -129,7 +129,7 @@
     {
       "id": 10,
       "category": "personajes",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué centurión reconoce a Jesús como Hijo de Dios?",
       "options": [
@@ -157,7 +157,7 @@
     {
       "id": 12,
       "category": "personajes",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué discípula encuentra vacío el sepulcro al amanecer?",
       "options": [
@@ -171,7 +171,7 @@
     {
       "id": 13,
       "category": "personajes",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué apóstol duda de la resurrección hasta ver las llagas?",
       "options": [
@@ -185,7 +185,7 @@
     {
       "id": 14,
       "category": "personajes",
-      "difficulty": 3,
+      "difficulty": 2,
       "image": "9",
       "question": "¿Qué dos discípulos van de camino a Emaús?",
       "options": [
@@ -199,7 +199,7 @@
     {
       "id": 15,
       "category": "personajes",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "1",
       "question": "¿A quién llama Jesús el que mete la mano en el plato?",
       "options": [
@@ -227,7 +227,7 @@
     {
       "id": 17,
       "category": "personajes",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "3",
       "question": "¿Qué rey se burla de Jesús y lo devuelve a Pilato?",
       "options": [
@@ -241,7 +241,7 @@
     {
       "id": 18,
       "category": "personajes",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué título colocan sobre la cruz de Jesús?",
       "options": [
@@ -255,7 +255,7 @@
     {
       "id": 19,
       "category": "personajes",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué dos figuras son crucificadas junto a Jesús?",
       "options": [
@@ -297,7 +297,7 @@
     {
       "id": 22,
       "category": "personajes",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "9",
       "question": "¿A quién se aparece primero Jesús resucitado según la tradición evangélica?",
       "options": [
@@ -325,7 +325,7 @@
     {
       "id": 24,
       "category": "personajes",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Quién reconoce a Jesús al partir el pan en Emaús?",
       "options": [
@@ -381,7 +381,7 @@
     {
       "id": 28,
       "category": "personajes",
-      "difficulty": 3,
+      "difficulty": 2,
       "image": "1",
       "question": "¿Qué apóstol saca la espada en Getsemaní?",
       "options": [
@@ -423,7 +423,7 @@
     {
       "id": 31,
       "category": "personajes",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿A quién confía Jesús el cuidado de su madre desde la cruz?",
       "options": [
@@ -451,7 +451,7 @@
     {
       "id": 33,
       "category": "personajes",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué apóstol entra primero al sepulcro según Juan?",
       "options": [
@@ -479,7 +479,7 @@
     {
       "id": 35,
       "category": "personajes",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Quiénes se reparten los vestidos de Jesús?",
       "options": [
@@ -507,7 +507,7 @@
     {
       "id": 37,
       "category": "personajes",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "7",
       "question": "¿Quiénes coronan de espinas a Jesús?",
       "options": [
@@ -549,7 +549,7 @@
     {
       "id": 40,
       "category": "personajes",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué apóstol se lanza al agua al reconocer a Jesús en el lago tras Pascua?",
       "options": [
@@ -563,7 +563,7 @@
     {
       "id": 41,
       "category": "lugares",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "1",
       "question": "¿En qué sala se celebra la Última Cena?",
       "options": [
@@ -577,7 +577,7 @@
     {
       "id": 42,
       "category": "lugares",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "1",
       "question": "¿En qué monte ora Jesús antes de ser arrestado?",
       "options": [
@@ -661,7 +661,7 @@
     {
       "id": 48,
       "category": "lugares",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué recorrido recuerda el camino de Jesús hacia la cruz?",
       "options": [
@@ -745,7 +745,7 @@
     {
       "id": 54,
       "category": "lugares",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "9",
       "question": "¿En qué monte asciende Jesús al cielo, según la tradición?",
       "options": [
@@ -759,7 +759,7 @@
     {
       "id": 55,
       "category": "lugares",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Desde qué zona de Jerusalén entra Jesús el Domingo de Ramos?",
       "options": [
@@ -773,7 +773,7 @@
     {
       "id": 56,
       "category": "lugares",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "1",
       "question": "¿En qué torrente cruza Jesús con los discípulos antes de Getsemaní?",
       "options": [
@@ -801,7 +801,7 @@
     {
       "id": 58,
       "category": "lugares",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "3",
       "question": "¿A qué palacio es enviado Jesús cuando Pilato sabe que es galileo?",
       "options": [
@@ -843,7 +843,7 @@
     {
       "id": 61,
       "category": "lugares",
-      "difficulty": 3,
+      "difficulty": 2,
       "image": "9",
       "question": "¿Desde qué punto parten algunas apariciones del Resucitado a discípulos pescadores?",
       "options": [
@@ -857,7 +857,7 @@
     {
       "id": 62,
       "category": "lugares",
-      "difficulty": 3,
+      "difficulty": 2,
       "image": "9",
       "question": "¿En qué región ocurre la aparición a los discípulos de Emaús?",
       "options": [
@@ -885,7 +885,7 @@
     {
       "id": 64,
       "category": "lugares",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Qué ciudad es centro de peregrinación en Pascua judía y cristiana?",
       "options": [
@@ -913,7 +913,7 @@
     {
       "id": 66,
       "category": "lugares",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué monte se asocia con la crucifixión de Jesús?",
       "options": [
@@ -927,7 +927,7 @@
     {
       "id": 67,
       "category": "lugares",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué lugar vacío se convierte en signo central de la fe pascual?",
       "options": [
@@ -1053,7 +1053,7 @@
     {
       "id": 76,
       "category": "lugares",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué lugar se convierte en punto de envío misionero tras la Pascua?",
       "options": [
@@ -1095,7 +1095,7 @@
     {
       "id": 79,
       "category": "lugares",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "3",
       "question": "¿En qué ciudad se juntan autoridades judías y romanas en el proceso de Jesús?",
       "options": [
@@ -1151,7 +1151,7 @@
     {
       "id": 83,
       "category": "frases",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Qué mandato da Jesús tras lavar los pies?",
       "options": [
@@ -1249,7 +1249,7 @@
     {
       "id": 90,
       "category": "frases",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué breve frase expresa necesidad física en la cruz?",
       "options": [
@@ -1277,7 +1277,7 @@
     {
       "id": 92,
       "category": "frases",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué oración final de confianza pronuncia Jesús?",
       "options": [
@@ -1333,7 +1333,7 @@
     {
       "id": 96,
       "category": "frases",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Qué advertencia hace Jesús a Pedro durante la Cena?",
       "options": [
@@ -1361,7 +1361,7 @@
     {
       "id": 98,
       "category": "frases",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "3",
       "question": "¿Qué frase usa Pilato sobre Jesús ante la multitud?",
       "options": [
@@ -1389,7 +1389,7 @@
     {
       "id": 100,
       "category": "frases",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué confesión hace el centurión al morir Jesús?",
       "options": [
@@ -1403,7 +1403,7 @@
     {
       "id": 101,
       "category": "frases",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué encargo reciben las mujeres tras el anuncio pascual?",
       "options": [
@@ -1417,7 +1417,7 @@
     {
       "id": 102,
       "category": "frases",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué frase dirige Jesús a Tomás sobre la fe?",
       "options": [
@@ -1431,7 +1431,7 @@
     {
       "id": 103,
       "category": "frases",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué saludo pascual repite Jesús a los discípulos reunidos?",
       "options": [
@@ -1459,7 +1459,7 @@
     {
       "id": 105,
       "category": "frases",
-      "difficulty": 3,
+      "difficulty": 2,
       "image": "6",
       "question": "¿Qué frase une obediencia y entrega en Getsemaní?",
       "options": [
@@ -1501,7 +1501,7 @@
     {
       "id": 108,
       "category": "frases",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Qué palabra de Jesús acompaña el reparto del pan?",
       "options": [
@@ -1515,7 +1515,7 @@
     {
       "id": 109,
       "category": "frases",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Qué palabra de Jesús acompaña el cáliz en la Cena?",
       "options": [
@@ -1543,7 +1543,7 @@
     {
       "id": 111,
       "category": "frases",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué ruego resume la misericordia de Jesús en la cruz?",
       "options": [
@@ -1557,7 +1557,7 @@
     {
       "id": 112,
       "category": "frases",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué frase usa un ladrón para burlarse de Jesús?",
       "options": [
@@ -1585,7 +1585,7 @@
     {
       "id": 114,
       "category": "frases",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué invitación hace Jesús en Emaús antes de ser reconocido?",
       "options": [
@@ -1599,7 +1599,7 @@
     {
       "id": 115,
       "category": "frases",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué frase litúrgica resume el anuncio pascual?",
       "options": [
@@ -1627,7 +1627,7 @@
     {
       "id": 117,
       "category": "frases",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Qué frase de Jesús ordena la caridad fraterna como señal cristiana?",
       "options": [
@@ -1655,7 +1655,7 @@
     {
       "id": 119,
       "category": "frases",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué despedida misionera aparece tras la Pascua?",
       "options": [
@@ -1767,7 +1767,7 @@
     {
       "id": 127,
       "category": "liturgia",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Qué se bendice al inicio de la Vigilia Pascual?",
       "options": [
@@ -1809,7 +1809,7 @@
     {
       "id": 130,
       "category": "liturgia",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Qué sacramentos se celebran especialmente en la Vigilia Pascual?",
       "options": [
@@ -1935,7 +1935,7 @@
     {
       "id": 139,
       "category": "liturgia",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "3",
       "question": "¿Cómo inicia la Vigilia Pascual antes de entrar al templo?",
       "options": [
@@ -2047,7 +2047,7 @@
     {
       "id": 147,
       "category": "liturgia",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "3",
       "question": "¿Qué domingo cierra la octava de Pascua?",
       "options": [
@@ -2061,7 +2061,7 @@
     {
       "id": 148,
       "category": "liturgia",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Por qué la Vigilia Pascual se celebra preferentemente de noche?",
       "options": [
@@ -2075,7 +2075,7 @@
     {
       "id": 149,
       "category": "liturgia",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué expresa litúrgicamente el cirio pascual durante cincuenta días?",
       "options": [
@@ -2103,7 +2103,7 @@
     {
       "id": 151,
       "category": "liturgia",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué unidad litúrgica existe entre Jueves Santo y Vigilia Pascual?",
       "options": [
@@ -2117,7 +2117,7 @@
     {
       "id": 152,
       "category": "liturgia",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué expresa la renovación de promesas bautismales en Pascua?",
       "options": [
@@ -2131,7 +2131,7 @@
     {
       "id": 153,
       "category": "liturgia",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué relación litúrgica hay entre cruz y resurrección?",
       "options": [
@@ -2145,7 +2145,7 @@
     {
       "id": 154,
       "category": "liturgia",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué acento pastoral marca la octava de Pascua?",
       "options": [
@@ -2159,7 +2159,7 @@
     {
       "id": 155,
       "category": "liturgia",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué simboliza el agua bendecida en la noche pascual?",
       "options": [
@@ -2215,7 +2215,7 @@
     {
       "id": 159,
       "category": "liturgia",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué finalidad tiene la adoración de la cruz en Viernes Santo?",
       "options": [
@@ -2257,7 +2257,7 @@
     {
       "id": 162,
       "category": "objetos",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Qué alimento parte Jesús en la Última Cena?",
       "options": [
@@ -2271,7 +2271,7 @@
     {
       "id": 163,
       "category": "objetos",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "1",
       "question": "¿Qué prenda de burla ponen a Jesús durante la pasión?",
       "options": [
@@ -2299,7 +2299,7 @@
     {
       "id": 165,
       "category": "objetos",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Con qué objeto cargó Jesús camino del Calvario?",
       "options": [
@@ -2341,7 +2341,7 @@
     {
       "id": 168,
       "category": "objetos",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué bebida agria ofrecen a Jesús en la cruz?",
       "options": [
@@ -2355,7 +2355,7 @@
     {
       "id": 169,
       "category": "objetos",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Con qué se envuelve el cuerpo de Jesús para la sepultura?",
       "options": [
@@ -2383,7 +2383,7 @@
     {
       "id": 171,
       "category": "objetos",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué elemento cierra el sepulcro?",
       "options": [
@@ -2397,7 +2397,7 @@
     {
       "id": 172,
       "category": "objetos",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "9",
       "question": "¿Qué lienzo encuentra Pedro en el sepulcro vacío?",
       "options": [
@@ -2439,7 +2439,7 @@
     {
       "id": 175,
       "category": "objetos",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "3",
       "question": "¿Qué objeto litúrgico simboliza la luz del Resucitado en Pascua?",
       "options": [
@@ -2621,7 +2621,7 @@
     {
       "id": 188,
       "category": "objetos",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué simboliza la cruz procesional al abrir una estación penitencial?",
       "options": [
@@ -2635,7 +2635,7 @@
     {
       "id": 189,
       "category": "objetos",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué expresa el cirio pascual encendido junto al ambón y la pila?",
       "options": [
@@ -2649,7 +2649,7 @@
     {
       "id": 190,
       "category": "objetos",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué valor catequético tiene la piedra del sepulcro en la iconografía pascual?",
       "options": [
@@ -2663,7 +2663,7 @@
     {
       "id": 191,
       "category": "objetos",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué sentido tiene el uso de aromas en la sepultura de Jesús?",
       "options": [
@@ -2691,7 +2691,7 @@
     {
       "id": 193,
       "category": "objetos",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué relación hay entre pan partido y cruz en la fe cristiana?",
       "options": [
@@ -2747,7 +2747,7 @@
     {
       "id": 197,
       "category": "objetos",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué expresa el agua bendita al inicio de una celebración pascual?",
       "options": [
@@ -3139,7 +3139,7 @@
     {
       "id": 225,
       "category": "piedad_tradiciones",
-      "difficulty": 2,
+      "difficulty": 1,
       "image": "3",
       "question": "¿Qué práctica pascual expresa alegría en torno a María?",
       "options": [
@@ -3293,7 +3293,7 @@
     {
       "id": 236,
       "category": "piedad_tradiciones",
-      "difficulty": 3,
+      "difficulty": 1,
       "image": "6",
       "question": "¿Qué fruto pascual se espera tras vivir bien la Semana Santa?",
       "options": [
