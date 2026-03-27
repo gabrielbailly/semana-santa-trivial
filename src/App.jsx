@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { addDoc, collection, doc, getDoc, getDocs, updateDoc } from "firebase/firestore";
 import { db, serverTimestamp } from "./firebase";
 import questionsData from "./data/questions.json";
+import PairMatchGame from "./PairMatchGame";
 import { CATEGORY_CONFIG, CATEGORY_ORDER } from "./config/categories";
 import {
   emptyProgress,
@@ -1113,6 +1114,9 @@ async function saveScore() {
                 <button className="btn btnGhost" onClick={() => startGame(false)}>
                   Nueva partida
                 </button>
+                 <button className="btn btnGhost" onClick={() => setScreen("pairGame")}>
+                  Juego de parejas
+                 </button>
               </>
             )}
           </div>
@@ -1166,6 +1170,9 @@ async function saveScore() {
           </div>
         </div>
       )}
+{screen === "pairGame" && (
+  <PairMatchGame onBack={() => setScreen("home")} />
+)}
 
       {screen === "quiz" && q && (
         <div className="card">
