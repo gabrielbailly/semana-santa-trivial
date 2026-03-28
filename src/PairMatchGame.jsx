@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 const BASE_PAIRS = [
   { id: "p1", personaje: "Jesús", frase: '"Padre, perdónalos, porque no saben lo que hacen"' },
@@ -61,6 +61,11 @@ function useGameSounds(enabled = true) {
       setTimeout(() => beep(920, 0.1), 90);
     },
     error: () => beep(220, 0.16, "sawtooth"),
+    final: () => {
+      beep(500, 0.12);
+      setTimeout(() => beep(700, 0.12), 120);
+      setTimeout(() => beep(900, 0.16), 240);
+    },
   };
 }
 
@@ -73,6 +78,7 @@ export default function PairMatchGame({ onBack }) {
   const [moves, setMoves] = useState(0);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const sounds = useGameSounds(soundEnabled);
+  const finishedRef = useRef(false);
 
   const shuffledCharacters = useMemo(
     () => shuffle(BASE_PAIRS.map((pair) => ({ id: pair.id, label: pair.personaje }))),
@@ -85,6 +91,17 @@ export default function PairMatchGame({ onBack }) {
   );
 
   const completed = matchedIds.length === BASE_PAIRS.length;
+
+  useEffect(() => {
+    if (completed && !finishedRef.current) {
+      sounds.final();
+      finishedRef.current = true;
+    }
+
+    if (!completed && finishedRef.current) {
+      finishedRef.current = false;
+    }
+  }, [completed, sounds]);
 
   function resetGame() {
     setRound((value) => value + 1);
