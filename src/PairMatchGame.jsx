@@ -1,18 +1,18 @@
 import React, { useMemo, useRef, useState } from "react";
 
 const BASE_PAIRS = [
-  { id: "p1", personaje: "Jesus", frase: '"Padre, perdonalos, porque no saben lo que hacen"' },
-  { id: "p2", personaje: "Buen ladron", frase: '"Acuerdate de mi cuando llegues a tu Reino"' },
-  { id: "p3", personaje: "Mal ladron", frase: '"Si tu eres el Mesias, salvate a ti mismo"' },
-  { id: "p4", personaje: "Pilato", frase: '"Aqui teneis al hombre"' },
-  { id: "p5", personaje: "Centurion", frase: '"Verdaderamente este hombre era Hijo de Dios"' },
-  { id: "p6", personaje: "Tomas", frase: '"Senor mio y Dios mio"' },
-  { id: "p7", personaje: "Angel", frase: '"No esta aqui, ha resucitado"' },
-  { id: "p8", personaje: "Maria Magdalena", frase: '"Se han llevado del sepulcro al Senor"' },
+  { id: "p1", personaje: "Jesús", frase: '"Padre, perdónalos, porque no saben lo que hacen"' },
+  { id: "p2", personaje: "Buen ladrón", frase: '"Acuérdate de mí cuando llegues a tu Reino"' },
+  { id: "p3", personaje: "Mal ladrón", frase: '"Si tú eres el Mesías, sálvate a ti mismo"' },
+  { id: "p4", personaje: "Pilato", frase: '"Aquí tenéis al hombre"' },
+  { id: "p5", personaje: "Centurión", frase: '"Verdaderamente este hombre era Hijo de Dios"' },
+  { id: "p6", personaje: "Tomás", frase: '"Señor mío y Dios mío"' },
+  { id: "p7", personaje: "Ángel", frase: '"No está aquí, ha resucitado"' },
+  { id: "p8", personaje: "María Magdalena", frase: '"Se han llevado del sepulcro al Señor"' },
   { id: "p9", personaje: "Pedro", frase: '"No conozco a ese hombre"' },
-  { id: "p10", personaje: "Caifas", frase: '"Ha blasfemado"' },
+  { id: "p10", personaje: "Caifás", frase: '"Ha blasfemado"' },
   { id: "p11", personaje: "Judas", frase: '"He pecado entregando sangre inocente"' },
-  { id: "p12", personaje: "Jesus resucitado", frase: '"La paz con vosotros"' },
+  { id: "p12", personaje: "Jesús resucitado", frase: '"La paz con vosotros"' },
 ];
 
 function shuffle(items) {
