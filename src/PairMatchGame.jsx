@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 
 const BASE_PAIRS = [
   { id: "p1", personaje: "Jesus", frase: "Padre, perdonalos" },
@@ -24,6 +24,46 @@ function shuffle(items) {
   return copy;
 }
 
+function useGameSounds(enabled = true) {
+  const ctxRef = useRef(null);
+
+  const getCtx = () => {
+    if (!enabled || typeof window === "undefined") return null;
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return null;
+    if (!ctxRef.current) ctxRef.current = new AudioCtx();
+    if (ctxRef.current.state === "suspended") ctxRef.current.resume();
+    return ctxRef.current;
+  };
+
+  const beep = (freq, dur = 0.12, type = "triangle") => {
+    const ctx = getCtx();
+    if (!ctx) return;
+
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.frequency.value = freq;
+    osc.type = type;
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
+
+    osc.start();
+    osc.stop(ctx.currentTime + dur);
+  };
+
+  return {
+    correct: () => {
+      beep(700, 0.1);
+      setTimeout(() => beep(920, 0.1), 90);
+    },
+    error: () => beep(220, 0.16, "sawtooth"),
+  };
+}
+
 export default function PairMatchGame({ onBack }) {
   const [round, setRound] = useState(0);
   const [selectedCharacter, setSelectedCharacter] = useState(null);
@@ -31,6 +71,8 @@ export default function PairMatchGame({ onBack }) {
   const [matchedIds, setMatchedIds] = useState([]);
   const [message, setMessage] = useState("");
   const [moves, setMoves] = useState(0);
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  const sounds = useGameSounds(soundEnabled);
 
   const shuffledCharacters = useMemo(
     () => shuffle(BASE_PAIRS.map((pair) => ({ id: pair.id, label: pair.personaje }))),
@@ -63,10 +105,12 @@ export default function PairMatchGame({ onBack }) {
         setMatchedIds((prev) => [...prev, nextCharacter.id]);
       }
       setMessage("Muy bien. Esa pareja es correcta.");
+      sounds.correct();
       setSelectedCharacter(null);
       setSelectedPhrase(null);
     } else {
       setMessage("No coinciden. Prueba otra vez.");
+      sounds.error();
       setTimeout(() => {
         setSelectedCharacter(null);
         setSelectedPhrase(null);
@@ -128,12 +172,23 @@ export default function PairMatchGame({ onBack }) {
           display: flex;
           gap: 8px;
           flex-wrap: wrap;
+          align-items: center;
         }
 
         .pairPill {
           background: #f3f4f6;
           border-radius: 999px;
           padding: 6px 10px;
+          font-weight: 700;
+          font-size: .9rem;
+        }
+
+        .soundToggle {
+          border: 1px solid #d1d5db;
+          border-radius: 999px;
+          background: white;
+          padding: 6px 10px;
+          cursor: pointer;
           font-weight: 700;
           font-size: .9rem;
         }
@@ -145,7 +200,7 @@ export default function PairMatchGame({ onBack }) {
 
         .pairGrid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
           gap: 14px;
         }
 
@@ -154,6 +209,8 @@ export default function PairMatchGame({ onBack }) {
           border: 1px solid #fed7aa;
           border-radius: 16px;
           padding: 12px;
+          max-height: 62vh;
+          overflow: auto;
         }
 
         .pairCol h3 {
@@ -222,8 +279,37 @@ export default function PairMatchGame({ onBack }) {
         }
 
         @media (max-width: 860px) {
+          .pairGameCard {
+            padding: 12px;
+          }
+
           .pairGrid {
-            grid-template-columns: 1fr;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 8px;
+          }
+
+          .pairCol {
+            padding: 8px;
+            max-height: 58vh;
+          }
+
+          .pairCol h3 {
+            font-size: .95rem;
+          }
+
+          .pairBtn {
+            padding: 9px 8px;
+            font-size: .88rem;
+            line-height: 1.2;
+          }
+
+          .pairHelp {
+            font-size: .9rem;
+            margin-bottom: 10px;
+          }
+
+          .pairTitle {
+            font-size: 1.08rem;
           }
         }
       `}</style>
@@ -233,6 +319,9 @@ export default function PairMatchGame({ onBack }) {
         <div className="pairMeta">
           <span className="pairPill">Aciertos: {matchedIds.length}/{BASE_PAIRS.length}</span>
           <span className="pairPill">Intentos: {moves}</span>
+          <button className="soundToggle" onClick={() => setSoundEnabled((v) => !v)}>
+            {soundEnabled ? "🔊 Sonido" : "🔇 Silencio"}
+          </button>
         </div>
       </div>
 
