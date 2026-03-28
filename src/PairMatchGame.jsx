@@ -1,18 +1,18 @@
 import React, { useMemo, useRef, useState } from "react";
 
 const BASE_PAIRS = [
-  { id: "p1", personaje: "Jesus", frase: "Padre, perdonalos" },
-  { id: "p2", personaje: "Judas", frase: "Traiciona a Jesus con un beso" },
-  { id: "p3", personaje: "Pedro", frase: "Nego a Jesus tres veces" },
-  { id: "p4", personaje: "Pilato", frase: "Se lavo las manos" },
-  { id: "p5", personaje: "Buen ladron", frase: "Acuerdate de mi en tu Reino" },
-  { id: "p6", personaje: "Maria Magdalena", frase: "Ve el sepulcro vacio" },
-  { id: "p7", personaje: "Tomas", frase: "Duda hasta ver las llagas" },
-  { id: "p8", personaje: "Jose de Arimatea", frase: "Pide el cuerpo de Jesus" },
-  { id: "p9", personaje: "Simon de Cirene", frase: "Ayuda a llevar la cruz" },
-  { id: "p10", personaje: "Centurion", frase: "Reconoce a Jesus como Hijo de Dios" },
-  { id: "p11", personaje: "Angel", frase: "No esta aqui, ha resucitado" },
-  { id: "p12", personaje: "Jesus resucitado", frase: "La paz con vosotros" },
+  { id: "p1", personaje: "Jesus", frase: '"Padre, perdonalos, porque no saben lo que hacen"' },
+  { id: "p2", personaje: "Buen ladron", frase: '"Acuerdate de mi cuando llegues a tu Reino"' },
+  { id: "p3", personaje: "Mal ladron", frase: '"Si tu eres el Mesias, salvate a ti mismo"' },
+  { id: "p4", personaje: "Pilato", frase: '"Aqui teneis al hombre"' },
+  { id: "p5", personaje: "Centurion", frase: '"Verdaderamente este hombre era Hijo de Dios"' },
+  { id: "p6", personaje: "Tomas", frase: '"Senor mio y Dios mio"' },
+  { id: "p7", personaje: "Angel", frase: '"No esta aqui, ha resucitado"' },
+  { id: "p8", personaje: "Maria Magdalena", frase: '"Se han llevado del sepulcro al Senor"' },
+  { id: "p9", personaje: "Pedro", frase: '"No conozco a ese hombre"' },
+  { id: "p10", personaje: "Caifas", frase: '"Ha blasfemado"' },
+  { id: "p11", personaje: "Judas", frase: '"He pecado entregando sangre inocente"' },
+  { id: "p12", personaje: "Jesus resucitado", frase: '"La paz con vosotros"' },
 ];
 
 function shuffle(items) {
@@ -241,6 +241,10 @@ export default function PairMatchGame({ onBack }) {
           cursor: default;
         }
 
+        .pairPhraseText {
+          font-style: italic;
+        }
+
         .pairBottom {
           margin-top: 12px;
           display: flex;
@@ -360,7 +364,7 @@ export default function PairMatchGame({ onBack }) {
                 onClick={() => handlePhraseClick(item)}
                 disabled={isMatched}
               >
-                {item.label}
+                <span className="pairPhraseText">{item.label}</span>
               </button>
             );
           })}
