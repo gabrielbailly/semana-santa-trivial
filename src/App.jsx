@@ -801,6 +801,31 @@ async function saveScore() {
           background: white;
           border: 1px solid #e5e7eb;
         }
+        .btnSecondary {
+          background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+          color: white;
+          border: none;
+        }
+
+        .btnPair {
+          background: linear-gradient(135deg, #ec4899, #be185d);
+          color: white;
+          border: none;
+        }
+
+        .btnSecondary:hover,
+        .btnPair:hover,
+        .btnPrimary:hover {
+          filter: brightness(1.05);
+          transform: translateY(-1px);
+          transition: all .18s ease;
+        }
+
+        @media (max-width: 900px) {
+          .homeActions .btn {
+            width: 100%;
+          }
+        }
 
         .soundBtn {
           margin-bottom: 0;
@@ -1111,12 +1136,13 @@ async function saveScore() {
                 <button className="btn btnPrimary" onClick={() => startGame(true)}>
                   Continuar partida
                 </button>
-                <button className="btn btnGhost" onClick={() => startGame(false)}>
+                <button className="btn btnSecondary" onClick={() => startGame(false)}>
                   Nueva partida
                 </button>
-                 <button className="btn btnGhost" onClick={() => setScreen("pairGame")}>
+                <button className="btn btnPair" onClick={() => setScreen("pairGame")}>
                   Juego de parejas
-                 </button>
+                </button>
+
               </>
             )}
           </div>
