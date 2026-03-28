@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
+
 const BASE_PAIRS = [
   { id: "p1", personaje: "Jesús", frase: '"Padre, perdónalos, porque no saben lo que hacen"' },
   { id: "p2", personaje: "Buen ladrón", frase: '"Acuérdate de mí cuando llegues a tu Reino"' },
