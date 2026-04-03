@@ -198,16 +198,6 @@ export default function PairMatchGame({ onBack }) {
     finishedRef.current = false;
   }
 
-  function changeSet() {
-    setSelectedSetId(null);
-    setSelectedCharacter(null);
-    setSelectedPhrase(null);
-    setMatchedIds([]);
-    setMessage("");
-    setMoves(0);
-    finishedRef.current = false;
-  }
-
   function tryMatch(nextCharacter, nextPhrase) {
     if (!nextCharacter || !nextPhrase) return;
 
@@ -320,6 +310,11 @@ export default function PairMatchGame({ onBack }) {
           font-weight: 800;
           padding: 14px;
           cursor: pointer;
+        }
+
+        .setBtn.active {
+          outline: 3px solid #fdba74;
+          outline-offset: 1px;
         }
 
         .pairHelp {
@@ -447,43 +442,38 @@ export default function PairMatchGame({ onBack }) {
         }
       `}</style>
 
-      {!activeSet ? (
-        <>
-          <div className="pairTop">
-            <h2 className="pairTitle">Unir parejas: personaje y frase</h2>
-            <div className="pairMeta">
-              <button className="soundToggle" onClick={() => setSoundEnabled((v) => !v)}>
-                {soundEnabled ? "🔊 Sonido" : "🔇 Silencio"}
-              </button>
-              <button className="pairActionBtn secondary" onClick={onBack}>Volver al inicio</button>
-            </div>
-          </div>
-          <p className="pairHelp">Elige un set para jugar una partida diferente.</p>
-          <div className="setPicker">
-            {GAME_SETS.map((setItem) => (
-              <button key={setItem.id} className="setBtn" onClick={() => selectSet(setItem.id)}>
-                {setItem.title} ({setItem.pairs.length} parejas)
-              </button>
-            ))}
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="pairTop">
-            <h2 className="pairTitle">{activeSet.title}: personaje y frase</h2>
-            <div className="pairMeta">
-              <span className="pairPill">Aciertos: {matchedIds.length}/{activePairs.length}</span>
-              <span className="pairPill">Intentos: {moves}</span>
-              <button className="soundToggle" onClick={() => setSoundEnabled((v) => !v)}>
-                {soundEnabled ? "🔊 Sonido" : "🔇 Silencio"}
-              </button>
-            </div>
-          </div>
+      <div className="pairTop">
+        <h2 className="pairTitle">Unir parejas: personaje y frase</h2>
+        <div className="pairMeta">
+          {activeSet && <span className="pairPill">Aciertos: {matchedIds.length}/{activePairs.length}</span>}
+          {activeSet && <span className="pairPill">Intentos: {moves}</span>}
+          <button className="soundToggle" onClick={() => setSoundEnabled((v) => !v)}>
+            {soundEnabled ? "🔊 Sonido" : "🔇 Silencio"}
+          </button>
+          <button className="pairActionBtn secondary" onClick={onBack}>Volver al inicio</button>
+        </div>
+      </div>
 
-          <p className="pairHelp">
-            Toca un personaje y luego la frase correcta. Si aciertas, la pareja queda en verde.
-          </p>
+      <p className="pairHelp">
+        {activeSet
+          ? "Toca un personaje y luego la frase correcta. Si aciertas, la pareja queda en verde."
+          : "Elige un set para empezar. La partida se abrirá en esta misma pantalla."}
+      </p>
 
+      <div className="setPicker">
+        {GAME_SETS.map((setItem) => (
+          <button
+            key={setItem.id}
+            className={`setBtn${activeSet?.id === setItem.id ? " active" : ""}`}
+            onClick={() => selectSet(setItem.id)}
+          >
+            {setItem.title} ({setItem.pairs.length} parejas)
+          </button>
+        ))}
+      </div>
+
+      {activeSet && (
+        <>
           <div className="pairGrid">
             <div className="pairCol">
               <h3>Personajes</h3>
@@ -528,7 +518,6 @@ export default function PairMatchGame({ onBack }) {
             </div>
 
             <div className="pairActions">
-              <button className="pairActionBtn secondary" onClick={changeSet}>Cambiar set</button>
               <button className="pairActionBtn secondary" onClick={onBack}>Volver al inicio</button>
               <button className="pairActionBtn" onClick={resetGame}>Mezclar de nuevo</button>
             </div>
