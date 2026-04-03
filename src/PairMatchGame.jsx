@@ -451,6 +451,12 @@ export default function PairMatchGame({ onBack }) {
         <>
           <div className="pairTop">
             <h2 className="pairTitle">Unir parejas: personaje y frase</h2>
+            <div className="pairMeta">
+              <button className="soundToggle" onClick={() => setSoundEnabled((v) => !v)}>
+                {soundEnabled ? "Sonido" : "Silencio"}
+              </button>
+              <button className="pairActionBtn secondary" onClick={onBack}>Volver al inicio</button>
+            </div>
           </div>
           <p className="pairHelp">Elige un set para jugar una partida diferente.</p>
           <div className="setPicker">
@@ -459,12 +465,6 @@ export default function PairMatchGame({ onBack }) {
                 {setItem.title} ({setItem.pairs.length} parejas)
               </button>
             ))}
-          </div>
-          <div className="pairBottom" style={{ marginTop: 16 }}>
-            <div />
-            <div className="pairActions">
-              <button className="pairActionBtn secondary" onClick={onBack}>Volver al inicio</button>
-            </div>
           </div>
         </>
       ) : (
