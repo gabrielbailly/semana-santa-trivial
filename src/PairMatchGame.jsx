@@ -343,23 +343,42 @@ export default function PairMatchGame({ onBack }) {
         }
 
         .setPicker {
-          display: grid;
-          gap: 10px;
-          margin-top: 12px;
+          display: flex;
+          gap: 8px;
+          margin: 10px 0 14px;
+          justify-content: center;
+          align-items: center;
+          flex-wrap: nowrap;
         }
 
         .setBtn {
-          border: none;
-          border-radius: 14px;
-          background: linear-gradient(135deg, #f59e0b, #ea580c);
+          border: 1px solid transparent;
+          border-radius: 12px;
           color: white;
           font-weight: 800;
-          padding: 14px;
+          padding: 10px 14px;
           cursor: pointer;
+          font-size: .92rem;
+          line-height: 1;
+        }
+
+        .setBtn.set1 {
+          background: #1d4ed8;
+          border-color: #1e40af;
+        }
+
+        .setBtn.set2 {
+          background: #0f766e;
+          border-color: #115e59;
+        }
+
+        .setBtn.set3 {
+          background: #b45309;
+          border-color: #92400e;
         }
 
         .setBtn.active {
-          outline: 3px solid #fdba74;
+          outline: 3px solid #fcd34d;
           outline-offset: 1px;
         }
 
@@ -482,6 +501,15 @@ export default function PairMatchGame({ onBack }) {
             margin-bottom: 10px;
           }
 
+          .setPicker {
+            gap: 6px;
+          }
+
+          .setBtn {
+            padding: 8px 10px;
+            font-size: .8rem;
+          }
+
           .pairTitle {
             font-size: 1.08rem;
           }
@@ -510,10 +538,10 @@ export default function PairMatchGame({ onBack }) {
         {GAME_SETS.map((setItem) => (
           <button
             key={setItem.id}
-            className={`setBtn${activeSet?.id === setItem.id ? " active" : ""}`}
+            className={`setBtn ${setItem.id}${activeSet?.id === setItem.id ? " active" : ""}`}
             onClick={() => selectSet(setItem.id)}
           >
-            {setItem.title} ({setItem.pairs.length} parejas)
+            {setItem.title}
           </button>
         ))}
       </div>
