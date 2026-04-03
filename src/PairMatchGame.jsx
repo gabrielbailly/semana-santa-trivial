@@ -5,81 +5,127 @@ const GAME_SETS = [
     id: "set1",
     title: "Juego 1",
     pairs: [
-      { id: "s1p1", personaje: "Jesús", frase: '"Padre, perdónalos, porque no saben lo que hacen"' },
-      { id: "s1p2", personaje: "Buen ladrón", frase: '"Acuérdate de mí cuando llegues a tu Reino"' },
-      { id: "s1p3", personaje: "Mal ladrón", frase: '"Si tú eres el Mesías, sálvate a ti mismo"' },
-      { id: "s1p4", personaje: "Pilato", frase: '"Aquí tenéis al hombre"' },
-      { id: "s1p5", personaje: "Centurión", frase: '"Verdaderamente este hombre era Hijo de Dios"' },
-      { id: "s1p6", personaje: "Tomás", frase: '"Señor mío y Dios mío"' },
-      { id: "s1p7", personaje: "Ángel", frase: '"No está aquí, ha resucitado"' },
-      { id: "s1p8", personaje: "María Magdalena", frase: '"Se han llevado del sepulcro al Señor"' },
-      { id: "s1p9", personaje: "Pedro", frase: '"No conozco a ese hombre"' },
-      { id: "s1p10", personaje: "Caifás", frase: '"Ha blasfemado"' },
-      { id: "s1p11", personaje: "Judas", frase: '"He pecado entregando sangre inocente"' },
-      { id: "s1p12", personaje: "Jesús resucitado", frase: '"La paz con vosotros"' },
-      { id: "s1p13", personaje: "Jesús", frase: '"Hoy estarás conmigo en el paraíso"' },
-      { id: "s1p14", personaje: "Jesús", frase: '"Mujer, ahí tienes a tu hijo"' },
-      { id: "s1p15", personaje: "Jesús", frase: '"Tengo sed"' },
-      { id: "s1p16", personaje: "Jesús", frase: '"Todo está cumplido"' },
-      { id: "s1p17", personaje: "Jesús", frase: '"Padre, en tus manos encomiendo mi espíritu"' },
-      { id: "s1p18", personaje: "Pilato", frase: '"Soy inocente de la sangre de este justo"' },
-      { id: "s1p19", personaje: "Pedro", frase: '"No conozco a ese hombre"' },
-      { id: "s1p20", personaje: "Judas", frase: '"Con un beso entregas al Hijo del Hombre"' },
+      { id: "s1p1", personaje: "Jesús en la cruz", frase: '"Padre, perdónalos, porque no saben lo que hacen"' },
+      { id: "s1p2", personaje: "Buen ladrón Dimas", frase: '"Acuérdate de mí cuando llegues a tu Reino"' },
+      { id: "s1p3", personaje: "Mal ladrón Gestas", frase: '"Si tú eres el Mesías, sálvate a ti mismo"' },
+      { id: "s1p4", personaje: "Pilato ante el pueblo", frase: '"Aquí tenéis al hombre"' },
+      { id: "s1p5", personaje: "Centurión del Calvario", frase: '"Verdaderamente este hombre era Hijo de Dios"' },
+      { id: "s1p6", personaje: "Tomás apóstol", frase: '"Señor mío y Dios mío"' },
+      { id: "s1p7", personaje: "Ángel del sepulcro", frase: '"No está aquí, ha resucitado"' },
+      { id: "s1p8", personaje: "María Magdalena en el huerto", frase: '"Se han llevado del sepulcro al Señor"' },
+      { id: "s1p9", personaje: "Pedro en el patio", frase: '"No conozco a ese hombre"' },
+      { id: "s1p10", personaje: "Caifás sumo sacerdote", frase: '"Ha blasfemado"' },
+      { id: "s1p11", personaje: "Judas arrepentido", frase: '"He pecado entregando sangre inocente"' },
+      { id: "s1p12", personaje: "Jesús resucitado en el cenáculo", frase: '"La paz con vosotros"' },
+      { id: "s1p13", personaje: "Jesús al buen ladrón", frase: '"Hoy estarás conmigo en el paraíso"' },
+      { id: "s1p14", personaje: "Jesús a su madre", frase: '"Mujer, ahí tienes a tu hijo"' },
+      { id: "s1p15", personaje: "Jesús con sed", frase: '"Tengo sed"' },
+      { id: "s1p16", personaje: "Jesús al final", frase: '"Todo está cumplido"' },
+      { id: "s1p17", personaje: "Jesús al morir", frase: '"Padre, en tus manos encomiendo mi espíritu"' },
+      { id: "s1p18", personaje: "Pilato al lavarse las manos", frase: '"Soy inocente de la sangre de este justo"' },
+      { id: "s1p19", personaje: "Pedro en la segunda negación", frase: '"No soy de los suyos"' },
+      { id: "s1p20", personaje: "Jesús en el arresto", frase: '"Con un beso entregas al Hijo del Hombre"' },
     ],
   },
   {
     id: "set2",
     title: "Juego 2",
     pairs: [
-      { id: "s2p1", personaje: "Jesús", frase: '"Mi reino no es de este mundo"' },
-      { id: "s2p2", personaje: "Pilato", frase: '"¿Qué es la verdad?"' },
-      { id: "s2p3", personaje: "Caifás", frase: '"Es reo de muerte"' },
-      { id: "s2p4", personaje: "Soldados", frase: '"Salve, rey de los judíos"' },
-      { id: "s2p5", personaje: "Judas", frase: '"He pecado entregando sangre inocente"' },
-      { id: "s2p6", personaje: "Pedro", frase: '"Señor, tú lo sabes todo"' },
-      { id: "s2p7", personaje: "Jesús", frase: '"Velad y orad para no caer en tentación"' },
-      { id: "s2p8", personaje: "Jesús", frase: '"Hágase tu voluntad"' },
-      { id: "s2p9", personaje: "Ángel", frase: '"¿Por qué buscáis entre los muertos al que vive?"' },
-      { id: "s2p10", personaje: "María Magdalena", frase: '"¡Rabbuní!"' },
-      { id: "s2p11", personaje: "Jesús resucitado", frase: '"No temas"' },
-      { id: "s2p12", personaje: "Jesús resucitado", frase: '"Id por todo el mundo"' },
-      { id: "s2p13", personaje: "Jesús", frase: '"El que esté libre de pecado que tire la primera piedra"' },
-      { id: "s2p14", personaje: "Jesús", frase: '"Yo soy el camino, la verdad y la vida"' },
-      { id: "s2p15", personaje: "Jesús", frase: '"Amaos unos a otros como yo os he amado"' },
-      { id: "s2p16", personaje: "Buen ladrón", frase: '"Nosotros lo hemos merecido, este no ha hecho nada malo"' },
-      { id: "s2p17", personaje: "Centurión", frase: '"Realmente este era Hijo de Dios"' },
-      { id: "s2p18", personaje: "Pilato", frase: '"No encuentro culpa en este hombre"' },
-      { id: "s2p19", personaje: "Jesús", frase: '"Yo para esto he nacido"' },
-      { id: "s2p20", personaje: "Pedro", frase: '"No cantará el gallo antes que me niegues tres veces"' },
+      { id: "s2p1", personaje: "Jesús ante Pilato", frase: '"Mi reino no es de este mundo"' },
+      { id: "s2p2", personaje: "Pilato en el pretorio", frase: '"¿Qué es la verdad?"' },
+      { id: "s2p3", personaje: "Caifás en el Sanedrín", frase: '"Es reo de muerte"' },
+      { id: "s2p4", personaje: "Soldados del pretorio", frase: '"Salve, rey de los judíos"' },
+      { id: "s2p5", personaje: "Judas con los sacerdotes", frase: '"¿Qué me queréis dar y yo os lo entregaré?"' },
+      { id: "s2p6", personaje: "Pedro tras la pesca", frase: '"Señor, tú lo sabes todo"' },
+      { id: "s2p7", personaje: "Jesús en Getsemaní", frase: '"Velad y orad para no caer en tentación"' },
+      { id: "s2p8", personaje: "Jesús en oración", frase: '"Hágase tu voluntad"' },
+      { id: "s2p9", personaje: "Ángel a las mujeres", frase: '"¿Por qué buscáis entre los muertos al que vive?"' },
+      { id: "s2p10", personaje: "María Magdalena al reconocerle", frase: '"¡Rabbuní!"' },
+      { id: "s2p11", personaje: "Jesús resucitado a Magdalena", frase: '"No me retengas"' },
+      { id: "s2p12", personaje: "Jesús resucitado en Galilea", frase: '"Id por todo el mundo"' },
+      { id: "s2p13", personaje: "Jesús en el templo", frase: '"El que esté libre de pecado que tire la primera piedra"' },
+      { id: "s2p14", personaje: "Jesús a los apóstoles", frase: '"Yo soy el camino, la verdad y la vida"' },
+      { id: "s2p15", personaje: "Jesús en la cena (mandamiento)", frase: '"Amaos unos a otros como yo os he amado"' },
+      { id: "s2p16", personaje: "Buen ladrón arrepentido", frase: '"Nosotros lo hemos merecido, este no ha hecho nada malo"' },
+      { id: "s2p17", personaje: "Centurión después de la muerte", frase: '"Realmente este era Hijo de Dios"' },
+      { id: "s2p18", personaje: "Pilato sobre Jesús", frase: '"No encuentro culpa en este hombre"' },
+      { id: "s2p19", personaje: "Jesús sobre su misión", frase: '"Yo para esto he nacido"' },
+      { id: "s2p20", personaje: "Jesús a Pedro en la cena", frase: '"No cantará el gallo antes que me niegues tres veces"' },
     ],
   },
   {
     id: "set3",
     title: "Juego 3",
     pairs: [
-      { id: "s3p1", personaje: "Jesús", frase: '"Tomad y comed, esto es mi cuerpo"' },
-      { id: "s3p2", personaje: "Jesús", frase: '"Tomad y bebed, esta es mi sangre"' },
-      { id: "s3p3", personaje: "Jesús", frase: '"Uno de vosotros me va a entregar"' },
-      { id: "s3p4", personaje: "Jesús", frase: '"Antes que cante el gallo me negarás tres veces"' },
-      { id: "s3p5", personaje: "Pedro", frase: '"Aunque todos te abandonen, yo no"' },
-      { id: "s3p6", personaje: "Jesús", frase: '"Con un beso entregas al Hijo del Hombre"' },
-      { id: "s3p7", personaje: "Pilato", frase: '"Ecce homo"' },
-      { id: "s3p8", personaje: "Multitud", frase: '"¡Crucifícalo!"' },
-      { id: "s3p9", personaje: "Jesús", frase: '"No lloréis por mí"' },
-      { id: "s3p10", personaje: "Jesús", frase: '"Dios mío, Dios mío, ¿por qué me has abandonado?"' },
-      { id: "s3p11", personaje: "José de Arimatea", frase: '"Dame el cuerpo de Jesús"' },
-      { id: "s3p12", personaje: "Ángel", frase: '"No tengáis miedo"' },
-      { id: "s3p13", personaje: "Jesús resucitado", frase: '"Alegraos"' },
-      { id: "s3p14", personaje: "Jesús resucitado", frase: '"No me retengas"' },
-      { id: "s3p15", personaje: "Jesús resucitado", frase: '"Dichosos los que creen sin haber visto"' },
-      { id: "s3p16", personaje: "Jesús resucitado", frase: '"La paz con vosotros"' },
-      { id: "s3p17", personaje: "Jesús", frase: '"Padre, perdónalos"' },
-      { id: "s3p18", personaje: "Buen ladrón", frase: '"Acuérdate de mí"' },
-      { id: "s3p19", personaje: "Mal ladrón", frase: '"Sálvate a ti mismo y a nosotros"' },
-      { id: "s3p20", personaje: "Jesús", frase: '"Todo está cumplido"' },
+      { id: "s3p1", personaje: "Jesús al partir el pan", frase: '"Tomad y comed, esto es mi cuerpo"' },
+      { id: "s3p2", personaje: "Jesús al dar el cáliz", frase: '"Tomad y bebed, esta es mi sangre"' },
+      { id: "s3p3", personaje: "Jesús en la cena (anuncio)", frase: '"Uno de vosotros me va a entregar"' },
+      { id: "s3p4", personaje: "Jesús a Pedro (aviso)", frase: '"Antes que cante el gallo me negarás tres veces"' },
+      { id: "s3p5", personaje: "Pedro en la cena", frase: '"Aunque todos te abandonen, yo no"' },
+      { id: "s3p6", personaje: "Pilato al título de la cruz", frase: '"Lo escrito, escrito está"' },
+      { id: "s3p7", personaje: "Multitud ante Pilato", frase: '"¡Crucifícalo!"' },
+      { id: "s3p8", personaje: "Jesús a las mujeres de Jerusalén", frase: '"No lloréis por mí"' },
+      { id: "s3p9", personaje: "Jesús en el clamor final", frase: '"Dios mío, Dios mío, ¿por qué me has abandonado?"' },
+      { id: "s3p10", personaje: "José de Arimatea a Pilato", frase: '"Dame el cuerpo de Jesús"' },
+      { id: "s3p11", personaje: "Ángel en la mañana de Pascua", frase: '"No tengáis miedo"' },
+      { id: "s3p12", personaje: "Jesús resucitado a las mujeres", frase: '"Alegraos"' },
+      { id: "s3p13", personaje: "Jesús resucitado a Tomás", frase: '"Dichosos los que creen sin haber visto"' },
+      { id: "s3p14", personaje: "Pedro en el arresto", frase: '"Señor, ¿herimos con la espada?"' },
+      { id: "s3p15", personaje: "Siervo del sumo sacerdote", frase: '"¿No te vi yo en el huerto con él?"' },
+      { id: "s3p16", personaje: "Sanedrín de madrugada", frase: '"¿Qué necesidad tenemos ya de testigos?"' },
+      { id: "s3p17", personaje: "Pilato a Jesús en el juicio", frase: '"¿No oyes de cuántas cosas te acusan?"' },
+      { id: "s3p18", personaje: "Jesús en memoria de la cena", frase: '"Haced esto en memoria mía"' },
+      { id: "s3p19", personaje: "Jesús en oración sacerdotal", frase: '"Padre, glorifica a tu Hijo"' },
+      { id: "s3p20", personaje: "Jesús al Padre por sus discípulos", frase: '"No ruego solo por ellos, sino también por los que crean"' },
     ],
   },
 ];
+
+function normalizeKey(value) {
+  return String(value || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim()
+    .toLowerCase();
+}
+
+function validateGameSets(sets) {
+  const globalCharacters = new Map();
+  const globalPhrases = new Map();
+
+  for (const setItem of sets) {
+    const setCharacters = new Set();
+    const setPhrases = new Set();
+
+    for (const pair of setItem.pairs) {
+      const characterKey = normalizeKey(pair.personaje);
+      const phraseKey = normalizeKey(pair.frase);
+
+      if (setCharacters.has(characterKey)) {
+        throw new Error(`Personaje repetido en ${setItem.title}: ${pair.personaje}`);
+      }
+      if (setPhrases.has(phraseKey)) {
+        throw new Error(`Frase repetida en ${setItem.title}: ${pair.frase}`);
+      }
+
+      if (globalCharacters.has(characterKey)) {
+        const previousSet = globalCharacters.get(characterKey);
+        throw new Error(`Personaje repetido entre sets (${previousSet} y ${setItem.title}): ${pair.personaje}`);
+      }
+      if (globalPhrases.has(phraseKey)) {
+        const previousSet = globalPhrases.get(phraseKey);
+        throw new Error(`Frase repetida entre sets (${previousSet} y ${setItem.title}): ${pair.frase}`);
+      }
+
+      setCharacters.add(characterKey);
+      setPhrases.add(phraseKey);
+      globalCharacters.set(characterKey, setItem.title);
+      globalPhrases.set(phraseKey, setItem.title);
+    }
+  }
+}
+
+validateGameSets(GAME_SETS);
 
 function shuffle(items) {
   const copy = [...items];
